@@ -28,9 +28,9 @@ public class Interpreter {
             //System.out.println();
 
             System.out.println(tree.toStringTree(parser));
-            Visitor visitor = new Visitor();
-            visitor.visit(tree);
-            System.out.println();
+//            Visitor visitor = new Visitor();
+  //          visitor.visit(tree);
+    //        System.out.println();
 
         } catch (Exception e) {
             System.err.println("Error (Test): " + e);

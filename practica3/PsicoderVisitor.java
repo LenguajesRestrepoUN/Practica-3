@@ -1,4 +1,4 @@
-// Generated from C:/Users/Orlando S/Documents/practica-3/practica3\Psicoder.g4 by ANTLR 4.5.1
+// Generated from C:/Users/jccaleroe/Documents/Practica-3/practica3\Psicoder.g4 by ANTLR 4.5.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -122,26 +122,26 @@ public interface PsicoderVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParamsTypeID(PsicoderParser.ParamsTypeIDContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code optpargsArgs}
-	 * labeled alternative in {@link PsicoderParser#optpargs}.
+	 * Visit a parse tree produced by the {@code optargsArgs}
+	 * labeled alternative in {@link PsicoderParser#optargs}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitOptpargsArgs(PsicoderParser.OptpargsArgsContext ctx);
+	T visitOptargsArgs(PsicoderParser.OptargsArgsContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code optpargsEpsilon}
-	 * labeled alternative in {@link PsicoderParser#optpargs}.
+	 * Visit a parse tree produced by the {@code optargsEpsilon}
+	 * labeled alternative in {@link PsicoderParser#optargs}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitOptpargsEpsilon(PsicoderParser.OptpargsEpsilonContext ctx);
+	T visitOptargsEpsilon(PsicoderParser.OptargsEpsilonContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code argsExpParams}
+	 * Visit a parse tree produced by the {@code argsExpArgs}
 	 * labeled alternative in {@link PsicoderParser#args}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitArgsExpParams(PsicoderParser.ArgsExpParamsContext ctx);
+	T visitArgsExpArgs(PsicoderParser.ArgsExpArgsContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code argsExp}
 	 * labeled alternative in {@link PsicoderParser#args}.
@@ -617,20 +617,6 @@ public interface PsicoderVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitExpID(PsicoderParser.ExpIDContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code optargsArgs}
-	 * labeled alternative in {@link PsicoderParser#optargs}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitOptargsArgs(PsicoderParser.OptargsArgsContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code optargsEpsilon}
-	 * labeled alternative in {@link PsicoderParser#optargs}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitOptargsEpsilon(PsicoderParser.OptargsEpsilonContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code stmt2Romper}
 	 * labeled alternative in {@link PsicoderParser#stmt2}.

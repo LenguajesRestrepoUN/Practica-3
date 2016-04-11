@@ -1,4 +1,4 @@
-// Generated from Psicoder.g4 by ANTLR 4.5.3
+// Generated from C:/Users/jccaleroe/Documents/Practica-3/practica3\Psicoder.g4 by ANTLR 4.5.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class PsicoderParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.5.3", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.5.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -29,14 +29,14 @@ public class PsicoderParser extends Parser {
 		TK_PAR_DER=60, ID=61, TK_REAL=62, TK_CADENA=63;
 	public static final int
 		RULE_ps = 0, RULE_b = 1, RULE_element = 2, RULE_type = 3, RULE_optparams = 4, 
-		RULE_params = 5, RULE_optpargs = 6, RULE_args = 7, RULE_statements = 8, 
+		RULE_params = 5, RULE_optargs = 6, RULE_args = 7, RULE_statements = 8, 
 		RULE_statements3 = 9, RULE_statements4 = 10, RULE_stmt = 11, RULE_cases = 12, 
 		RULE_cases2 = 13, RULE_deft = 14, RULE_imp_params = 15, RULE_optexp = 16, 
-		RULE_chain = 17, RULE_exp = 18, RULE_optargs = 19, RULE_stmt2 = 20, RULE_stmt4 = 21;
+		RULE_chain = 17, RULE_exp = 18, RULE_stmt2 = 19, RULE_stmt4 = 20;
 	public static final String[] ruleNames = {
-		"ps", "b", "element", "type", "optparams", "params", "optpargs", "args", 
+		"ps", "b", "element", "type", "optparams", "params", "optargs", "args", 
 		"statements", "statements3", "statements4", "stmt", "cases", "cases2", 
-		"deft", "imp_params", "optexp", "chain", "exp", "optargs", "stmt2", "stmt4"
+		"deft", "imp_params", "optexp", "chain", "exp", "stmt2", "stmt4"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
@@ -138,6 +138,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitPsElement(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitPsElement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class PsEpsilonContext extends PsContext {
 		public PsEpsilonContext(PsContext ctx) { copyFrom(ctx); }
@@ -148,6 +153,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitPsEpsilon(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitPsEpsilon(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class PsBContext extends PsContext {
@@ -163,22 +173,26 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitPsB(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitPsB(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final PsContext ps() throws RecognitionException {
 		PsContext _localctx = new PsContext(_ctx, getState());
 		enterRule(_localctx, 0, RULE_ps);
 		try {
-			setState(49);
-			_errHandler.sync(this);
+			setState(47);
 			switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
 			case 1:
 				_localctx = new PsElementContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(44);
+				setState(42);
 				element();
-				setState(45);
+				setState(43);
 				ps();
 				}
 				break;
@@ -186,7 +200,7 @@ public class PsicoderParser extends Parser {
 				_localctx = new PsBContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(47);
+				setState(45);
 				b();
 				}
 				break;
@@ -235,6 +249,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitBFuncionPrincipal(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitBFuncionPrincipal(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final BContext b() throws RecognitionException {
@@ -244,11 +263,11 @@ public class PsicoderParser extends Parser {
 			_localctx = new BFuncionPrincipalContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(51);
+			setState(49);
 			match(FUNCION_PRINCIPAL);
-			setState(52);
+			setState(50);
 			statements();
-			setState(53);
+			setState(51);
 			match(FIN_PRINCIPAL);
 			}
 		}
@@ -304,6 +323,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitElementFuncion(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitElementFuncion(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ElementEstructuraContext extends ElementContext {
 		public TerminalNode ESTRUCTURA() { return getToken(PsicoderParser.ESTRUCTURA, 0); }
@@ -321,41 +345,46 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitElementEstructura(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitElementEstructura(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ElementContext element() throws RecognitionException {
 		ElementContext _localctx = new ElementContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_element);
 		try {
-			setState(73);
+			setState(71);
 			switch (_input.LA(1)) {
 			case FUNCION:
 				_localctx = new ElementFuncionContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(55);
+				setState(53);
 				match(FUNCION);
-				setState(56);
+				setState(54);
 				type();
-				setState(57);
+				setState(55);
 				match(ID);
-				setState(58);
+				setState(56);
 				match(TK_PAR_IZQ);
-				setState(59);
+				setState(57);
 				optparams();
-				setState(60);
+				setState(58);
 				match(TK_PAR_DER);
-				setState(61);
+				setState(59);
 				match(HACER);
-				setState(62);
+				setState(60);
 				statements();
-				setState(63);
+				setState(61);
 				match(RETORNAR);
-				setState(64);
+				setState(62);
 				exp(0);
-				setState(65);
+				setState(63);
 				match(TK_PYC);
-				setState(66);
+				setState(64);
 				match(FIN_FUNCION);
 				}
 				break;
@@ -363,13 +392,13 @@ public class PsicoderParser extends Parser {
 				_localctx = new ElementEstructuraContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(68);
+				setState(66);
 				match(ESTRUCTURA);
-				setState(69);
+				setState(67);
 				match(ID);
-				setState(70);
+				setState(68);
 				statements4();
-				setState(71);
+				setState(69);
 				match(FIN_ESTRUCTURA);
 				}
 				break;
@@ -410,6 +439,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitTypeBooleano(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitTypeBooleano(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class TypeCaracterContext extends TypeContext {
 		public TerminalNode CARACTER() { return getToken(PsicoderParser.CARACTER, 0); }
@@ -421,6 +455,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitTypeCaracter(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitTypeCaracter(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class TypeRealContext extends TypeContext {
@@ -434,6 +473,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitTypeReal(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitTypeReal(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class TypeEnteroContext extends TypeContext {
 		public TerminalNode ENTERO() { return getToken(PsicoderParser.ENTERO, 0); }
@@ -445,6 +489,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitTypeEntero(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitTypeEntero(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class TypeIDContext extends TypeContext {
@@ -458,6 +507,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitTypeID(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitTypeID(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class TypeCadenaContext extends TypeContext {
 		public TerminalNode CADENA() { return getToken(PsicoderParser.CADENA, 0); }
@@ -470,19 +524,24 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitTypeCadena(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitTypeCadena(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final TypeContext type() throws RecognitionException {
 		TypeContext _localctx = new TypeContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_type);
 		try {
-			setState(81);
+			setState(79);
 			switch (_input.LA(1)) {
 			case ENTERO:
 				_localctx = new TypeEnteroContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(75);
+				setState(73);
 				match(ENTERO);
 				}
 				break;
@@ -490,7 +549,7 @@ public class PsicoderParser extends Parser {
 				_localctx = new TypeCaracterContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(76);
+				setState(74);
 				match(CARACTER);
 				}
 				break;
@@ -498,7 +557,7 @@ public class PsicoderParser extends Parser {
 				_localctx = new TypeCadenaContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(77);
+				setState(75);
 				match(CADENA);
 				}
 				break;
@@ -506,7 +565,7 @@ public class PsicoderParser extends Parser {
 				_localctx = new TypeRealContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(78);
+				setState(76);
 				match(REAL);
 				}
 				break;
@@ -514,7 +573,7 @@ public class PsicoderParser extends Parser {
 				_localctx = new TypeBooleanoContext(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(79);
+				setState(77);
 				match(BOOLEANO);
 				}
 				break;
@@ -522,7 +581,7 @@ public class PsicoderParser extends Parser {
 				_localctx = new TypeIDContext(_localctx);
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(80);
+				setState(78);
 				match(ID);
 				}
 				break;
@@ -565,6 +624,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitOptparamsP(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitOptparamsP(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class OptparamsEpsilonContext extends OptparamsContext {
 		public OptparamsEpsilonContext(OptparamsContext ctx) { copyFrom(ctx); }
@@ -576,13 +640,18 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitOptparamsEpsilon(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitOptparamsEpsilon(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final OptparamsContext optparams() throws RecognitionException {
 		OptparamsContext _localctx = new OptparamsContext(_ctx, getState());
 		enterRule(_localctx, 8, RULE_optparams);
 		try {
-			setState(85);
+			setState(83);
 			switch (_input.LA(1)) {
 			case CARACTER:
 			case CADENA:
@@ -593,7 +662,7 @@ public class PsicoderParser extends Parser {
 				_localctx = new OptparamsPContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(83);
+				setState(81);
 				params();
 				}
 				break;
@@ -647,6 +716,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitParamsTypeIDComa(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitParamsTypeIDComa(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ParamsTypeIDContext extends ParamsContext {
 		public TypeContext type() {
@@ -662,26 +736,30 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitParamsTypeID(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitParamsTypeID(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ParamsContext params() throws RecognitionException {
 		ParamsContext _localctx = new ParamsContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_params);
 		try {
-			setState(95);
-			_errHandler.sync(this);
+			setState(93);
 			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
 			case 1:
 				_localctx = new ParamsTypeIDComaContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(87);
+				setState(85);
 				type();
-				setState(88);
+				setState(86);
 				match(ID);
-				setState(89);
+				setState(87);
 				match(TK_COMA);
-				setState(90);
+				setState(88);
 				params();
 				}
 				break;
@@ -689,9 +767,9 @@ public class PsicoderParser extends Parser {
 				_localctx = new ParamsTypeIDContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(92);
+				setState(90);
 				type();
-				setState(93);
+				setState(91);
 				match(ID);
 				}
 				break;
@@ -708,48 +786,58 @@ public class PsicoderParser extends Parser {
 		return _localctx;
 	}
 
-	public static class OptpargsContext extends ParserRuleContext {
-		public OptpargsContext(ParserRuleContext parent, int invokingState) {
+	public static class OptargsContext extends ParserRuleContext {
+		public OptargsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_optpargs; }
+		@Override public int getRuleIndex() { return RULE_optargs; }
 	 
-		public OptpargsContext() { }
-		public void copyFrom(OptpargsContext ctx) {
+		public OptargsContext() { }
+		public void copyFrom(OptargsContext ctx) {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class OptpargsEpsilonContext extends OptpargsContext {
-		public OptpargsEpsilonContext(OptpargsContext ctx) { copyFrom(ctx); }
+	public static class OptargsEpsilonContext extends OptargsContext {
+		public OptargsEpsilonContext(OptargsContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).enterOptpargsEpsilon(this);
+			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).enterOptargsEpsilon(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitOptpargsEpsilon(this);
+			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitOptargsEpsilon(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitOptargsEpsilon(this);
+			else return visitor.visitChildren(this);
 		}
 	}
-	public static class OptpargsArgsContext extends OptpargsContext {
+	public static class OptargsArgsContext extends OptargsContext {
 		public ArgsContext args() {
 			return getRuleContext(ArgsContext.class,0);
 		}
-		public OptpargsArgsContext(OptpargsContext ctx) { copyFrom(ctx); }
+		public OptargsArgsContext(OptargsContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).enterOptpargsArgs(this);
+			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).enterOptargsArgs(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitOptpargsArgs(this);
+			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitOptargsArgs(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitOptargsArgs(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final OptpargsContext optpargs() throws RecognitionException {
-		OptpargsContext _localctx = new OptpargsContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_optpargs);
+	public final OptargsContext optargs() throws RecognitionException {
+		OptargsContext _localctx = new OptargsContext(_ctx, getState());
+		enterRule(_localctx, 12, RULE_optargs);
 		try {
-			setState(99);
+			setState(97);
 			switch (_input.LA(1)) {
 			case TK_CARACTER:
 			case VERDADERO:
@@ -761,15 +849,15 @@ public class PsicoderParser extends Parser {
 			case ID:
 			case TK_REAL:
 			case TK_CADENA:
-				_localctx = new OptpargsArgsContext(_localctx);
+				_localctx = new OptargsArgsContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(97);
+				setState(95);
 				args();
 				}
 				break;
 			case TK_PAR_DER:
-				_localctx = new OptpargsEpsilonContext(_localctx);
+				_localctx = new OptargsEpsilonContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				}
@@ -800,6 +888,29 @@ public class PsicoderParser extends Parser {
 			super.copyFrom(ctx);
 		}
 	}
+	public static class ArgsExpArgsContext extends ArgsContext {
+		public ExpContext exp() {
+			return getRuleContext(ExpContext.class,0);
+		}
+		public TerminalNode TK_COMA() { return getToken(PsicoderParser.TK_COMA, 0); }
+		public ArgsContext args() {
+			return getRuleContext(ArgsContext.class,0);
+		}
+		public ArgsExpArgsContext(ArgsContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).enterArgsExpArgs(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitArgsExpArgs(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitArgsExpArgs(this);
+			else return visitor.visitChildren(this);
+		}
+	}
 	public static class ArgsExpContext extends ArgsContext {
 		public ExpContext exp() {
 			return getRuleContext(ExpContext.class,0);
@@ -813,23 +924,10 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitArgsExp(this);
 		}
-	}
-	public static class ArgsExpParamsContext extends ArgsContext {
-		public ExpContext exp() {
-			return getRuleContext(ExpContext.class,0);
-		}
-		public TerminalNode TK_COMA() { return getToken(PsicoderParser.TK_COMA, 0); }
-		public ParamsContext params() {
-			return getRuleContext(ParamsContext.class,0);
-		}
-		public ArgsExpParamsContext(ArgsContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).enterArgsExpParams(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitArgsExpParams(this);
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitArgsExp(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -837,26 +935,25 @@ public class PsicoderParser extends Parser {
 		ArgsContext _localctx = new ArgsContext(_ctx, getState());
 		enterRule(_localctx, 14, RULE_args);
 		try {
-			setState(106);
-			_errHandler.sync(this);
+			setState(104);
 			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
 			case 1:
-				_localctx = new ArgsExpParamsContext(_localctx);
+				_localctx = new ArgsExpArgsContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(101);
+				setState(99);
 				exp(0);
-				setState(102);
+				setState(100);
 				match(TK_COMA);
-				setState(103);
-				params();
+				setState(101);
+				args();
 				}
 				break;
 			case 2:
 				_localctx = new ArgsExpContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(105);
+				setState(103);
 				exp(0);
 				}
 				break;
@@ -900,6 +997,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStatementsEpsilonStmt(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStatementsEpsilonStmt(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class StatementsEpsilonContext extends StatementsContext {
 		public StatementsEpsilonContext(StatementsContext ctx) { copyFrom(ctx); }
@@ -911,13 +1013,18 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStatementsEpsilon(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStatementsEpsilon(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final StatementsContext statements() throws RecognitionException {
 		StatementsContext _localctx = new StatementsContext(_ctx, getState());
 		enterRule(_localctx, 16, RULE_statements);
 		try {
-			setState(112);
+			setState(110);
 			switch (_input.LA(1)) {
 			case LEER:
 			case SI:
@@ -935,9 +1042,9 @@ public class PsicoderParser extends Parser {
 				_localctx = new StatementsEpsilonStmtContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(108);
+				setState(106);
 				stmt();
-				setState(109);
+				setState(107);
 				statements();
 				}
 				break;
@@ -986,6 +1093,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStatements3Epsilon(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStatements3Epsilon(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Statements3StmtContext extends Statements3Context {
 		public Stmt2Context stmt2() {
@@ -1003,22 +1115,26 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStatements3Stmt(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStatements3Stmt(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Statements3Context statements3() throws RecognitionException {
 		Statements3Context _localctx = new Statements3Context(_ctx, getState());
 		enterRule(_localctx, 18, RULE_statements3);
 		try {
-			setState(118);
-			_errHandler.sync(this);
+			setState(116);
 			switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
 			case 1:
 				_localctx = new Statements3StmtContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(114);
+				setState(112);
 				stmt2();
-				setState(115);
+				setState(113);
 				statements3();
 				}
 				break;
@@ -1068,6 +1184,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStatements4Stmt(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStatements4Stmt(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Statements4EpsilonContext extends Statements4Context {
 		public Statements4EpsilonContext(Statements4Context ctx) { copyFrom(ctx); }
@@ -1079,13 +1200,18 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStatements4Epsilon(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStatements4Epsilon(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Statements4Context statements4() throws RecognitionException {
 		Statements4Context _localctx = new Statements4Context(_ctx, getState());
 		enterRule(_localctx, 20, RULE_statements4);
 		try {
-			setState(124);
+			setState(122);
 			switch (_input.LA(1)) {
 			case CARACTER:
 			case CADENA:
@@ -1096,9 +1222,9 @@ public class PsicoderParser extends Parser {
 				_localctx = new Statements4StmtContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(120);
+				setState(118);
 				stmt4();
-				setState(121);
+				setState(119);
 				statements4();
 				}
 				break;
@@ -1155,6 +1281,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmtMientras(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmtMientras(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class StmtSeleccionarContext extends StmtContext {
 		public TerminalNode SELECCIONAR() { return getToken(PsicoderParser.SELECCIONAR, 0); }
@@ -1174,6 +1305,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmtSeleccionar(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmtSeleccionar(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class StmtTypeAsigContext extends StmtContext {
@@ -1199,6 +1335,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmtTypeAsig(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmtTypeAsig(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class StmtTypeAsifExpContext extends StmtContext {
 		public TypeContext type() {
@@ -1218,6 +1359,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmtTypeAsifExp(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmtTypeAsifExp(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class StmtParaContext extends StmtContext {
@@ -1248,6 +1394,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmtPara(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmtPara(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class StmtLeerIDContext extends StmtContext {
 		public TerminalNode LEER() { return getToken(PsicoderParser.LEER, 0); }
@@ -1263,6 +1414,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmtLeerID(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmtLeerID(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class StmtHacerContext extends StmtContext {
@@ -1286,6 +1442,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmtHacer(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmtHacer(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class StmtSiContext extends StmtContext {
 		public TerminalNode SI() { return getToken(PsicoderParser.SI, 0); }
@@ -1308,6 +1469,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmtSi(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmtSi(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class StmtIDContext extends StmtContext {
 		public TypeContext type() {
@@ -1323,6 +1489,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmtID(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmtID(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class StmtIDAsigContext extends StmtContext {
@@ -1340,6 +1511,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmtIDAsig(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmtIDAsig(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class StmtImprimirContext extends StmtContext {
@@ -1359,12 +1535,17 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmtImprimir(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmtImprimir(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class StmtCallFunctionContext extends StmtContext {
 		public TerminalNode ID() { return getToken(PsicoderParser.ID, 0); }
 		public TerminalNode TK_PAR_IZQ() { return getToken(PsicoderParser.TK_PAR_IZQ, 0); }
-		public OptpargsContext optpargs() {
-			return getRuleContext(OptpargsContext.class,0);
+		public OptargsContext optargs() {
+			return getRuleContext(OptargsContext.class,0);
 		}
 		public TerminalNode TK_PAR_DER() { return getToken(PsicoderParser.TK_PAR_DER, 0); }
 		public TerminalNode TK_PYC() { return getToken(PsicoderParser.TK_PYC, 0); }
@@ -1376,6 +1557,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmtCallFunction(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmtCallFunction(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class StmtSiNoContext extends StmtContext {
@@ -1403,6 +1589,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmtSiNo(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmtSiNo(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class StmtLeerChainContext extends StmtContext {
 		public TerminalNode LEER() { return getToken(PsicoderParser.LEER, 0); }
@@ -1423,6 +1614,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmtLeerChain(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmtLeerChain(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class StmtTypeAsigOptexpContext extends StmtContext {
 		public TypeContext type() {
@@ -1442,6 +1638,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmtTypeAsigOptexp(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmtTypeAsigOptexp(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class StmtIDChainContext extends StmtContext {
@@ -1464,28 +1665,32 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmtIDChain(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmtIDChain(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final StmtContext stmt() throws RecognitionException {
 		StmtContext _localctx = new StmtContext(_ctx, getState());
 		enterRule(_localctx, 22, RULE_stmt);
 		try {
-			setState(240);
-			_errHandler.sync(this);
+			setState(238);
 			switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
 			case 1:
 				_localctx = new StmtCallFunctionContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(126);
+				setState(124);
 				match(ID);
-				setState(127);
+				setState(125);
 				match(TK_PAR_IZQ);
-				setState(128);
-				optpargs();
-				setState(129);
+				setState(126);
+				optargs();
+				setState(127);
 				match(TK_PAR_DER);
-				setState(130);
+				setState(128);
 				match(TK_PYC);
 				}
 				break;
@@ -1493,19 +1698,19 @@ public class PsicoderParser extends Parser {
 				_localctx = new StmtTypeAsigContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(132);
+				setState(130);
 				type();
-				setState(133);
+				setState(131);
 				match(ID);
-				setState(134);
+				setState(132);
 				match(TK_ASIG);
-				setState(135);
+				setState(133);
 				exp(0);
-				setState(136);
+				setState(134);
 				match(TK_COMA);
-				setState(137);
+				setState(135);
 				optexp();
-				setState(138);
+				setState(136);
 				match(TK_PYC);
 				}
 				break;
@@ -1513,15 +1718,15 @@ public class PsicoderParser extends Parser {
 				_localctx = new StmtTypeAsigOptexpContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(140);
+				setState(138);
 				type();
-				setState(141);
+				setState(139);
 				match(ID);
-				setState(142);
+				setState(140);
 				match(TK_COMA);
-				setState(143);
+				setState(141);
 				optexp();
-				setState(144);
+				setState(142);
 				match(TK_PYC);
 				}
 				break;
@@ -1529,13 +1734,13 @@ public class PsicoderParser extends Parser {
 				_localctx = new StmtIDAsigContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(146);
+				setState(144);
 				match(ID);
-				setState(147);
+				setState(145);
 				match(TK_ASIG);
-				setState(148);
+				setState(146);
 				exp(0);
-				setState(149);
+				setState(147);
 				match(TK_PYC);
 				}
 				break;
@@ -1543,15 +1748,15 @@ public class PsicoderParser extends Parser {
 				_localctx = new StmtTypeAsifExpContext(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(151);
+				setState(149);
 				type();
-				setState(152);
+				setState(150);
 				match(ID);
-				setState(153);
+				setState(151);
 				match(TK_ASIG);
-				setState(154);
+				setState(152);
 				exp(0);
-				setState(155);
+				setState(153);
 				match(TK_PYC);
 				}
 				break;
@@ -1559,17 +1764,17 @@ public class PsicoderParser extends Parser {
 				_localctx = new StmtIDChainContext(_localctx);
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(157);
+				setState(155);
 				match(ID);
-				setState(158);
+				setState(156);
 				match(TK_PUNTO);
-				setState(159);
+				setState(157);
 				chain();
-				setState(160);
+				setState(158);
 				match(TK_ASIG);
-				setState(161);
+				setState(159);
 				exp(0);
-				setState(162);
+				setState(160);
 				match(TK_PYC);
 				}
 				break;
@@ -1577,11 +1782,11 @@ public class PsicoderParser extends Parser {
 				_localctx = new StmtIDContext(_localctx);
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(164);
+				setState(162);
 				type();
-				setState(165);
+				setState(163);
 				match(ID);
-				setState(166);
+				setState(164);
 				match(TK_PYC);
 				}
 				break;
@@ -1589,19 +1794,19 @@ public class PsicoderParser extends Parser {
 				_localctx = new StmtSiContext(_localctx);
 				enterOuterAlt(_localctx, 8);
 				{
-				setState(168);
+				setState(166);
 				match(SI);
-				setState(169);
+				setState(167);
 				match(TK_PAR_IZQ);
-				setState(170);
+				setState(168);
 				exp(0);
-				setState(171);
+				setState(169);
 				match(TK_PAR_DER);
-				setState(172);
+				setState(170);
 				match(ENTONCES);
-				setState(173);
+				setState(171);
 				statements();
-				setState(174);
+				setState(172);
 				match(FIN_SI);
 				}
 				break;
@@ -1609,23 +1814,23 @@ public class PsicoderParser extends Parser {
 				_localctx = new StmtSiNoContext(_localctx);
 				enterOuterAlt(_localctx, 9);
 				{
-				setState(176);
+				setState(174);
 				match(SI);
-				setState(177);
+				setState(175);
 				match(TK_PAR_IZQ);
-				setState(178);
+				setState(176);
 				exp(0);
-				setState(179);
+				setState(177);
 				match(TK_PAR_DER);
-				setState(180);
+				setState(178);
 				match(ENTONCES);
+				setState(179);
+				statements();
+				setState(180);
+				match(SI_NO);
 				setState(181);
 				statements();
 				setState(182);
-				match(SI_NO);
-				setState(183);
-				statements();
-				setState(184);
 				match(FIN_SI);
 				}
 				break;
@@ -1633,15 +1838,15 @@ public class PsicoderParser extends Parser {
 				_localctx = new StmtLeerIDContext(_localctx);
 				enterOuterAlt(_localctx, 10);
 				{
-				setState(186);
+				setState(184);
 				match(LEER);
-				setState(187);
+				setState(185);
 				match(TK_PAR_IZQ);
-				setState(188);
+				setState(186);
 				match(ID);
-				setState(189);
+				setState(187);
 				match(TK_PAR_DER);
-				setState(190);
+				setState(188);
 				match(TK_PYC);
 				}
 				break;
@@ -1649,19 +1854,19 @@ public class PsicoderParser extends Parser {
 				_localctx = new StmtLeerChainContext(_localctx);
 				enterOuterAlt(_localctx, 11);
 				{
-				setState(191);
+				setState(189);
 				match(LEER);
-				setState(192);
+				setState(190);
 				match(TK_PAR_IZQ);
-				setState(193);
+				setState(191);
 				match(ID);
-				setState(194);
+				setState(192);
 				match(TK_PUNTO);
-				setState(195);
+				setState(193);
 				chain();
-				setState(196);
+				setState(194);
 				match(TK_PAR_DER);
-				setState(197);
+				setState(195);
 				match(TK_PYC);
 				}
 				break;
@@ -1669,15 +1874,15 @@ public class PsicoderParser extends Parser {
 				_localctx = new StmtImprimirContext(_localctx);
 				enterOuterAlt(_localctx, 12);
 				{
-				setState(199);
+				setState(197);
 				match(IMPRIMIR);
-				setState(200);
+				setState(198);
 				match(TK_PAR_IZQ);
-				setState(201);
+				setState(199);
 				imp_params();
-				setState(202);
+				setState(200);
 				match(TK_PAR_DER);
-				setState(203);
+				setState(201);
 				match(TK_PYC);
 				}
 				break;
@@ -1685,25 +1890,25 @@ public class PsicoderParser extends Parser {
 				_localctx = new StmtParaContext(_localctx);
 				enterOuterAlt(_localctx, 13);
 				{
-				setState(205);
+				setState(203);
 				match(PARA);
-				setState(206);
+				setState(204);
 				match(TK_PAR_IZQ);
-				setState(207);
+				setState(205);
 				stmt();
+				setState(206);
+				exp(0);
+				setState(207);
+				match(TK_PYC);
 				setState(208);
 				exp(0);
 				setState(209);
-				match(TK_PYC);
-				setState(210);
-				exp(0);
-				setState(211);
 				match(TK_PAR_DER);
-				setState(212);
+				setState(210);
 				match(HACER);
-				setState(213);
+				setState(211);
 				statements3();
-				setState(214);
+				setState(212);
 				match(FIN_PARA);
 				}
 				break;
@@ -1711,19 +1916,19 @@ public class PsicoderParser extends Parser {
 				_localctx = new StmtMientrasContext(_localctx);
 				enterOuterAlt(_localctx, 14);
 				{
-				setState(216);
+				setState(214);
 				match(MIENTRAS);
-				setState(217);
+				setState(215);
 				match(TK_PAR_IZQ);
-				setState(218);
+				setState(216);
 				exp(0);
-				setState(219);
+				setState(217);
 				match(TK_PAR_DER);
-				setState(220);
+				setState(218);
 				match(HACER);
-				setState(221);
+				setState(219);
 				statements3();
-				setState(222);
+				setState(220);
 				match(FIN_MIENTRAS);
 				}
 				break;
@@ -1731,19 +1936,19 @@ public class PsicoderParser extends Parser {
 				_localctx = new StmtHacerContext(_localctx);
 				enterOuterAlt(_localctx, 15);
 				{
-				setState(224);
+				setState(222);
 				match(HACER);
-				setState(225);
+				setState(223);
 				statements3();
-				setState(226);
+				setState(224);
 				match(MIENTRAS);
-				setState(227);
+				setState(225);
 				match(TK_PAR_IZQ);
-				setState(228);
+				setState(226);
 				exp(0);
-				setState(229);
+				setState(227);
 				match(TK_PAR_DER);
-				setState(230);
+				setState(228);
 				match(TK_PYC);
 				}
 				break;
@@ -1751,19 +1956,19 @@ public class PsicoderParser extends Parser {
 				_localctx = new StmtSeleccionarContext(_localctx);
 				enterOuterAlt(_localctx, 16);
 				{
-				setState(232);
+				setState(230);
 				match(SELECCIONAR);
-				setState(233);
+				setState(231);
 				match(TK_PAR_IZQ);
-				setState(234);
+				setState(232);
 				match(ID);
-				setState(235);
+				setState(233);
 				match(TK_PAR_DER);
-				setState(236);
+				setState(234);
 				match(ENTRE);
-				setState(237);
+				setState(235);
 				cases();
-				setState(238);
+				setState(236);
 				match(FIN_SELECCIONAR);
 				}
 				break;
@@ -1804,6 +2009,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitCasesDefecto(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitCasesDefecto(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class CasesCasoContext extends CasesContext {
 		public TerminalNode CASO() { return getToken(PsicoderParser.CASO, 0); }
@@ -1826,27 +2036,32 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitCasesCaso(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitCasesCaso(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final CasesContext cases() throws RecognitionException {
 		CasesContext _localctx = new CasesContext(_ctx, getState());
 		enterRule(_localctx, 24, RULE_cases);
 		try {
-			setState(249);
+			setState(247);
 			switch (_input.LA(1)) {
 			case CASO:
 				_localctx = new CasesCasoContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(242);
+				setState(240);
 				match(CASO);
-				setState(243);
+				setState(241);
 				exp(0);
-				setState(244);
+				setState(242);
 				match(TK_POSD);
-				setState(245);
+				setState(243);
 				statements3();
-				setState(246);
+				setState(244);
 				cases2();
 				}
 				break;
@@ -1854,7 +2069,7 @@ public class PsicoderParser extends Parser {
 				_localctx = new CasesDefectoContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(248);
+				setState(246);
 				deft();
 				}
 				break;
@@ -1894,6 +2109,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitCases2Epsilon(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitCases2Epsilon(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Cases2DefectoContext extends Cases2Context {
 		public DeftContext deft() {
@@ -1907,6 +2127,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitCases2Defecto(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitCases2Defecto(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class Cases2cacsoContext extends Cases2Context {
@@ -1930,27 +2155,32 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitCases2cacso(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitCases2cacso(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Cases2Context cases2() throws RecognitionException {
 		Cases2Context _localctx = new Cases2Context(_ctx, getState());
 		enterRule(_localctx, 26, RULE_cases2);
 		try {
-			setState(259);
+			setState(257);
 			switch (_input.LA(1)) {
 			case CASO:
 				_localctx = new Cases2cacsoContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(251);
+				setState(249);
 				match(CASO);
-				setState(252);
+				setState(250);
 				exp(0);
-				setState(253);
+				setState(251);
 				match(TK_POSD);
-				setState(254);
+				setState(252);
 				statements3();
-				setState(255);
+				setState(253);
 				cases2();
 				}
 				break;
@@ -1964,7 +2194,7 @@ public class PsicoderParser extends Parser {
 				_localctx = new Cases2DefectoContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(258);
+				setState(256);
 				deft();
 				}
 				break;
@@ -2001,6 +2231,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitDeft(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitDeft(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final DeftContext deft() throws RecognitionException {
@@ -2009,11 +2244,11 @@ public class PsicoderParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(261);
+			setState(259);
 			match(DEFECTO);
-			setState(262);
+			setState(260);
 			match(TK_POSD);
-			setState(263);
+			setState(261);
 			statements3();
 			}
 		}
@@ -2052,6 +2287,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitImp_paramsExp(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitImp_paramsExp(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Imp_paramsChainContext extends Imp_paramsContext {
 		public ExpContext exp() {
@@ -2070,24 +2310,28 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitImp_paramsChain(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitImp_paramsChain(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Imp_paramsContext imp_params() throws RecognitionException {
 		Imp_paramsContext _localctx = new Imp_paramsContext(_ctx, getState());
 		enterRule(_localctx, 30, RULE_imp_params);
 		try {
-			setState(270);
-			_errHandler.sync(this);
+			setState(268);
 			switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
 			case 1:
 				_localctx = new Imp_paramsChainContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(265);
+				setState(263);
 				exp(0);
-				setState(266);
+				setState(264);
 				match(TK_COMA);
-				setState(267);
+				setState(265);
 				imp_params();
 				}
 				break;
@@ -2095,7 +2339,7 @@ public class PsicoderParser extends Parser {
 				_localctx = new Imp_paramsExpContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(269);
+				setState(267);
 				exp(0);
 				}
 				break;
@@ -2134,6 +2378,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitOptexpID(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitOptexpID(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class OptexpIDComaContext extends OptexpContext {
 		public TerminalNode ID() { return getToken(PsicoderParser.ID, 0); }
@@ -2149,6 +2398,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitOptexpIDComa(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitOptexpIDComa(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class OptexpIDAsigExpComaContext extends OptexpContext {
@@ -2170,6 +2424,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitOptexpIDAsigExpComa(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitOptexpIDAsigExpComa(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class OptexpIDAsigExpContext extends OptexpContext {
 		public TerminalNode ID() { return getToken(PsicoderParser.ID, 0); }
@@ -2186,24 +2445,28 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitOptexpIDAsigExp(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitOptexpIDAsigExp(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final OptexpContext optexp() throws RecognitionException {
 		OptexpContext _localctx = new OptexpContext(_ctx, getState());
 		enterRule(_localctx, 32, RULE_optexp);
 		try {
-			setState(285);
-			_errHandler.sync(this);
+			setState(283);
 			switch ( getInterpreter().adaptivePredict(_input,14,_ctx) ) {
 			case 1:
 				_localctx = new OptexpIDComaContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(272);
+				setState(270);
 				match(ID);
-				setState(273);
+				setState(271);
 				match(TK_COMA);
-				setState(274);
+				setState(272);
 				optexp();
 				}
 				break;
@@ -2211,15 +2474,15 @@ public class PsicoderParser extends Parser {
 				_localctx = new OptexpIDAsigExpComaContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(275);
+				setState(273);
 				match(ID);
-				setState(276);
+				setState(274);
 				match(TK_ASIG);
-				setState(277);
+				setState(275);
 				exp(0);
-				setState(278);
+				setState(276);
 				match(TK_COMA);
-				setState(279);
+				setState(277);
 				optexp();
 				}
 				break;
@@ -2227,7 +2490,7 @@ public class PsicoderParser extends Parser {
 				_localctx = new OptexpIDContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(281);
+				setState(279);
 				match(ID);
 				}
 				break;
@@ -2235,11 +2498,11 @@ public class PsicoderParser extends Parser {
 				_localctx = new OptexpIDAsigExpContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(282);
+				setState(280);
 				match(ID);
-				setState(283);
+				setState(281);
 				match(TK_ASIG);
-				setState(284);
+				setState(282);
 				exp(0);
 				}
 				break;
@@ -2278,6 +2541,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitChainID(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitChainID(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ChainIDPuntoContext extends ChainContext {
 		public TerminalNode ID() { return getToken(PsicoderParser.ID, 0); }
@@ -2294,24 +2562,28 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitChainIDPunto(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitChainIDPunto(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ChainContext chain() throws RecognitionException {
 		ChainContext _localctx = new ChainContext(_ctx, getState());
 		enterRule(_localctx, 34, RULE_chain);
 		try {
-			setState(291);
-			_errHandler.sync(this);
+			setState(289);
 			switch ( getInterpreter().adaptivePredict(_input,15,_ctx) ) {
 			case 1:
 				_localctx = new ChainIDPuntoContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(287);
+				setState(285);
 				match(ID);
-				setState(288);
+				setState(286);
 				match(TK_PUNTO);
-				setState(289);
+				setState(287);
 				chain();
 				}
 				break;
@@ -2319,7 +2591,7 @@ public class PsicoderParser extends Parser {
 				_localctx = new ChainIDContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(290);
+				setState(288);
 				match(ID);
 				}
 				break;
@@ -2363,6 +2635,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpNegParExp(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpNegParExp(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ExpMultContext extends ExpContext {
 		public List<ExpContext> exp() {
@@ -2380,6 +2657,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpMult(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpMult(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ExpModuloContext extends ExpContext {
@@ -2399,6 +2681,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpModulo(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpModulo(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ExpIDChainContext extends ExpContext {
 		public TerminalNode ID() { return getToken(PsicoderParser.ID, 0); }
@@ -2415,6 +2702,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpIDChain(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpIDChain(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ExpDifContext extends ExpContext {
@@ -2434,6 +2726,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpDif(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpDif(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ExpFuncionContext extends ExpContext {
 		public TerminalNode ID() { return getToken(PsicoderParser.ID, 0); }
@@ -2450,6 +2747,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpFuncion(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpFuncion(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ExpMenosContext extends ExpContext {
@@ -2469,6 +2771,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpMenos(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpMenos(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ExpMenorContext extends ExpContext {
 		public List<ExpContext> exp() {
@@ -2486,6 +2793,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpMenor(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpMenor(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ExpAndContext extends ExpContext {
@@ -2505,6 +2817,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpAnd(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpAnd(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ExpMenosIDContext extends ExpContext {
 		public TerminalNode TK_MENOS() { return getToken(PsicoderParser.TK_MENOS, 0); }
@@ -2518,6 +2835,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpMenosID(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpMenosID(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ExpNegIDContext extends ExpContext {
 		public TerminalNode TK_NEG() { return getToken(PsicoderParser.TK_NEG, 0); }
@@ -2530,6 +2852,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpNegID(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpNegID(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ExpDivContext extends ExpContext {
@@ -2549,6 +2876,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpDiv(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpDiv(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ExpEnteroContext extends ExpContext {
 		public TerminalNode TK_ENTERO() { return getToken(PsicoderParser.TK_ENTERO, 0); }
@@ -2560,6 +2892,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpEntero(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpEntero(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ExpMayorIgualContext extends ExpContext {
@@ -2579,6 +2916,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpMayorIgual(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpMayorIgual(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ExpNegChainContext extends ExpContext {
 		public TerminalNode TK_NEG() { return getToken(PsicoderParser.TK_NEG, 0); }
@@ -2595,6 +2937,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpNegChain(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpNegChain(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ExpOrContext extends ExpContext {
@@ -2614,6 +2961,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpOr(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpOr(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ExpMayorContext extends ExpContext {
 		public List<ExpContext> exp() {
@@ -2631,6 +2983,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpMayor(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpMayor(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ExpMenorIgualContext extends ExpContext {
@@ -2650,6 +3007,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpMenorIgual(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpMenorIgual(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ExpMasContext extends ExpContext {
 		public List<ExpContext> exp() {
@@ -2668,6 +3030,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpMas(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpMas(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ExpNegVerdaderoContext extends ExpContext {
 		public TerminalNode TK_NEG() { return getToken(PsicoderParser.TK_NEG, 0); }
@@ -2681,6 +3048,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpNegVerdadero(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpNegVerdadero(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ExpCadenaContext extends ExpContext {
 		public TerminalNode TK_CADENA() { return getToken(PsicoderParser.TK_CADENA, 0); }
@@ -2692,6 +3064,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpCadena(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpCadena(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ExpNegFalsoContext extends ExpContext {
@@ -2705,6 +3082,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpNegFalso(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpNegFalso(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ExpParExpContext extends ExpContext {
@@ -2723,6 +3105,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpParExp(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpParExp(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ExpVerdaderoContext extends ExpContext {
 		public TerminalNode VERDADERO() { return getToken(PsicoderParser.VERDADERO, 0); }
@@ -2734,6 +3121,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpVerdadero(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpVerdadero(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ExpMenosRealContext extends ExpContext {
@@ -2747,6 +3139,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpMenosReal(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpMenosReal(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ExpIgualContext extends ExpContext {
@@ -2766,6 +3163,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpIgual(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpIgual(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ExpMenosEnteroContext extends ExpContext {
 		public TerminalNode TK_MENOS() { return getToken(PsicoderParser.TK_MENOS, 0); }
@@ -2779,6 +3181,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpMenosEntero(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpMenosEntero(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ExpRealContext extends ExpContext {
 		public TerminalNode TK_REAL() { return getToken(PsicoderParser.TK_REAL, 0); }
@@ -2790,6 +3197,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpReal(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpReal(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ExpCaracterContext extends ExpContext {
@@ -2803,6 +3215,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpCaracter(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpCaracter(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ExpFalsoContext extends ExpContext {
 		public TerminalNode FALSO() { return getToken(PsicoderParser.FALSO, 0); }
@@ -2815,6 +3232,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpFalso(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpFalso(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ExpIDContext extends ExpContext {
 		public TerminalNode ID() { return getToken(PsicoderParser.ID, 0); }
@@ -2826,6 +3248,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitExpID(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitExpID(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -2844,8 +3271,7 @@ public class PsicoderParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(343);
-			_errHandler.sync(this);
+			setState(341);
 			switch ( getInterpreter().adaptivePredict(_input,16,_ctx) ) {
 			case 1:
 				{
@@ -2853,7 +3279,7 @@ public class PsicoderParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
-				setState(294);
+				setState(292);
 				match(TK_CARACTER);
 				}
 				break;
@@ -2862,7 +3288,7 @@ public class PsicoderParser extends Parser {
 				_localctx = new ExpIDContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(295);
+				setState(293);
 				match(ID);
 				}
 				break;
@@ -2871,11 +3297,11 @@ public class PsicoderParser extends Parser {
 				_localctx = new ExpIDChainContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(296);
+				setState(294);
 				match(ID);
-				setState(297);
+				setState(295);
 				match(TK_PUNTO);
-				setState(298);
+				setState(296);
 				chain();
 				}
 				break;
@@ -2884,7 +3310,7 @@ public class PsicoderParser extends Parser {
 				_localctx = new ExpEnteroContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(299);
+				setState(297);
 				match(TK_ENTERO);
 				}
 				break;
@@ -2893,7 +3319,7 @@ public class PsicoderParser extends Parser {
 				_localctx = new ExpRealContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(300);
+				setState(298);
 				match(TK_REAL);
 				}
 				break;
@@ -2902,7 +3328,7 @@ public class PsicoderParser extends Parser {
 				_localctx = new ExpCadenaContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(301);
+				setState(299);
 				match(TK_CADENA);
 				}
 				break;
@@ -2911,7 +3337,7 @@ public class PsicoderParser extends Parser {
 				_localctx = new ExpVerdaderoContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(302);
+				setState(300);
 				match(VERDADERO);
 				}
 				break;
@@ -2920,7 +3346,7 @@ public class PsicoderParser extends Parser {
 				_localctx = new ExpFalsoContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(303);
+				setState(301);
 				match(FALSO);
 				}
 				break;
@@ -2929,9 +3355,9 @@ public class PsicoderParser extends Parser {
 				_localctx = new ExpMenosRealContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(304);
+				setState(302);
 				match(TK_MENOS);
-				setState(305);
+				setState(303);
 				match(TK_REAL);
 				}
 				break;
@@ -2940,9 +3366,9 @@ public class PsicoderParser extends Parser {
 				_localctx = new ExpMenosEnteroContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(306);
+				setState(304);
 				match(TK_MENOS);
-				setState(307);
+				setState(305);
 				match(TK_ENTERO);
 				}
 				break;
@@ -2951,9 +3377,9 @@ public class PsicoderParser extends Parser {
 				_localctx = new ExpMenosIDContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(308);
+				setState(306);
 				match(TK_MENOS);
-				setState(309);
+				setState(307);
 				match(ID);
 				}
 				break;
@@ -2962,13 +3388,13 @@ public class PsicoderParser extends Parser {
 				_localctx = new ExpIDChainContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(310);
+				setState(308);
 				match(TK_MENOS);
-				setState(311);
+				setState(309);
 				match(ID);
-				setState(312);
+				setState(310);
 				match(TK_PUNTO);
-				setState(313);
+				setState(311);
 				chain();
 				}
 				break;
@@ -2977,13 +3403,13 @@ public class PsicoderParser extends Parser {
 				_localctx = new ExpParExpContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(314);
+				setState(312);
 				match(TK_MENOS);
-				setState(315);
+				setState(313);
 				match(TK_PAR_IZQ);
-				setState(316);
+				setState(314);
 				exp(0);
-				setState(317);
+				setState(315);
 				match(TK_PAR_DER);
 				}
 				break;
@@ -2992,9 +3418,9 @@ public class PsicoderParser extends Parser {
 				_localctx = new ExpNegIDContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(319);
+				setState(317);
 				match(TK_NEG);
-				setState(320);
+				setState(318);
 				match(ID);
 				}
 				break;
@@ -3003,13 +3429,13 @@ public class PsicoderParser extends Parser {
 				_localctx = new ExpNegChainContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(321);
+				setState(319);
 				match(TK_NEG);
-				setState(322);
+				setState(320);
 				match(ID);
-				setState(323);
+				setState(321);
 				match(TK_PUNTO);
-				setState(324);
+				setState(322);
 				chain();
 				}
 				break;
@@ -3018,9 +3444,9 @@ public class PsicoderParser extends Parser {
 				_localctx = new ExpNegVerdaderoContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(325);
+				setState(323);
 				match(TK_NEG);
-				setState(326);
+				setState(324);
 				match(VERDADERO);
 				}
 				break;
@@ -3029,9 +3455,9 @@ public class PsicoderParser extends Parser {
 				_localctx = new ExpNegFalsoContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(327);
+				setState(325);
 				match(TK_NEG);
-				setState(328);
+				setState(326);
 				match(FALSO);
 				}
 				break;
@@ -3040,13 +3466,13 @@ public class PsicoderParser extends Parser {
 				_localctx = new ExpNegParExpContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(329);
+				setState(327);
 				match(TK_NEG);
-				setState(330);
+				setState(328);
 				match(TK_PAR_IZQ);
-				setState(331);
+				setState(329);
 				exp(0);
-				setState(332);
+				setState(330);
 				match(TK_PAR_DER);
 				}
 				break;
@@ -3055,11 +3481,11 @@ public class PsicoderParser extends Parser {
 				_localctx = new ExpParExpContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(334);
+				setState(332);
 				match(TK_PAR_IZQ);
-				setState(335);
+				setState(333);
 				exp(0);
-				setState(336);
+				setState(334);
 				match(TK_PAR_DER);
 				}
 				break;
@@ -3068,19 +3494,19 @@ public class PsicoderParser extends Parser {
 				_localctx = new ExpFuncionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(338);
+				setState(336);
 				match(ID);
-				setState(339);
+				setState(337);
 				match(TK_PAR_IZQ);
-				setState(340);
+				setState(338);
 				optargs();
-				setState(341);
+				setState(339);
 				match(TK_PAR_DER);
 				}
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(386);
+			setState(384);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,18,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -3088,18 +3514,17 @@ public class PsicoderParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(384);
-					_errHandler.sync(this);
+					setState(382);
 					switch ( getInterpreter().adaptivePredict(_input,17,_ctx) ) {
 					case 1:
 						{
 						_localctx = new ExpOrContext(new ExpContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_exp);
-						setState(345);
+						setState(343);
 						if (!(precpred(_ctx, 13))) throw new FailedPredicateException(this, "precpred(_ctx, 13)");
-						setState(346);
+						setState(344);
 						match(TK_O);
-						setState(347);
+						setState(345);
 						exp(14);
 						}
 						break;
@@ -3107,11 +3532,11 @@ public class PsicoderParser extends Parser {
 						{
 						_localctx = new ExpAndContext(new ExpContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_exp);
-						setState(348);
+						setState(346);
 						if (!(precpred(_ctx, 12))) throw new FailedPredicateException(this, "precpred(_ctx, 12)");
-						setState(349);
+						setState(347);
 						match(TK_Y);
-						setState(350);
+						setState(348);
 						exp(13);
 						}
 						break;
@@ -3119,11 +3544,11 @@ public class PsicoderParser extends Parser {
 						{
 						_localctx = new ExpIgualContext(new ExpContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_exp);
-						setState(351);
+						setState(349);
 						if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
-						setState(352);
+						setState(350);
 						match(TK_IGUAL);
-						setState(353);
+						setState(351);
 						exp(12);
 						}
 						break;
@@ -3131,11 +3556,11 @@ public class PsicoderParser extends Parser {
 						{
 						_localctx = new ExpMenorContext(new ExpContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_exp);
-						setState(354);
+						setState(352);
 						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
-						setState(355);
+						setState(353);
 						match(TK_MENOR);
-						setState(356);
+						setState(354);
 						exp(11);
 						}
 						break;
@@ -3143,11 +3568,11 @@ public class PsicoderParser extends Parser {
 						{
 						_localctx = new ExpMayorContext(new ExpContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_exp);
-						setState(357);
+						setState(355);
 						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
-						setState(358);
+						setState(356);
 						match(TK_MAYOR);
-						setState(359);
+						setState(357);
 						exp(10);
 						}
 						break;
@@ -3155,11 +3580,11 @@ public class PsicoderParser extends Parser {
 						{
 						_localctx = new ExpMenorIgualContext(new ExpContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_exp);
-						setState(360);
+						setState(358);
 						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
-						setState(361);
+						setState(359);
 						match(TK_MENOR_IGUAL);
-						setState(362);
+						setState(360);
 						exp(9);
 						}
 						break;
@@ -3167,11 +3592,11 @@ public class PsicoderParser extends Parser {
 						{
 						_localctx = new ExpMayorIgualContext(new ExpContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_exp);
-						setState(363);
+						setState(361);
 						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
-						setState(364);
+						setState(362);
 						match(TK_MAYOR_IGUAL);
-						setState(365);
+						setState(363);
 						exp(8);
 						}
 						break;
@@ -3179,11 +3604,11 @@ public class PsicoderParser extends Parser {
 						{
 						_localctx = new ExpDifContext(new ExpContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_exp);
-						setState(366);
+						setState(364);
 						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
-						setState(367);
+						setState(365);
 						match(TK_DIF);
-						setState(368);
+						setState(366);
 						exp(7);
 						}
 						break;
@@ -3191,11 +3616,11 @@ public class PsicoderParser extends Parser {
 						{
 						_localctx = new ExpMasContext(new ExpContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_exp);
-						setState(369);
+						setState(367);
 						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
-						setState(370);
+						setState(368);
 						match(TK_MAS);
-						setState(371);
+						setState(369);
 						exp(6);
 						}
 						break;
@@ -3203,11 +3628,11 @@ public class PsicoderParser extends Parser {
 						{
 						_localctx = new ExpMenosContext(new ExpContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_exp);
-						setState(372);
+						setState(370);
 						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
-						setState(373);
+						setState(371);
 						match(TK_MENOS);
-						setState(374);
+						setState(372);
 						exp(5);
 						}
 						break;
@@ -3215,11 +3640,11 @@ public class PsicoderParser extends Parser {
 						{
 						_localctx = new ExpMultContext(new ExpContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_exp);
-						setState(375);
+						setState(373);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
-						setState(376);
+						setState(374);
 						match(TK_MULT);
-						setState(377);
+						setState(375);
 						exp(4);
 						}
 						break;
@@ -3227,11 +3652,11 @@ public class PsicoderParser extends Parser {
 						{
 						_localctx = new ExpDivContext(new ExpContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_exp);
-						setState(378);
+						setState(376);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
-						setState(379);
+						setState(377);
 						match(TK_DIV);
-						setState(380);
+						setState(378);
 						exp(3);
 						}
 						break;
@@ -3239,18 +3664,18 @@ public class PsicoderParser extends Parser {
 						{
 						_localctx = new ExpModuloContext(new ExpContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_exp);
-						setState(381);
+						setState(379);
 						if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-						setState(382);
+						setState(380);
 						match(TK_MOD);
-						setState(383);
+						setState(381);
 						exp(2);
 						}
 						break;
 					}
 					} 
 				}
-				setState(388);
+				setState(386);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,18,_ctx);
 			}
@@ -3263,87 +3688,6 @@ public class PsicoderParser extends Parser {
 		}
 		finally {
 			unrollRecursionContexts(_parentctx);
-		}
-		return _localctx;
-	}
-
-	public static class OptargsContext extends ParserRuleContext {
-		public OptargsContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_optargs; }
-	 
-		public OptargsContext() { }
-		public void copyFrom(OptargsContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	public static class OptargsEpsilonContext extends OptargsContext {
-		public OptargsEpsilonContext(OptargsContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).enterOptargsEpsilon(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitOptargsEpsilon(this);
-		}
-	}
-	public static class OptargsArgsContext extends OptargsContext {
-		public ArgsContext args() {
-			return getRuleContext(ArgsContext.class,0);
-		}
-		public OptargsArgsContext(OptargsContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).enterOptargsArgs(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitOptargsArgs(this);
-		}
-	}
-
-	public final OptargsContext optargs() throws RecognitionException {
-		OptargsContext _localctx = new OptargsContext(_ctx, getState());
-		enterRule(_localctx, 38, RULE_optargs);
-		try {
-			setState(391);
-			switch (_input.LA(1)) {
-			case TK_CARACTER:
-			case VERDADERO:
-			case FALSO:
-			case TK_ENTERO:
-			case TK_MENOS:
-			case TK_NEG:
-			case TK_PAR_IZQ:
-			case ID:
-			case TK_REAL:
-			case TK_CADENA:
-				_localctx = new OptargsArgsContext(_localctx);
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(389);
-				args();
-				}
-				break;
-			case TK_PAR_DER:
-				_localctx = new OptargsEpsilonContext(_localctx);
-				enterOuterAlt(_localctx, 2);
-				{
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
 		}
 		return _localctx;
 	}
@@ -3375,6 +3719,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt2IDAsig(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt2IDAsig(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Stmt2HacerContext extends Stmt2Context {
 		public TerminalNode HACER() { return getToken(PsicoderParser.HACER, 0); }
@@ -3396,6 +3745,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt2Hacer(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt2Hacer(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class Stmt2SiNoContext extends Stmt2Context {
@@ -3422,6 +3776,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt2SiNo(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt2SiNo(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class Stmt2ParaContext extends Stmt2Context {
@@ -3452,6 +3811,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt2Para(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt2Para(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Stmt2TypeAsifExpContext extends Stmt2Context {
 		public TypeContext type() {
@@ -3472,6 +3836,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt2TypeAsifExp(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt2TypeAsifExp(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Stmt2ImprimirContext extends Stmt2Context {
 		public TerminalNode IMPRIMIR() { return getToken(PsicoderParser.IMPRIMIR, 0); }
@@ -3490,6 +3859,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt2Imprimir(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt2Imprimir(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Stmt2IDContext extends Stmt2Context {
 		public TypeContext type() {
@@ -3505,6 +3879,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt2ID(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt2ID(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class Stmt2LeerChainContext extends Stmt2Context {
@@ -3522,6 +3901,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt2LeerChain(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt2LeerChain(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Stmt2RomperContext extends Stmt2Context {
 		public TerminalNode ROMPER() { return getToken(PsicoderParser.ROMPER, 0); }
@@ -3535,12 +3919,17 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt2Romper(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt2Romper(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Stmt2CallFunctionContext extends Stmt2Context {
 		public TerminalNode ID() { return getToken(PsicoderParser.ID, 0); }
 		public TerminalNode TK_PAR_IZQ() { return getToken(PsicoderParser.TK_PAR_IZQ, 0); }
-		public OptpargsContext optpargs() {
-			return getRuleContext(OptpargsContext.class,0);
+		public OptargsContext optargs() {
+			return getRuleContext(OptargsContext.class,0);
 		}
 		public TerminalNode TK_PAR_DER() { return getToken(PsicoderParser.TK_PAR_DER, 0); }
 		public TerminalNode TK_PYC() { return getToken(PsicoderParser.TK_PYC, 0); }
@@ -3552,6 +3941,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt2CallFunction(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt2CallFunction(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class Stmt2SiContext extends Stmt2Context {
@@ -3574,6 +3968,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt2Si(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt2Si(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class Stmt2TypeAsigContext extends Stmt2Context {
@@ -3599,6 +3998,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt2TypeAsig(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt2TypeAsig(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Stmt2SeleccionarContext extends Stmt2Context {
 		public TerminalNode SELECCIONAR() { return getToken(PsicoderParser.SELECCIONAR, 0); }
@@ -3618,6 +4022,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt2Seleccionar(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt2Seleccionar(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class Stmt2MientrasContext extends Stmt2Context {
@@ -3641,6 +4050,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt2Mientras(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt2Mientras(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Stmt2TypeAsigOptexpContext extends Stmt2Context {
 		public TypeContext type() {
@@ -3660,6 +4074,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt2TypeAsigOptexp(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt2TypeAsigOptexp(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class Stmt2IDChainContext extends Stmt2Context {
@@ -3682,6 +4101,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt2IDChain(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt2IDChain(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Stmt2LeerIDContext extends Stmt2Context {
 		public TerminalNode LEER() { return getToken(PsicoderParser.LEER, 0); }
@@ -3702,22 +4126,26 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt2LeerID(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt2LeerID(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Stmt2Context stmt2() throws RecognitionException {
 		Stmt2Context _localctx = new Stmt2Context(_ctx, getState());
-		enterRule(_localctx, 40, RULE_stmt2);
+		enterRule(_localctx, 38, RULE_stmt2);
 		try {
-			setState(509);
-			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,20,_ctx) ) {
+			setState(503);
+			switch ( getInterpreter().adaptivePredict(_input,19,_ctx) ) {
 			case 1:
 				_localctx = new Stmt2RomperContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(393);
+				setState(387);
 				match(ROMPER);
-				setState(394);
+				setState(388);
 				match(TK_PYC);
 				}
 				break;
@@ -3725,15 +4153,15 @@ public class PsicoderParser extends Parser {
 				_localctx = new Stmt2CallFunctionContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(395);
+				setState(389);
 				match(ID);
-				setState(396);
+				setState(390);
 				match(TK_PAR_IZQ);
-				setState(397);
-				optpargs();
-				setState(398);
+				setState(391);
+				optargs();
+				setState(392);
 				match(TK_PAR_DER);
-				setState(399);
+				setState(393);
 				match(TK_PYC);
 				}
 				break;
@@ -3741,14 +4169,30 @@ public class PsicoderParser extends Parser {
 				_localctx = new Stmt2TypeAsigContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(401);
+				setState(395);
 				type();
-				setState(402);
+				setState(396);
 				match(ID);
-				setState(403);
+				setState(397);
 				match(TK_ASIG);
-				setState(404);
+				setState(398);
 				exp(0);
+				setState(399);
+				match(TK_COMA);
+				setState(400);
+				optexp();
+				setState(401);
+				match(TK_PYC);
+				}
+				break;
+			case 4:
+				_localctx = new Stmt2TypeAsigOptexpContext(_localctx);
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(403);
+				type();
+				setState(404);
+				match(ID);
 				setState(405);
 				match(TK_COMA);
 				setState(406);
@@ -3757,26 +4201,26 @@ public class PsicoderParser extends Parser {
 				match(TK_PYC);
 				}
 				break;
-			case 4:
-				_localctx = new Stmt2TypeAsigOptexpContext(_localctx);
-				enterOuterAlt(_localctx, 4);
-				{
-				setState(409);
-				type();
-				setState(410);
-				match(ID);
-				setState(411);
-				match(TK_COMA);
-				setState(412);
-				optexp();
-				setState(413);
-				match(TK_PYC);
-				}
-				break;
 			case 5:
 				_localctx = new Stmt2IDAsigContext(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
+				setState(409);
+				match(ID);
+				setState(410);
+				match(TK_ASIG);
+				setState(411);
+				exp(0);
+				setState(412);
+				match(TK_PYC);
+				}
+				break;
+			case 6:
+				_localctx = new Stmt2TypeAsifExpContext(_localctx);
+				enterOuterAlt(_localctx, 6);
+				{
+				setState(414);
+				type();
 				setState(415);
 				match(ID);
 				setState(416);
@@ -3787,37 +4231,21 @@ public class PsicoderParser extends Parser {
 				match(TK_PYC);
 				}
 				break;
-			case 6:
-				_localctx = new Stmt2TypeAsifExpContext(_localctx);
-				enterOuterAlt(_localctx, 6);
-				{
-				setState(420);
-				type();
-				setState(421);
-				match(ID);
-				setState(422);
-				match(TK_ASIG);
-				setState(423);
-				exp(0);
-				setState(424);
-				match(TK_PYC);
-				}
-				break;
 			case 7:
 				_localctx = new Stmt2IDChainContext(_localctx);
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(426);
+				setState(420);
 				match(ID);
-				setState(427);
+				setState(421);
 				match(TK_PUNTO);
-				setState(428);
+				setState(422);
 				chain();
-				setState(429);
+				setState(423);
 				match(TK_ASIG);
-				setState(430);
+				setState(424);
 				exp(0);
-				setState(431);
+				setState(425);
 				match(TK_PYC);
 				}
 				break;
@@ -3825,11 +4253,11 @@ public class PsicoderParser extends Parser {
 				_localctx = new Stmt2IDContext(_localctx);
 				enterOuterAlt(_localctx, 8);
 				{
-				setState(433);
+				setState(427);
 				type();
-				setState(434);
+				setState(428);
 				match(ID);
-				setState(435);
+				setState(429);
 				match(TK_PYC);
 				}
 				break;
@@ -3837,19 +4265,19 @@ public class PsicoderParser extends Parser {
 				_localctx = new Stmt2SiContext(_localctx);
 				enterOuterAlt(_localctx, 9);
 				{
-				setState(437);
+				setState(431);
 				match(SI);
-				setState(438);
+				setState(432);
 				match(TK_PAR_IZQ);
-				setState(439);
+				setState(433);
 				exp(0);
-				setState(440);
+				setState(434);
 				match(TK_PAR_DER);
-				setState(441);
+				setState(435);
 				match(ENTONCES);
-				setState(442);
+				setState(436);
 				statements3();
-				setState(443);
+				setState(437);
 				match(FIN_SI);
 				}
 				break;
@@ -3857,23 +4285,23 @@ public class PsicoderParser extends Parser {
 				_localctx = new Stmt2SiNoContext(_localctx);
 				enterOuterAlt(_localctx, 10);
 				{
-				setState(445);
+				setState(439);
 				match(SI);
-				setState(446);
+				setState(440);
 				match(TK_PAR_IZQ);
-				setState(447);
+				setState(441);
 				exp(0);
-				setState(448);
+				setState(442);
 				match(TK_PAR_DER);
-				setState(449);
+				setState(443);
 				match(ENTONCES);
-				setState(450);
+				setState(444);
 				statements3();
-				setState(451);
+				setState(445);
 				match(SI_NO);
-				setState(452);
+				setState(446);
 				statements3();
-				setState(453);
+				setState(447);
 				match(FIN_SI);
 				}
 				break;
@@ -3881,19 +4309,19 @@ public class PsicoderParser extends Parser {
 				_localctx = new Stmt2LeerIDContext(_localctx);
 				enterOuterAlt(_localctx, 11);
 				{
-				setState(455);
+				setState(449);
 				match(LEER);
-				setState(456);
+				setState(450);
 				match(TK_PAR_IZQ);
-				setState(457);
+				setState(451);
 				match(ID);
-				setState(458);
+				setState(452);
 				match(TK_PUNTO);
-				setState(459);
+				setState(453);
 				chain();
-				setState(460);
+				setState(454);
 				match(TK_PAR_DER);
-				setState(461);
+				setState(455);
 				match(TK_PYC);
 				}
 				break;
@@ -3901,15 +4329,15 @@ public class PsicoderParser extends Parser {
 				_localctx = new Stmt2LeerChainContext(_localctx);
 				enterOuterAlt(_localctx, 12);
 				{
-				setState(463);
+				setState(457);
 				match(LEER);
-				setState(464);
+				setState(458);
 				match(TK_PAR_IZQ);
-				setState(465);
+				setState(459);
 				match(ID);
-				setState(466);
+				setState(460);
 				match(TK_PAR_DER);
-				setState(467);
+				setState(461);
 				match(TK_PYC);
 				}
 				break;
@@ -3917,15 +4345,15 @@ public class PsicoderParser extends Parser {
 				_localctx = new Stmt2ImprimirContext(_localctx);
 				enterOuterAlt(_localctx, 13);
 				{
-				setState(468);
+				setState(462);
 				match(IMPRIMIR);
-				setState(469);
+				setState(463);
 				match(TK_PAR_IZQ);
-				setState(470);
+				setState(464);
 				imp_params();
-				setState(471);
+				setState(465);
 				match(TK_PAR_DER);
-				setState(472);
+				setState(466);
 				match(TK_PYC);
 				}
 				break;
@@ -3933,25 +4361,25 @@ public class PsicoderParser extends Parser {
 				_localctx = new Stmt2ParaContext(_localctx);
 				enterOuterAlt(_localctx, 14);
 				{
-				setState(474);
+				setState(468);
 				match(PARA);
-				setState(475);
+				setState(469);
 				match(TK_PAR_IZQ);
-				setState(476);
+				setState(470);
 				stmt();
-				setState(477);
+				setState(471);
 				exp(0);
-				setState(478);
+				setState(472);
 				match(TK_PYC);
-				setState(479);
+				setState(473);
 				exp(0);
-				setState(480);
+				setState(474);
 				match(TK_PAR_DER);
-				setState(481);
+				setState(475);
 				match(HACER);
-				setState(482);
+				setState(476);
 				statements3();
-				setState(483);
+				setState(477);
 				match(FIN_PARA);
 				}
 				break;
@@ -3959,19 +4387,19 @@ public class PsicoderParser extends Parser {
 				_localctx = new Stmt2MientrasContext(_localctx);
 				enterOuterAlt(_localctx, 15);
 				{
-				setState(485);
+				setState(479);
 				match(MIENTRAS);
-				setState(486);
+				setState(480);
 				match(TK_PAR_IZQ);
-				setState(487);
+				setState(481);
 				exp(0);
-				setState(488);
+				setState(482);
 				match(TK_PAR_DER);
-				setState(489);
+				setState(483);
 				match(HACER);
-				setState(490);
+				setState(484);
 				statements3();
-				setState(491);
+				setState(485);
 				match(FIN_MIENTRAS);
 				}
 				break;
@@ -3979,19 +4407,19 @@ public class PsicoderParser extends Parser {
 				_localctx = new Stmt2HacerContext(_localctx);
 				enterOuterAlt(_localctx, 16);
 				{
-				setState(493);
+				setState(487);
 				match(HACER);
-				setState(494);
+				setState(488);
 				statements3();
-				setState(495);
+				setState(489);
 				match(MIENTRAS);
-				setState(496);
+				setState(490);
 				match(TK_PAR_IZQ);
-				setState(497);
+				setState(491);
 				exp(0);
-				setState(498);
+				setState(492);
 				match(TK_PAR_DER);
-				setState(499);
+				setState(493);
 				match(TK_PYC);
 				}
 				break;
@@ -3999,19 +4427,19 @@ public class PsicoderParser extends Parser {
 				_localctx = new Stmt2SeleccionarContext(_localctx);
 				enterOuterAlt(_localctx, 17);
 				{
-				setState(501);
+				setState(495);
 				match(SELECCIONAR);
-				setState(502);
+				setState(496);
 				match(TK_PAR_IZQ);
-				setState(503);
+				setState(497);
 				match(ID);
-				setState(504);
+				setState(498);
 				match(TK_PAR_DER);
-				setState(505);
+				setState(499);
 				match(ENTRE);
-				setState(506);
+				setState(500);
 				cases();
-				setState(507);
+				setState(501);
 				match(FIN_SELECCIONAR);
 				}
 				break;
@@ -4042,8 +4470,8 @@ public class PsicoderParser extends Parser {
 	public static class Stmt4FuncionContext extends Stmt4Context {
 		public TerminalNode ID() { return getToken(PsicoderParser.ID, 0); }
 		public TerminalNode TK_PAR_IZQ() { return getToken(PsicoderParser.TK_PAR_IZQ, 0); }
-		public OptpargsContext optpargs() {
-			return getRuleContext(OptpargsContext.class,0);
+		public OptargsContext optargs() {
+			return getRuleContext(OptargsContext.class,0);
 		}
 		public TerminalNode TK_PAR_DER() { return getToken(PsicoderParser.TK_PAR_DER, 0); }
 		public TerminalNode TK_PYC() { return getToken(PsicoderParser.TK_PYC, 0); }
@@ -4055,6 +4483,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt4Funcion(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt4Funcion(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class Stmt4IDChainAsigContext extends Stmt4Context {
@@ -4077,6 +4510,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt4IDChainAsig(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt4IDChainAsig(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Stmt4IDAsigContext extends Stmt4Context {
 		public TerminalNode ID() { return getToken(PsicoderParser.ID, 0); }
@@ -4093,6 +4531,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt4IDAsig(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt4IDAsig(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class Stmt4TypeIDComaContext extends Stmt4Context {
@@ -4114,6 +4557,11 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt4TypeIDComa(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt4TypeIDComa(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class Stmt4TypeIDContext extends Stmt4Context {
 		public TypeContext type() {
@@ -4129,6 +4577,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt4TypeID(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt4TypeID(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class Stmt4TypeIDAsigContext extends Stmt4Context {
@@ -4149,6 +4602,11 @@ public class PsicoderParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt4TypeIDAsig(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt4TypeIDAsig(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class Stmt4TypeIDAsigComaContext extends Stmt4Context {
@@ -4174,28 +4632,32 @@ public class PsicoderParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStmt4TypeIDAsigComa(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStmt4TypeIDAsigComa(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Stmt4Context stmt4() throws RecognitionException {
 		Stmt4Context _localctx = new Stmt4Context(_ctx, getState());
-		enterRule(_localctx, 42, RULE_stmt4);
+		enterRule(_localctx, 40, RULE_stmt4);
 		try {
-			setState(553);
-			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,21,_ctx) ) {
+			setState(547);
+			switch ( getInterpreter().adaptivePredict(_input,20,_ctx) ) {
 			case 1:
 				_localctx = new Stmt4FuncionContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(511);
+				setState(505);
 				match(ID);
-				setState(512);
+				setState(506);
 				match(TK_PAR_IZQ);
-				setState(513);
-				optpargs();
-				setState(514);
+				setState(507);
+				optargs();
+				setState(508);
 				match(TK_PAR_DER);
-				setState(515);
+				setState(509);
 				match(TK_PYC);
 				}
 				break;
@@ -4203,14 +4665,30 @@ public class PsicoderParser extends Parser {
 				_localctx = new Stmt4TypeIDAsigComaContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(517);
+				setState(511);
 				type();
-				setState(518);
+				setState(512);
 				match(ID);
-				setState(519);
+				setState(513);
 				match(TK_ASIG);
-				setState(520);
+				setState(514);
 				exp(0);
+				setState(515);
+				match(TK_COMA);
+				setState(516);
+				optexp();
+				setState(517);
+				match(TK_PYC);
+				}
+				break;
+			case 3:
+				_localctx = new Stmt4TypeIDComaContext(_localctx);
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(519);
+				type();
+				setState(520);
+				match(ID);
 				setState(521);
 				match(TK_COMA);
 				setState(522);
@@ -4219,26 +4697,26 @@ public class PsicoderParser extends Parser {
 				match(TK_PYC);
 				}
 				break;
-			case 3:
-				_localctx = new Stmt4TypeIDComaContext(_localctx);
-				enterOuterAlt(_localctx, 3);
-				{
-				setState(525);
-				type();
-				setState(526);
-				match(ID);
-				setState(527);
-				match(TK_COMA);
-				setState(528);
-				optexp();
-				setState(529);
-				match(TK_PYC);
-				}
-				break;
 			case 4:
 				_localctx = new Stmt4IDAsigContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
+				setState(525);
+				match(ID);
+				setState(526);
+				match(TK_ASIG);
+				setState(527);
+				exp(0);
+				setState(528);
+				match(TK_PYC);
+				}
+				break;
+			case 5:
+				_localctx = new Stmt4TypeIDAsigContext(_localctx);
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(530);
+				type();
 				setState(531);
 				match(ID);
 				setState(532);
@@ -4249,37 +4727,21 @@ public class PsicoderParser extends Parser {
 				match(TK_PYC);
 				}
 				break;
-			case 5:
-				_localctx = new Stmt4TypeIDAsigContext(_localctx);
-				enterOuterAlt(_localctx, 5);
-				{
-				setState(536);
-				type();
-				setState(537);
-				match(ID);
-				setState(538);
-				match(TK_ASIG);
-				setState(539);
-				exp(0);
-				setState(540);
-				match(TK_PYC);
-				}
-				break;
 			case 6:
 				_localctx = new Stmt4IDChainAsigContext(_localctx);
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(542);
+				setState(536);
 				match(ID);
-				setState(543);
+				setState(537);
 				match(TK_PUNTO);
-				setState(544);
+				setState(538);
 				chain();
-				setState(545);
+				setState(539);
 				match(TK_ASIG);
-				setState(546);
+				setState(540);
 				exp(0);
-				setState(547);
+				setState(541);
 				match(TK_PYC);
 				}
 				break;
@@ -4287,11 +4749,11 @@ public class PsicoderParser extends Parser {
 				_localctx = new Stmt4TypeIDContext(_localctx);
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(549);
+				setState(543);
 				type();
-				setState(550);
+				setState(544);
 				match(ID);
-				setState(551);
+				setState(545);
 				match(TK_PYC);
 				}
 				break;
@@ -4348,208 +4810,205 @@ public class PsicoderParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3A\u022e\4\2\t\2\4"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3A\u0228\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
-		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\3\2\3\2\3\2\3\2\3\2"+
-		"\5\2\64\n\2\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3"+
-		"\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4L\n\4\3\5\3\5\3\5\3\5\3\5\3\5\5\5T\n"+
-		"\5\3\6\3\6\5\6X\n\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\5\7b\n\7\3\b\3\b\5"+
-		"\bf\n\b\3\t\3\t\3\t\3\t\3\t\5\tm\n\t\3\n\3\n\3\n\3\n\5\ns\n\n\3\13\3\13"+
-		"\3\13\3\13\5\13y\n\13\3\f\3\f\3\f\3\f\5\f\177\n\f\3\r\3\r\3\r\3\r\3\r"+
-		"\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3"+
+		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\3\2\3\2\3\2\3\2\3\2\5\2\62\n"+
+		"\2\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4"+
+		"\3\4\3\4\3\4\3\4\3\4\5\4J\n\4\3\5\3\5\3\5\3\5\3\5\3\5\5\5R\n\5\3\6\3\6"+
+		"\5\6V\n\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\5\7`\n\7\3\b\3\b\5\bd\n\b\3"+
+		"\t\3\t\3\t\3\t\3\t\5\tk\n\t\3\n\3\n\3\n\3\n\5\nq\n\n\3\13\3\13\3\13\3"+
+		"\13\5\13w\n\13\3\f\3\f\3\f\3\f\5\f}\n\f\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3"+
 		"\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r"+
 		"\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3"+
 		"\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r"+
 		"\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3"+
 		"\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r"+
-		"\3\r\3\r\3\r\3\r\5\r\u00f3\n\r\3\16\3\16\3\16\3\16\3\16\3\16\3\16\5\16"+
-		"\u00fc\n\16\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\5\17\u0106\n\17\3"+
-		"\20\3\20\3\20\3\20\3\21\3\21\3\21\3\21\3\21\5\21\u0111\n\21\3\22\3\22"+
-		"\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\5\22\u0120\n\22"+
-		"\3\23\3\23\3\23\3\23\5\23\u0126\n\23\3\24\3\24\3\24\3\24\3\24\3\24\3\24"+
+		"\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3"+
+		"\r\3\r\5\r\u00f1\n\r\3\16\3\16\3\16\3\16\3\16\3\16\3\16\5\16\u00fa\n\16"+
+		"\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\5\17\u0104\n\17\3\20\3\20\3\20"+
+		"\3\20\3\21\3\21\3\21\3\21\3\21\5\21\u010f\n\21\3\22\3\22\3\22\3\22\3\22"+
+		"\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\5\22\u011e\n\22\3\23\3\23\3\23"+
+		"\3\23\5\23\u0124\n\23\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24"+
 		"\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24"+
 		"\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24"+
+		"\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\5\24\u0158"+
+		"\n\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24"+
 		"\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24"+
-		"\3\24\5\24\u015a\n\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24"+
-		"\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24"+
-		"\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24"+
-		"\3\24\7\24\u0183\n\24\f\24\16\24\u0186\13\24\3\25\3\25\5\25\u018a\n\25"+
+		"\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\3\24\7\24\u0181"+
+		"\n\24\f\24\16\24\u0184\13\24\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3"+
+		"\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3"+
+		"\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3"+
+		"\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3"+
+		"\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3"+
+		"\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3"+
+		"\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3"+
+		"\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3"+
+		"\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\3\25\5\25\u01fa\n\25\3\26"+
 		"\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26"+
 		"\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26"+
-		"\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26"+
-		"\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26"+
-		"\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26"+
-		"\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26"+
-		"\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26"+
-		"\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26"+
-		"\3\26\3\26\3\26\3\26\5\26\u0200\n\26\3\27\3\27\3\27\3\27\3\27\3\27\3\27"+
-		"\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27"+
-		"\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27"+
-		"\3\27\3\27\3\27\3\27\3\27\3\27\3\27\5\27\u022c\n\27\3\27\2\3&\30\2\4\6"+
-		"\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,\2\2\u0274\2\63\3\2\2\2\4\65"+
-		"\3\2\2\2\6K\3\2\2\2\bS\3\2\2\2\nW\3\2\2\2\fa\3\2\2\2\16e\3\2\2\2\20l\3"+
-		"\2\2\2\22r\3\2\2\2\24x\3\2\2\2\26~\3\2\2\2\30\u00f2\3\2\2\2\32\u00fb\3"+
-		"\2\2\2\34\u0105\3\2\2\2\36\u0107\3\2\2\2 \u0110\3\2\2\2\"\u011f\3\2\2"+
-		"\2$\u0125\3\2\2\2&\u0159\3\2\2\2(\u0189\3\2\2\2*\u01ff\3\2\2\2,\u022b"+
-		"\3\2\2\2./\5\6\4\2/\60\5\2\2\2\60\64\3\2\2\2\61\64\5\4\3\2\62\64\3\2\2"+
-		"\2\63.\3\2\2\2\63\61\3\2\2\2\63\62\3\2\2\2\64\3\3\2\2\2\65\66\7\32\2\2"+
-		"\66\67\5\22\n\2\678\7\34\2\28\5\3\2\2\29:\7\33\2\2:;\5\b\5\2;<\7?\2\2"+
-		"<=\7=\2\2=>\5\n\6\2>?\7>\2\2?@\7\n\2\2@A\5\22\n\2AB\7\24\2\2BC\5&\24\2"+
-		"CD\7:\2\2DE\7\3\2\2EL\3\2\2\2FG\7\25\2\2GH\7?\2\2HI\5\26\f\2IJ\7\26\2"+
-		"\2JL\3\2\2\2K9\3\2\2\2KF\3\2\2\2L\7\3\2\2\2MT\7\"\2\2NT\7\30\2\2OT\7\31"+
-		"\2\2PT\7!\2\2QT\7\35\2\2RT\7?\2\2SM\3\2\2\2SN\3\2\2\2SO\3\2\2\2SP\3\2"+
-		"\2\2SQ\3\2\2\2SR\3\2\2\2T\t\3\2\2\2UX\5\f\7\2VX\3\2\2\2WU\3\2\2\2WV\3"+
-		"\2\2\2X\13\3\2\2\2YZ\5\b\5\2Z[\7?\2\2[\\\7;\2\2\\]\5\f\7\2]b\3\2\2\2^"+
-		"_\5\b\5\2_`\7?\2\2`b\3\2\2\2aY\3\2\2\2a^\3\2\2\2b\r\3\2\2\2cf\5\20\t\2"+
-		"df\3\2\2\2ec\3\2\2\2ed\3\2\2\2f\17\3\2\2\2gh\5&\24\2hi\7;\2\2ij\5\f\7"+
-		"\2jm\3\2\2\2km\5&\24\2lg\3\2\2\2lk\3\2\2\2m\21\3\2\2\2no\5\30\r\2op\5"+
-		"\22\n\2ps\3\2\2\2qs\3\2\2\2rn\3\2\2\2rq\3\2\2\2s\23\3\2\2\2tu\5*\26\2"+
-		"uv\5\24\13\2vy\3\2\2\2wy\3\2\2\2xt\3\2\2\2xw\3\2\2\2y\25\3\2\2\2z{\5,"+
-		"\27\2{|\5\26\f\2|\177\3\2\2\2}\177\3\2\2\2~z\3\2\2\2~}\3\2\2\2\177\27"+
-		"\3\2\2\2\u0080\u0081\7?\2\2\u0081\u0082\7=\2\2\u0082\u0083\5\16\b\2\u0083"+
-		"\u0084\7>\2\2\u0084\u0085\7:\2\2\u0085\u00f3\3\2\2\2\u0086\u0087\5\b\5"+
-		"\2\u0087\u0088\7?\2\2\u0088\u0089\7-\2\2\u0089\u008a\5&\24\2\u008a\u008b"+
-		"\7;\2\2\u008b\u008c\5\"\22\2\u008c\u008d\7:\2\2\u008d\u00f3\3\2\2\2\u008e"+
-		"\u008f\5\b\5\2\u008f\u0090\7?\2\2\u0090\u0091\7;\2\2\u0091\u0092\5\"\22"+
-		"\2\u0092\u0093\7:\2\2\u0093\u00f3\3\2\2\2\u0094\u0095\7?\2\2\u0095\u0096"+
-		"\7-\2\2\u0096\u0097\5&\24\2\u0097\u0098\7:\2\2\u0098\u00f3\3\2\2\2\u0099"+
-		"\u009a\5\b\5\2\u009a\u009b\7?\2\2\u009b\u009c\7-\2\2\u009c\u009d\5&\24"+
-		"\2\u009d\u009e\7:\2\2\u009e\u00f3\3\2\2\2\u009f\u00a0\7?\2\2\u00a0\u00a1"+
-		"\7<\2\2\u00a1\u00a2\5$\23\2\u00a2\u00a3\7-\2\2\u00a3\u00a4\5&\24\2\u00a4"+
-		"\u00a5\7:\2\2\u00a5\u00f3\3\2\2\2\u00a6\u00a7\5\b\5\2\u00a7\u00a8\7?\2"+
-		"\2\u00a8\u00a9\7:\2\2\u00a9\u00f3\3\2\2\2\u00aa\u00ab\7\6\2\2\u00ab\u00ac"+
-		"\7=\2\2\u00ac\u00ad\5&\24\2\u00ad\u00ae\7>\2\2\u00ae\u00af\7\7\2\2\u00af"+
-		"\u00b0\5\22\n\2\u00b0\u00b1\7\b\2\2\u00b1\u00f3\3\2\2\2\u00b2\u00b3\7"+
-		"\6\2\2\u00b3\u00b4\7=\2\2\u00b4\u00b5\5&\24\2\u00b5\u00b6\7>\2\2\u00b6"+
-		"\u00b7\7\7\2\2\u00b7\u00b8\5\22\n\2\u00b8\u00b9\7\5\2\2\u00b9\u00ba\5"+
-		"\22\n\2\u00ba\u00bb\7\b\2\2\u00bb\u00f3\3\2\2\2\u00bc\u00bd\7\4\2\2\u00bd"+
-		"\u00be\7=\2\2\u00be\u00bf\7?\2\2\u00bf\u00c0\7>\2\2\u00c0\u00f3\7:\2\2"+
-		"\u00c1\u00c2\7\4\2\2\u00c2\u00c3\7=\2\2\u00c3\u00c4\7?\2\2\u00c4\u00c5"+
-		"\7<\2\2\u00c5\u00c6\5$\23\2\u00c6\u00c7\7>\2\2\u00c7\u00c8\7:\2\2\u00c8"+
-		"\u00f3\3\2\2\2\u00c9\u00ca\7\27\2\2\u00ca\u00cb\7=\2\2\u00cb\u00cc\5 "+
-		"\21\2\u00cc\u00cd\7>\2\2\u00cd\u00ce\7:\2\2\u00ce\u00f3\3\2\2\2\u00cf"+
-		"\u00d0\7\f\2\2\u00d0\u00d1\7=\2\2\u00d1\u00d2\5\30\r\2\u00d2\u00d3\5&"+
-		"\24\2\u00d3\u00d4\7:\2\2\u00d4\u00d5\5&\24\2\u00d5\u00d6\7>\2\2\u00d6"+
-		"\u00d7\7\n\2\2\u00d7\u00d8\5\24\13\2\u00d8\u00d9\7\r\2\2\u00d9\u00f3\3"+
-		"\2\2\2\u00da\u00db\7\t\2\2\u00db\u00dc\7=\2\2\u00dc\u00dd\5&\24\2\u00dd"+
-		"\u00de\7>\2\2\u00de\u00df\7\n\2\2\u00df\u00e0\5\24\13\2\u00e0\u00e1\7"+
-		"\13\2\2\u00e1\u00f3\3\2\2\2\u00e2\u00e3\7\n\2\2\u00e3\u00e4\5\24\13\2"+
-		"\u00e4\u00e5\7\t\2\2\u00e5\u00e6\7=\2\2\u00e6\u00e7\5&\24\2\u00e7\u00e8"+
-		"\7>\2\2\u00e8\u00e9\7:\2\2\u00e9\u00f3\3\2\2\2\u00ea\u00eb\7\16\2\2\u00eb"+
-		"\u00ec\7=\2\2\u00ec\u00ed\7?\2\2\u00ed\u00ee\7>\2\2\u00ee\u00ef\7\17\2"+
-		"\2\u00ef\u00f0\5\32\16\2\u00f0\u00f1\7\23\2\2\u00f1\u00f3\3\2\2\2\u00f2"+
-		"\u0080\3\2\2\2\u00f2\u0086\3\2\2\2\u00f2\u008e\3\2\2\2\u00f2\u0094\3\2"+
-		"\2\2\u00f2\u0099\3\2\2\2\u00f2\u009f\3\2\2\2\u00f2\u00a6\3\2\2\2\u00f2"+
-		"\u00aa\3\2\2\2\u00f2\u00b2\3\2\2\2\u00f2\u00bc\3\2\2\2\u00f2\u00c1\3\2"+
-		"\2\2\u00f2\u00c9\3\2\2\2\u00f2\u00cf\3\2\2\2\u00f2\u00da\3\2\2\2\u00f2"+
-		"\u00e2\3\2\2\2\u00f2\u00ea\3\2\2\2\u00f3\31\3\2\2\2\u00f4\u00f5\7\20\2"+
-		"\2\u00f5\u00f6\5&\24\2\u00f6\u00f7\7\67\2\2\u00f7\u00f8\5\24\13\2\u00f8"+
-		"\u00f9\5\34\17\2\u00f9\u00fc\3\2\2\2\u00fa\u00fc\5\36\20\2\u00fb\u00f4"+
-		"\3\2\2\2\u00fb\u00fa\3\2\2\2\u00fc\33\3\2\2\2\u00fd\u00fe\7\20\2\2\u00fe"+
-		"\u00ff\5&\24\2\u00ff\u0100\7\67\2\2\u0100\u0101\5\24\13\2\u0101\u0102"+
-		"\5\34\17\2\u0102\u0106\3\2\2\2\u0103\u0106\3\2\2\2\u0104\u0106\5\36\20"+
-		"\2\u0105\u00fd\3\2\2\2\u0105\u0103\3\2\2\2\u0105\u0104\3\2\2\2\u0106\35"+
-		"\3\2\2\2\u0107\u0108\7\22\2\2\u0108\u0109\7\67\2\2\u0109\u010a\5\24\13"+
-		"\2\u010a\37\3\2\2\2\u010b\u010c\5&\24\2\u010c\u010d\7;\2\2\u010d\u010e"+
-		"\5 \21\2\u010e\u0111\3\2\2\2\u010f\u0111\5&\24\2\u0110\u010b\3\2\2\2\u0110"+
-		"\u010f\3\2\2\2\u0111!\3\2\2\2\u0112\u0113\7?\2\2\u0113\u0114\7;\2\2\u0114"+
-		"\u0120\5\"\22\2\u0115\u0116\7?\2\2\u0116\u0117\7-\2\2\u0117\u0118\5&\24"+
-		"\2\u0118\u0119\7;\2\2\u0119\u011a\5\"\22\2\u011a\u0120\3\2\2\2\u011b\u0120"+
-		"\7?\2\2\u011c\u011d\7?\2\2\u011d\u011e\7-\2\2\u011e\u0120\5&\24\2\u011f"+
-		"\u0112\3\2\2\2\u011f\u0115\3\2\2\2\u011f\u011b\3\2\2\2\u011f\u011c\3\2"+
-		"\2\2\u0120#\3\2\2\2\u0121\u0122\7?\2\2\u0122\u0123\7<\2\2\u0123\u0126"+
-		"\5$\23\2\u0124\u0126\7?\2\2\u0125\u0121\3\2\2\2\u0125\u0124\3\2\2\2\u0126"+
-		"%\3\2\2\2\u0127\u0128\b\24\1\2\u0128\u015a\7\36\2\2\u0129\u015a\7?\2\2"+
-		"\u012a\u012b\7?\2\2\u012b\u012c\7<\2\2\u012c\u015a\5$\23\2\u012d\u015a"+
-		"\7#\2\2\u012e\u015a\7@\2\2\u012f\u015a\7A\2\2\u0130\u015a\7\37\2\2\u0131"+
-		"\u015a\7 \2\2\u0132\u0133\7)\2\2\u0133\u015a\7@\2\2\u0134\u0135\7)\2\2"+
-		"\u0135\u015a\7#\2\2\u0136\u0137\7)\2\2\u0137\u015a\7?\2\2\u0138\u0139"+
-		"\7)\2\2\u0139\u013a\7?\2\2\u013a\u013b\7<\2\2\u013b\u015a\5$\23\2\u013c"+
-		"\u013d\7)\2\2\u013d\u013e\7=\2\2\u013e\u013f\5&\24\2\u013f\u0140\7>\2"+
-		"\2\u0140\u015a\3\2\2\2\u0141\u0142\7\66\2\2\u0142\u015a\7?\2\2\u0143\u0144"+
-		"\7\66\2\2\u0144\u0145\7?\2\2\u0145\u0146\7<\2\2\u0146\u015a\5$\23\2\u0147"+
-		"\u0148\7\66\2\2\u0148\u015a\7\37\2\2\u0149\u014a\7\66\2\2\u014a\u015a"+
-		"\7 \2\2\u014b\u014c\7\66\2\2\u014c\u014d\7=\2\2\u014d\u014e\5&\24\2\u014e"+
-		"\u014f\7>\2\2\u014f\u015a\3\2\2\2\u0150\u0151\7=\2\2\u0151\u0152\5&\24"+
-		"\2\u0152\u0153\7>\2\2\u0153\u015a\3\2\2\2\u0154\u0155\7?\2\2\u0155\u0156"+
-		"\7=\2\2\u0156\u0157\5(\25\2\u0157\u0158\7>\2\2\u0158\u015a\3\2\2\2\u0159"+
-		"\u0127\3\2\2\2\u0159\u0129\3\2\2\2\u0159\u012a\3\2\2\2\u0159\u012d\3\2"+
-		"\2\2\u0159\u012e\3\2\2\2\u0159\u012f\3\2\2\2\u0159\u0130\3\2\2\2\u0159"+
-		"\u0131\3\2\2\2\u0159\u0132\3\2\2\2\u0159\u0134\3\2\2\2\u0159\u0136\3\2"+
-		"\2\2\u0159\u0138\3\2\2\2\u0159\u013c\3\2\2\2\u0159\u0141\3\2\2\2\u0159"+
-		"\u0143\3\2\2\2\u0159\u0147\3\2\2\2\u0159\u0149\3\2\2\2\u0159\u014b\3\2"+
-		"\2\2\u0159\u0150\3\2\2\2\u0159\u0154\3\2\2\2\u015a\u0184\3\2\2\2\u015b"+
-		"\u015c\f\17\2\2\u015c\u015d\7\64\2\2\u015d\u0183\5&\24\20\u015e\u015f"+
-		"\f\16\2\2\u015f\u0160\7\63\2\2\u0160\u0183\5&\24\17\u0161\u0162\f\r\2"+
-		"\2\u0162\u0163\7\62\2\2\u0163\u0183\5&\24\16\u0164\u0165\f\f\2\2\u0165"+
-		"\u0166\7.\2\2\u0166\u0183\5&\24\r\u0167\u0168\f\13\2\2\u0168\u0169\7/"+
-		"\2\2\u0169\u0183\5&\24\f\u016a\u016b\f\n\2\2\u016b\u016c\7\60\2\2\u016c"+
-		"\u0183\5&\24\13\u016d\u016e\f\t\2\2\u016e\u016f\7\61\2\2\u016f\u0183\5"+
-		"&\24\n\u0170\u0171\f\b\2\2\u0171\u0172\7\65\2\2\u0172\u0183\5&\24\t\u0173"+
-		"\u0174\f\7\2\2\u0174\u0175\7(\2\2\u0175\u0183\5&\24\b\u0176\u0177\f\6"+
-		"\2\2\u0177\u0178\7)\2\2\u0178\u0183\5&\24\7\u0179\u017a\f\5\2\2\u017a"+
-		"\u017b\7*\2\2\u017b\u0183\5&\24\6\u017c\u017d\f\4\2\2\u017d\u017e\7+\2"+
-		"\2\u017e\u0183\5&\24\5\u017f\u0180\f\3\2\2\u0180\u0181\7,\2\2\u0181\u0183"+
-		"\5&\24\4\u0182\u015b\3\2\2\2\u0182\u015e\3\2\2\2\u0182\u0161\3\2\2\2\u0182"+
-		"\u0164\3\2\2\2\u0182\u0167\3\2\2\2\u0182\u016a\3\2\2\2\u0182\u016d\3\2"+
-		"\2\2\u0182\u0170\3\2\2\2\u0182\u0173\3\2\2\2\u0182\u0176\3\2\2\2\u0182"+
-		"\u0179\3\2\2\2\u0182\u017c\3\2\2\2\u0182\u017f\3\2\2\2\u0183\u0186\3\2"+
-		"\2\2\u0184\u0182\3\2\2\2\u0184\u0185\3\2\2\2\u0185\'\3\2\2\2\u0186\u0184"+
-		"\3\2\2\2\u0187\u018a\5\20\t\2\u0188\u018a\3\2\2\2\u0189\u0187\3\2\2\2"+
-		"\u0189\u0188\3\2\2\2\u018a)\3\2\2\2\u018b\u018c\7\21\2\2\u018c\u0200\7"+
-		":\2\2\u018d\u018e\7?\2\2\u018e\u018f\7=\2\2\u018f\u0190\5\16\b\2\u0190"+
-		"\u0191\7>\2\2\u0191\u0192\7:\2\2\u0192\u0200\3\2\2\2\u0193\u0194\5\b\5"+
-		"\2\u0194\u0195\7?\2\2\u0195\u0196\7-\2\2\u0196\u0197\5&\24\2\u0197\u0198"+
-		"\7;\2\2\u0198\u0199\5\"\22\2\u0199\u019a\7:\2\2\u019a\u0200\3\2\2\2\u019b"+
-		"\u019c\5\b\5\2\u019c\u019d\7?\2\2\u019d\u019e\7;\2\2\u019e\u019f\5\"\22"+
-		"\2\u019f\u01a0\7:\2\2\u01a0\u0200\3\2\2\2\u01a1\u01a2\7?\2\2\u01a2\u01a3"+
-		"\7-\2\2\u01a3\u01a4\5&\24\2\u01a4\u01a5\7:\2\2\u01a5\u0200\3\2\2\2\u01a6"+
-		"\u01a7\5\b\5\2\u01a7\u01a8\7?\2\2\u01a8\u01a9\7-\2\2\u01a9\u01aa\5&\24"+
-		"\2\u01aa\u01ab\7:\2\2\u01ab\u0200\3\2\2\2\u01ac\u01ad\7?\2\2\u01ad\u01ae"+
-		"\7<\2\2\u01ae\u01af\5$\23\2\u01af\u01b0\7-\2\2\u01b0\u01b1\5&\24\2\u01b1"+
-		"\u01b2\7:\2\2\u01b2\u0200\3\2\2\2\u01b3\u01b4\5\b\5\2\u01b4\u01b5\7?\2"+
-		"\2\u01b5\u01b6\7:\2\2\u01b6\u0200\3\2\2\2\u01b7\u01b8\7\6\2\2\u01b8\u01b9"+
-		"\7=\2\2\u01b9\u01ba\5&\24\2\u01ba\u01bb\7>\2\2\u01bb\u01bc\7\7\2\2\u01bc"+
-		"\u01bd\5\24\13\2\u01bd\u01be\7\b\2\2\u01be\u0200\3\2\2\2\u01bf\u01c0\7"+
-		"\6\2\2\u01c0\u01c1\7=\2\2\u01c1\u01c2\5&\24\2\u01c2\u01c3\7>\2\2\u01c3"+
-		"\u01c4\7\7\2\2\u01c4\u01c5\5\24\13\2\u01c5\u01c6\7\5\2\2\u01c6\u01c7\5"+
-		"\24\13\2\u01c7\u01c8\7\b\2\2\u01c8\u0200\3\2\2\2\u01c9\u01ca\7\4\2\2\u01ca"+
-		"\u01cb\7=\2\2\u01cb\u01cc\7?\2\2\u01cc\u01cd\7<\2\2\u01cd\u01ce\5$\23"+
-		"\2\u01ce\u01cf\7>\2\2\u01cf\u01d0\7:\2\2\u01d0\u0200\3\2\2\2\u01d1\u01d2"+
-		"\7\4\2\2\u01d2\u01d3\7=\2\2\u01d3\u01d4\7?\2\2\u01d4\u01d5\7>\2\2\u01d5"+
-		"\u0200\7:\2\2\u01d6\u01d7\7\27\2\2\u01d7\u01d8\7=\2\2\u01d8\u01d9\5 \21"+
-		"\2\u01d9\u01da\7>\2\2\u01da\u01db\7:\2\2\u01db\u0200\3\2\2\2\u01dc\u01dd"+
-		"\7\f\2\2\u01dd\u01de\7=\2\2\u01de\u01df\5\30\r\2\u01df\u01e0\5&\24\2\u01e0"+
-		"\u01e1\7:\2\2\u01e1\u01e2\5&\24\2\u01e2\u01e3\7>\2\2\u01e3\u01e4\7\n\2"+
-		"\2\u01e4\u01e5\5\24\13\2\u01e5\u01e6\7\r\2\2\u01e6\u0200\3\2\2\2\u01e7"+
-		"\u01e8\7\t\2\2\u01e8\u01e9\7=\2\2\u01e9\u01ea\5&\24\2\u01ea\u01eb\7>\2"+
-		"\2\u01eb\u01ec\7\n\2\2\u01ec\u01ed\5\24\13\2\u01ed\u01ee\7\13\2\2\u01ee"+
-		"\u0200\3\2\2\2\u01ef\u01f0\7\n\2\2\u01f0\u01f1\5\24\13\2\u01f1\u01f2\7"+
-		"\t\2\2\u01f2\u01f3\7=\2\2\u01f3\u01f4\5&\24\2\u01f4\u01f5\7>\2\2\u01f5"+
-		"\u01f6\7:\2\2\u01f6\u0200\3\2\2\2\u01f7\u01f8\7\16\2\2\u01f8\u01f9\7="+
-		"\2\2\u01f9\u01fa\7?\2\2\u01fa\u01fb\7>\2\2\u01fb\u01fc\7\17\2\2\u01fc"+
-		"\u01fd\5\32\16\2\u01fd\u01fe\7\23\2\2\u01fe\u0200\3\2\2\2\u01ff\u018b"+
-		"\3\2\2\2\u01ff\u018d\3\2\2\2\u01ff\u0193\3\2\2\2\u01ff\u019b\3\2\2\2\u01ff"+
-		"\u01a1\3\2\2\2\u01ff\u01a6\3\2\2\2\u01ff\u01ac\3\2\2\2\u01ff\u01b3\3\2"+
-		"\2\2\u01ff\u01b7\3\2\2\2\u01ff\u01bf\3\2\2\2\u01ff\u01c9\3\2\2\2\u01ff"+
-		"\u01d1\3\2\2\2\u01ff\u01d6\3\2\2\2\u01ff\u01dc\3\2\2\2\u01ff\u01e7\3\2"+
-		"\2\2\u01ff\u01ef\3\2\2\2\u01ff\u01f7\3\2\2\2\u0200+\3\2\2\2\u0201\u0202"+
-		"\7?\2\2\u0202\u0203\7=\2\2\u0203\u0204\5\16\b\2\u0204\u0205\7>\2\2\u0205"+
-		"\u0206\7:\2\2\u0206\u022c\3\2\2\2\u0207\u0208\5\b\5\2\u0208\u0209\7?\2"+
-		"\2\u0209\u020a\7-\2\2\u020a\u020b\5&\24\2\u020b\u020c\7;\2\2\u020c\u020d"+
-		"\5\"\22\2\u020d\u020e\7:\2\2\u020e\u022c\3\2\2\2\u020f\u0210\5\b\5\2\u0210"+
-		"\u0211\7?\2\2\u0211\u0212\7;\2\2\u0212\u0213\5\"\22\2\u0213\u0214\7:\2"+
-		"\2\u0214\u022c\3\2\2\2\u0215\u0216\7?\2\2\u0216\u0217\7-\2\2\u0217\u0218"+
-		"\5&\24\2\u0218\u0219\7:\2\2\u0219\u022c\3\2\2\2\u021a\u021b\5\b\5\2\u021b"+
-		"\u021c\7?\2\2\u021c\u021d\7-\2\2\u021d\u021e\5&\24\2\u021e\u021f\7:\2"+
-		"\2\u021f\u022c\3\2\2\2\u0220\u0221\7?\2\2\u0221\u0222\7<\2\2\u0222\u0223"+
-		"\5$\23\2\u0223\u0224\7-\2\2\u0224\u0225\5&\24\2\u0225\u0226\7:\2\2\u0226"+
-		"\u022c\3\2\2\2\u0227\u0228\5\b\5\2\u0228\u0229\7?\2\2\u0229\u022a\7:\2"+
-		"\2\u022a\u022c\3\2\2\2\u022b\u0201\3\2\2\2\u022b\u0207\3\2\2\2\u022b\u020f"+
-		"\3\2\2\2\u022b\u0215\3\2\2\2\u022b\u021a\3\2\2\2\u022b\u0220\3\2\2\2\u022b"+
-		"\u0227\3\2\2\2\u022c-\3\2\2\2\30\63KSWaelrx~\u00f2\u00fb\u0105\u0110\u011f"+
-		"\u0125\u0159\u0182\u0184\u0189\u01ff\u022b";
+		"\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\5\26"+
+		"\u0226\n\26\3\26\2\3&\27\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&("+
+		"*\2\2\u026e\2\61\3\2\2\2\4\63\3\2\2\2\6I\3\2\2\2\bQ\3\2\2\2\nU\3\2\2\2"+
+		"\f_\3\2\2\2\16c\3\2\2\2\20j\3\2\2\2\22p\3\2\2\2\24v\3\2\2\2\26|\3\2\2"+
+		"\2\30\u00f0\3\2\2\2\32\u00f9\3\2\2\2\34\u0103\3\2\2\2\36\u0105\3\2\2\2"+
+		" \u010e\3\2\2\2\"\u011d\3\2\2\2$\u0123\3\2\2\2&\u0157\3\2\2\2(\u01f9\3"+
+		"\2\2\2*\u0225\3\2\2\2,-\5\6\4\2-.\5\2\2\2.\62\3\2\2\2/\62\5\4\3\2\60\62"+
+		"\3\2\2\2\61,\3\2\2\2\61/\3\2\2\2\61\60\3\2\2\2\62\3\3\2\2\2\63\64\7\32"+
+		"\2\2\64\65\5\22\n\2\65\66\7\34\2\2\66\5\3\2\2\2\678\7\33\2\289\5\b\5\2"+
+		"9:\7?\2\2:;\7=\2\2;<\5\n\6\2<=\7>\2\2=>\7\n\2\2>?\5\22\n\2?@\7\24\2\2"+
+		"@A\5&\24\2AB\7:\2\2BC\7\3\2\2CJ\3\2\2\2DE\7\25\2\2EF\7?\2\2FG\5\26\f\2"+
+		"GH\7\26\2\2HJ\3\2\2\2I\67\3\2\2\2ID\3\2\2\2J\7\3\2\2\2KR\7\"\2\2LR\7\30"+
+		"\2\2MR\7\31\2\2NR\7!\2\2OR\7\35\2\2PR\7?\2\2QK\3\2\2\2QL\3\2\2\2QM\3\2"+
+		"\2\2QN\3\2\2\2QO\3\2\2\2QP\3\2\2\2R\t\3\2\2\2SV\5\f\7\2TV\3\2\2\2US\3"+
+		"\2\2\2UT\3\2\2\2V\13\3\2\2\2WX\5\b\5\2XY\7?\2\2YZ\7;\2\2Z[\5\f\7\2[`\3"+
+		"\2\2\2\\]\5\b\5\2]^\7?\2\2^`\3\2\2\2_W\3\2\2\2_\\\3\2\2\2`\r\3\2\2\2a"+
+		"d\5\20\t\2bd\3\2\2\2ca\3\2\2\2cb\3\2\2\2d\17\3\2\2\2ef\5&\24\2fg\7;\2"+
+		"\2gh\5\20\t\2hk\3\2\2\2ik\5&\24\2je\3\2\2\2ji\3\2\2\2k\21\3\2\2\2lm\5"+
+		"\30\r\2mn\5\22\n\2nq\3\2\2\2oq\3\2\2\2pl\3\2\2\2po\3\2\2\2q\23\3\2\2\2"+
+		"rs\5(\25\2st\5\24\13\2tw\3\2\2\2uw\3\2\2\2vr\3\2\2\2vu\3\2\2\2w\25\3\2"+
+		"\2\2xy\5*\26\2yz\5\26\f\2z}\3\2\2\2{}\3\2\2\2|x\3\2\2\2|{\3\2\2\2}\27"+
+		"\3\2\2\2~\177\7?\2\2\177\u0080\7=\2\2\u0080\u0081\5\16\b\2\u0081\u0082"+
+		"\7>\2\2\u0082\u0083\7:\2\2\u0083\u00f1\3\2\2\2\u0084\u0085\5\b\5\2\u0085"+
+		"\u0086\7?\2\2\u0086\u0087\7-\2\2\u0087\u0088\5&\24\2\u0088\u0089\7;\2"+
+		"\2\u0089\u008a\5\"\22\2\u008a\u008b\7:\2\2\u008b\u00f1\3\2\2\2\u008c\u008d"+
+		"\5\b\5\2\u008d\u008e\7?\2\2\u008e\u008f\7;\2\2\u008f\u0090\5\"\22\2\u0090"+
+		"\u0091\7:\2\2\u0091\u00f1\3\2\2\2\u0092\u0093\7?\2\2\u0093\u0094\7-\2"+
+		"\2\u0094\u0095\5&\24\2\u0095\u0096\7:\2\2\u0096\u00f1\3\2\2\2\u0097\u0098"+
+		"\5\b\5\2\u0098\u0099\7?\2\2\u0099\u009a\7-\2\2\u009a\u009b\5&\24\2\u009b"+
+		"\u009c\7:\2\2\u009c\u00f1\3\2\2\2\u009d\u009e\7?\2\2\u009e\u009f\7<\2"+
+		"\2\u009f\u00a0\5$\23\2\u00a0\u00a1\7-\2\2\u00a1\u00a2\5&\24\2\u00a2\u00a3"+
+		"\7:\2\2\u00a3\u00f1\3\2\2\2\u00a4\u00a5\5\b\5\2\u00a5\u00a6\7?\2\2\u00a6"+
+		"\u00a7\7:\2\2\u00a7\u00f1\3\2\2\2\u00a8\u00a9\7\6\2\2\u00a9\u00aa\7=\2"+
+		"\2\u00aa\u00ab\5&\24\2\u00ab\u00ac\7>\2\2\u00ac\u00ad\7\7\2\2\u00ad\u00ae"+
+		"\5\22\n\2\u00ae\u00af\7\b\2\2\u00af\u00f1\3\2\2\2\u00b0\u00b1\7\6\2\2"+
+		"\u00b1\u00b2\7=\2\2\u00b2\u00b3\5&\24\2\u00b3\u00b4\7>\2\2\u00b4\u00b5"+
+		"\7\7\2\2\u00b5\u00b6\5\22\n\2\u00b6\u00b7\7\5\2\2\u00b7\u00b8\5\22\n\2"+
+		"\u00b8\u00b9\7\b\2\2\u00b9\u00f1\3\2\2\2\u00ba\u00bb\7\4\2\2\u00bb\u00bc"+
+		"\7=\2\2\u00bc\u00bd\7?\2\2\u00bd\u00be\7>\2\2\u00be\u00f1\7:\2\2\u00bf"+
+		"\u00c0\7\4\2\2\u00c0\u00c1\7=\2\2\u00c1\u00c2\7?\2\2\u00c2\u00c3\7<\2"+
+		"\2\u00c3\u00c4\5$\23\2\u00c4\u00c5\7>\2\2\u00c5\u00c6\7:\2\2\u00c6\u00f1"+
+		"\3\2\2\2\u00c7\u00c8\7\27\2\2\u00c8\u00c9\7=\2\2\u00c9\u00ca\5 \21\2\u00ca"+
+		"\u00cb\7>\2\2\u00cb\u00cc\7:\2\2\u00cc\u00f1\3\2\2\2\u00cd\u00ce\7\f\2"+
+		"\2\u00ce\u00cf\7=\2\2\u00cf\u00d0\5\30\r\2\u00d0\u00d1\5&\24\2\u00d1\u00d2"+
+		"\7:\2\2\u00d2\u00d3\5&\24\2\u00d3\u00d4\7>\2\2\u00d4\u00d5\7\n\2\2\u00d5"+
+		"\u00d6\5\24\13\2\u00d6\u00d7\7\r\2\2\u00d7\u00f1\3\2\2\2\u00d8\u00d9\7"+
+		"\t\2\2\u00d9\u00da\7=\2\2\u00da\u00db\5&\24\2\u00db\u00dc\7>\2\2\u00dc"+
+		"\u00dd\7\n\2\2\u00dd\u00de\5\24\13\2\u00de\u00df\7\13\2\2\u00df\u00f1"+
+		"\3\2\2\2\u00e0\u00e1\7\n\2\2\u00e1\u00e2\5\24\13\2\u00e2\u00e3\7\t\2\2"+
+		"\u00e3\u00e4\7=\2\2\u00e4\u00e5\5&\24\2\u00e5\u00e6\7>\2\2\u00e6\u00e7"+
+		"\7:\2\2\u00e7\u00f1\3\2\2\2\u00e8\u00e9\7\16\2\2\u00e9\u00ea\7=\2\2\u00ea"+
+		"\u00eb\7?\2\2\u00eb\u00ec\7>\2\2\u00ec\u00ed\7\17\2\2\u00ed\u00ee\5\32"+
+		"\16\2\u00ee\u00ef\7\23\2\2\u00ef\u00f1\3\2\2\2\u00f0~\3\2\2\2\u00f0\u0084"+
+		"\3\2\2\2\u00f0\u008c\3\2\2\2\u00f0\u0092\3\2\2\2\u00f0\u0097\3\2\2\2\u00f0"+
+		"\u009d\3\2\2\2\u00f0\u00a4\3\2\2\2\u00f0\u00a8\3\2\2\2\u00f0\u00b0\3\2"+
+		"\2\2\u00f0\u00ba\3\2\2\2\u00f0\u00bf\3\2\2\2\u00f0\u00c7\3\2\2\2\u00f0"+
+		"\u00cd\3\2\2\2\u00f0\u00d8\3\2\2\2\u00f0\u00e0\3\2\2\2\u00f0\u00e8\3\2"+
+		"\2\2\u00f1\31\3\2\2\2\u00f2\u00f3\7\20\2\2\u00f3\u00f4\5&\24\2\u00f4\u00f5"+
+		"\7\67\2\2\u00f5\u00f6\5\24\13\2\u00f6\u00f7\5\34\17\2\u00f7\u00fa\3\2"+
+		"\2\2\u00f8\u00fa\5\36\20\2\u00f9\u00f2\3\2\2\2\u00f9\u00f8\3\2\2\2\u00fa"+
+		"\33\3\2\2\2\u00fb\u00fc\7\20\2\2\u00fc\u00fd\5&\24\2\u00fd\u00fe\7\67"+
+		"\2\2\u00fe\u00ff\5\24\13\2\u00ff\u0100\5\34\17\2\u0100\u0104\3\2\2\2\u0101"+
+		"\u0104\3\2\2\2\u0102\u0104\5\36\20\2\u0103\u00fb\3\2\2\2\u0103\u0101\3"+
+		"\2\2\2\u0103\u0102\3\2\2\2\u0104\35\3\2\2\2\u0105\u0106\7\22\2\2\u0106"+
+		"\u0107\7\67\2\2\u0107\u0108\5\24\13\2\u0108\37\3\2\2\2\u0109\u010a\5&"+
+		"\24\2\u010a\u010b\7;\2\2\u010b\u010c\5 \21\2\u010c\u010f\3\2\2\2\u010d"+
+		"\u010f\5&\24\2\u010e\u0109\3\2\2\2\u010e\u010d\3\2\2\2\u010f!\3\2\2\2"+
+		"\u0110\u0111\7?\2\2\u0111\u0112\7;\2\2\u0112\u011e\5\"\22\2\u0113\u0114"+
+		"\7?\2\2\u0114\u0115\7-\2\2\u0115\u0116\5&\24\2\u0116\u0117\7;\2\2\u0117"+
+		"\u0118\5\"\22\2\u0118\u011e\3\2\2\2\u0119\u011e\7?\2\2\u011a\u011b\7?"+
+		"\2\2\u011b\u011c\7-\2\2\u011c\u011e\5&\24\2\u011d\u0110\3\2\2\2\u011d"+
+		"\u0113\3\2\2\2\u011d\u0119\3\2\2\2\u011d\u011a\3\2\2\2\u011e#\3\2\2\2"+
+		"\u011f\u0120\7?\2\2\u0120\u0121\7<\2\2\u0121\u0124\5$\23\2\u0122\u0124"+
+		"\7?\2\2\u0123\u011f\3\2\2\2\u0123\u0122\3\2\2\2\u0124%\3\2\2\2\u0125\u0126"+
+		"\b\24\1\2\u0126\u0158\7\36\2\2\u0127\u0158\7?\2\2\u0128\u0129\7?\2\2\u0129"+
+		"\u012a\7<\2\2\u012a\u0158\5$\23\2\u012b\u0158\7#\2\2\u012c\u0158\7@\2"+
+		"\2\u012d\u0158\7A\2\2\u012e\u0158\7\37\2\2\u012f\u0158\7 \2\2\u0130\u0131"+
+		"\7)\2\2\u0131\u0158\7@\2\2\u0132\u0133\7)\2\2\u0133\u0158\7#\2\2\u0134"+
+		"\u0135\7)\2\2\u0135\u0158\7?\2\2\u0136\u0137\7)\2\2\u0137\u0138\7?\2\2"+
+		"\u0138\u0139\7<\2\2\u0139\u0158\5$\23\2\u013a\u013b\7)\2\2\u013b\u013c"+
+		"\7=\2\2\u013c\u013d\5&\24\2\u013d\u013e\7>\2\2\u013e\u0158\3\2\2\2\u013f"+
+		"\u0140\7\66\2\2\u0140\u0158\7?\2\2\u0141\u0142\7\66\2\2\u0142\u0143\7"+
+		"?\2\2\u0143\u0144\7<\2\2\u0144\u0158\5$\23\2\u0145\u0146\7\66\2\2\u0146"+
+		"\u0158\7\37\2\2\u0147\u0148\7\66\2\2\u0148\u0158\7 \2\2\u0149\u014a\7"+
+		"\66\2\2\u014a\u014b\7=\2\2\u014b\u014c\5&\24\2\u014c\u014d\7>\2\2\u014d"+
+		"\u0158\3\2\2\2\u014e\u014f\7=\2\2\u014f\u0150\5&\24\2\u0150\u0151\7>\2"+
+		"\2\u0151\u0158\3\2\2\2\u0152\u0153\7?\2\2\u0153\u0154\7=\2\2\u0154\u0155"+
+		"\5\16\b\2\u0155\u0156\7>\2\2\u0156\u0158\3\2\2\2\u0157\u0125\3\2\2\2\u0157"+
+		"\u0127\3\2\2\2\u0157\u0128\3\2\2\2\u0157\u012b\3\2\2\2\u0157\u012c\3\2"+
+		"\2\2\u0157\u012d\3\2\2\2\u0157\u012e\3\2\2\2\u0157\u012f\3\2\2\2\u0157"+
+		"\u0130\3\2\2\2\u0157\u0132\3\2\2\2\u0157\u0134\3\2\2\2\u0157\u0136\3\2"+
+		"\2\2\u0157\u013a\3\2\2\2\u0157\u013f\3\2\2\2\u0157\u0141\3\2\2\2\u0157"+
+		"\u0145\3\2\2\2\u0157\u0147\3\2\2\2\u0157\u0149\3\2\2\2\u0157\u014e\3\2"+
+		"\2\2\u0157\u0152\3\2\2\2\u0158\u0182\3\2\2\2\u0159\u015a\f\17\2\2\u015a"+
+		"\u015b\7\64\2\2\u015b\u0181\5&\24\20\u015c\u015d\f\16\2\2\u015d\u015e"+
+		"\7\63\2\2\u015e\u0181\5&\24\17\u015f\u0160\f\r\2\2\u0160\u0161\7\62\2"+
+		"\2\u0161\u0181\5&\24\16\u0162\u0163\f\f\2\2\u0163\u0164\7.\2\2\u0164\u0181"+
+		"\5&\24\r\u0165\u0166\f\13\2\2\u0166\u0167\7/\2\2\u0167\u0181\5&\24\f\u0168"+
+		"\u0169\f\n\2\2\u0169\u016a\7\60\2\2\u016a\u0181\5&\24\13\u016b\u016c\f"+
+		"\t\2\2\u016c\u016d\7\61\2\2\u016d\u0181\5&\24\n\u016e\u016f\f\b\2\2\u016f"+
+		"\u0170\7\65\2\2\u0170\u0181\5&\24\t\u0171\u0172\f\7\2\2\u0172\u0173\7"+
+		"(\2\2\u0173\u0181\5&\24\b\u0174\u0175\f\6\2\2\u0175\u0176\7)\2\2\u0176"+
+		"\u0181\5&\24\7\u0177\u0178\f\5\2\2\u0178\u0179\7*\2\2\u0179\u0181\5&\24"+
+		"\6\u017a\u017b\f\4\2\2\u017b\u017c\7+\2\2\u017c\u0181\5&\24\5\u017d\u017e"+
+		"\f\3\2\2\u017e\u017f\7,\2\2\u017f\u0181\5&\24\4\u0180\u0159\3\2\2\2\u0180"+
+		"\u015c\3\2\2\2\u0180\u015f\3\2\2\2\u0180\u0162\3\2\2\2\u0180\u0165\3\2"+
+		"\2\2\u0180\u0168\3\2\2\2\u0180\u016b\3\2\2\2\u0180\u016e\3\2\2\2\u0180"+
+		"\u0171\3\2\2\2\u0180\u0174\3\2\2\2\u0180\u0177\3\2\2\2\u0180\u017a\3\2"+
+		"\2\2\u0180\u017d\3\2\2\2\u0181\u0184\3\2\2\2\u0182\u0180\3\2\2\2\u0182"+
+		"\u0183\3\2\2\2\u0183\'\3\2\2\2\u0184\u0182\3\2\2\2\u0185\u0186\7\21\2"+
+		"\2\u0186\u01fa\7:\2\2\u0187\u0188\7?\2\2\u0188\u0189\7=\2\2\u0189\u018a"+
+		"\5\16\b\2\u018a\u018b\7>\2\2\u018b\u018c\7:\2\2\u018c\u01fa\3\2\2\2\u018d"+
+		"\u018e\5\b\5\2\u018e\u018f\7?\2\2\u018f\u0190\7-\2\2\u0190\u0191\5&\24"+
+		"\2\u0191\u0192\7;\2\2\u0192\u0193\5\"\22\2\u0193\u0194\7:\2\2\u0194\u01fa"+
+		"\3\2\2\2\u0195\u0196\5\b\5\2\u0196\u0197\7?\2\2\u0197\u0198\7;\2\2\u0198"+
+		"\u0199\5\"\22\2\u0199\u019a\7:\2\2\u019a\u01fa\3\2\2\2\u019b\u019c\7?"+
+		"\2\2\u019c\u019d\7-\2\2\u019d\u019e\5&\24\2\u019e\u019f\7:\2\2\u019f\u01fa"+
+		"\3\2\2\2\u01a0\u01a1\5\b\5\2\u01a1\u01a2\7?\2\2\u01a2\u01a3\7-\2\2\u01a3"+
+		"\u01a4\5&\24\2\u01a4\u01a5\7:\2\2\u01a5\u01fa\3\2\2\2\u01a6\u01a7\7?\2"+
+		"\2\u01a7\u01a8\7<\2\2\u01a8\u01a9\5$\23\2\u01a9\u01aa\7-\2\2\u01aa\u01ab"+
+		"\5&\24\2\u01ab\u01ac\7:\2\2\u01ac\u01fa\3\2\2\2\u01ad\u01ae\5\b\5\2\u01ae"+
+		"\u01af\7?\2\2\u01af\u01b0\7:\2\2\u01b0\u01fa\3\2\2\2\u01b1\u01b2\7\6\2"+
+		"\2\u01b2\u01b3\7=\2\2\u01b3\u01b4\5&\24\2\u01b4\u01b5\7>\2\2\u01b5\u01b6"+
+		"\7\7\2\2\u01b6\u01b7\5\24\13\2\u01b7\u01b8\7\b\2\2\u01b8\u01fa\3\2\2\2"+
+		"\u01b9\u01ba\7\6\2\2\u01ba\u01bb\7=\2\2\u01bb\u01bc\5&\24\2\u01bc\u01bd"+
+		"\7>\2\2\u01bd\u01be\7\7\2\2\u01be\u01bf\5\24\13\2\u01bf\u01c0\7\5\2\2"+
+		"\u01c0\u01c1\5\24\13\2\u01c1\u01c2\7\b\2\2\u01c2\u01fa\3\2\2\2\u01c3\u01c4"+
+		"\7\4\2\2\u01c4\u01c5\7=\2\2\u01c5\u01c6\7?\2\2\u01c6\u01c7\7<\2\2\u01c7"+
+		"\u01c8\5$\23\2\u01c8\u01c9\7>\2\2\u01c9\u01ca\7:\2\2\u01ca\u01fa\3\2\2"+
+		"\2\u01cb\u01cc\7\4\2\2\u01cc\u01cd\7=\2\2\u01cd\u01ce\7?\2\2\u01ce\u01cf"+
+		"\7>\2\2\u01cf\u01fa\7:\2\2\u01d0\u01d1\7\27\2\2\u01d1\u01d2\7=\2\2\u01d2"+
+		"\u01d3\5 \21\2\u01d3\u01d4\7>\2\2\u01d4\u01d5\7:\2\2\u01d5\u01fa\3\2\2"+
+		"\2\u01d6\u01d7\7\f\2\2\u01d7\u01d8\7=\2\2\u01d8\u01d9\5\30\r\2\u01d9\u01da"+
+		"\5&\24\2\u01da\u01db\7:\2\2\u01db\u01dc\5&\24\2\u01dc\u01dd\7>\2\2\u01dd"+
+		"\u01de\7\n\2\2\u01de\u01df\5\24\13\2\u01df\u01e0\7\r\2\2\u01e0\u01fa\3"+
+		"\2\2\2\u01e1\u01e2\7\t\2\2\u01e2\u01e3\7=\2\2\u01e3\u01e4\5&\24\2\u01e4"+
+		"\u01e5\7>\2\2\u01e5\u01e6\7\n\2\2\u01e6\u01e7\5\24\13\2\u01e7\u01e8\7"+
+		"\13\2\2\u01e8\u01fa\3\2\2\2\u01e9\u01ea\7\n\2\2\u01ea\u01eb\5\24\13\2"+
+		"\u01eb\u01ec\7\t\2\2\u01ec\u01ed\7=\2\2\u01ed\u01ee\5&\24\2\u01ee\u01ef"+
+		"\7>\2\2\u01ef\u01f0\7:\2\2\u01f0\u01fa\3\2\2\2\u01f1\u01f2\7\16\2\2\u01f2"+
+		"\u01f3\7=\2\2\u01f3\u01f4\7?\2\2\u01f4\u01f5\7>\2\2\u01f5\u01f6\7\17\2"+
+		"\2\u01f6\u01f7\5\32\16\2\u01f7\u01f8\7\23\2\2\u01f8\u01fa\3\2\2\2\u01f9"+
+		"\u0185\3\2\2\2\u01f9\u0187\3\2\2\2\u01f9\u018d\3\2\2\2\u01f9\u0195\3\2"+
+		"\2\2\u01f9\u019b\3\2\2\2\u01f9\u01a0\3\2\2\2\u01f9\u01a6\3\2\2\2\u01f9"+
+		"\u01ad\3\2\2\2\u01f9\u01b1\3\2\2\2\u01f9\u01b9\3\2\2\2\u01f9\u01c3\3\2"+
+		"\2\2\u01f9\u01cb\3\2\2\2\u01f9\u01d0\3\2\2\2\u01f9\u01d6\3\2\2\2\u01f9"+
+		"\u01e1\3\2\2\2\u01f9\u01e9\3\2\2\2\u01f9\u01f1\3\2\2\2\u01fa)\3\2\2\2"+
+		"\u01fb\u01fc\7?\2\2\u01fc\u01fd\7=\2\2\u01fd\u01fe\5\16\b\2\u01fe\u01ff"+
+		"\7>\2\2\u01ff\u0200\7:\2\2\u0200\u0226\3\2\2\2\u0201\u0202\5\b\5\2\u0202"+
+		"\u0203\7?\2\2\u0203\u0204\7-\2\2\u0204\u0205\5&\24\2\u0205\u0206\7;\2"+
+		"\2\u0206\u0207\5\"\22\2\u0207\u0208\7:\2\2\u0208\u0226\3\2\2\2\u0209\u020a"+
+		"\5\b\5\2\u020a\u020b\7?\2\2\u020b\u020c\7;\2\2\u020c\u020d\5\"\22\2\u020d"+
+		"\u020e\7:\2\2\u020e\u0226\3\2\2\2\u020f\u0210\7?\2\2\u0210\u0211\7-\2"+
+		"\2\u0211\u0212\5&\24\2\u0212\u0213\7:\2\2\u0213\u0226\3\2\2\2\u0214\u0215"+
+		"\5\b\5\2\u0215\u0216\7?\2\2\u0216\u0217\7-\2\2\u0217\u0218\5&\24\2\u0218"+
+		"\u0219\7:\2\2\u0219\u0226\3\2\2\2\u021a\u021b\7?\2\2\u021b\u021c\7<\2"+
+		"\2\u021c\u021d\5$\23\2\u021d\u021e\7-\2\2\u021e\u021f\5&\24\2\u021f\u0220"+
+		"\7:\2\2\u0220\u0226\3\2\2\2\u0221\u0222\5\b\5\2\u0222\u0223\7?\2\2\u0223"+
+		"\u0224\7:\2\2\u0224\u0226\3\2\2\2\u0225\u01fb\3\2\2\2\u0225\u0201\3\2"+
+		"\2\2\u0225\u0209\3\2\2\2\u0225\u020f\3\2\2\2\u0225\u0214\3\2\2\2\u0225"+
+		"\u021a\3\2\2\2\u0225\u0221\3\2\2\2\u0226+\3\2\2\2\27\61IQU_cjpv|\u00f0"+
+		"\u00f9\u0103\u010e\u011d\u0123\u0157\u0180\u0182\u01f9\u0225";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

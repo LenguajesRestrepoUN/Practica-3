@@ -1,4 +1,3 @@
-
 grammar Psicoder;
 
 ps :  element ps   #psElement
@@ -6,7 +5,6 @@ ps :  element ps   #psElement
     |               #psEpsilon
     ;
 
- //element                                  #bElement
 b :FUNCION_PRINCIPAL statements FIN_PRINCIPAL  #bFuncionPrincipal
     ;
 
@@ -32,13 +30,12 @@ params : type ID TK_COMA params #paramsTypeIDComa
     | type ID   #paramsTypeID
     ;
 
-optpargs : args #optpargsArgs
-    |   #optpargsEpsilon
-    ;
-    
-args : exp TK_COMA params       #argsExpParams
+optargs : args  #optargsArgs
+     |   #optargsEpsilon
+     ;
+
+args : exp TK_COMA args       #argsExpArgs
     | exp       #argsExp
-//    | exp  TK_COMA  args        #argsExp
     ;
 
 statements : stmt  statements   #statementsEpsilonStmt
@@ -53,7 +50,7 @@ statements4 : stmt4  statements4        #statements4Stmt
     |       #statements4Epsilon
     ;
 
-stmt : ID  TK_PAR_IZQ  optpargs  TK_PAR_DER  TK_PYC     #stmtCallFunction
+stmt : ID  TK_PAR_IZQ  optargs  TK_PAR_DER  TK_PYC     #stmtCallFunction
     | type  ID  TK_ASIG  exp  TK_COMA  optexp  TK_PYC       #stmtTypeAsig
     | type  ID  TK_COMA  optexp  TK_PYC     #stmtTypeAsigOptexp
     | ID  TK_ASIG  exp  TK_PYC      #stmtIDAsig
@@ -118,7 +115,6 @@ exp :  TK_CARACTER      #expCaracter
 
     |  TK_PAR_IZQ  exp  TK_PAR_DER      #expParExp
     |  ID  TK_PAR_IZQ  optargs  TK_PAR_DER      #expFuncion
-    //|  TK_PAR_IZQ  optargs  TK_PAR_DER      #exp
 
     |  exp  TK_O  exp       #expOr
     |  exp  TK_Y  exp       #expAnd
@@ -136,12 +132,8 @@ exp :  TK_CARACTER      #expCaracter
     |  exp  TK_MOD  exp     #expModulo
     ;
 
-optargs : args  #optargsArgs
-    |   #optargsEpsilon
-    ;
-
 stmt2 : ROMPER  TK_PYC  #stmt2Romper
-    |  ID  TK_PAR_IZQ  optpargs  TK_PAR_DER  TK_PYC #stmt2CallFunction
+    |  ID  TK_PAR_IZQ  optargs  TK_PAR_DER  TK_PYC #stmt2CallFunction
     |  type  ID  TK_ASIG  exp  TK_COMA  optexp  TK_PYC  #stmt2TypeAsig
     |  type  ID  TK_COMA  optexp  TK_PYC    #stmt2TypeAsigOptexp
     |  ID  TK_ASIG  exp  TK_PYC #stmt2IDAsig
@@ -159,7 +151,7 @@ stmt2 : ROMPER  TK_PYC  #stmt2Romper
     |  SELECCIONAR  TK_PAR_IZQ  ID  TK_PAR_DER  ENTRE  cases FIN_SELECCIONAR   #stmt2Seleccionar
     ;
 
-stmt4 : ID  TK_PAR_IZQ  optpargs  TK_PAR_DER  TK_PYC        #stmt4Funcion
+stmt4 : ID  TK_PAR_IZQ  optargs  TK_PAR_DER  TK_PYC        #stmt4Funcion
     |  type  ID  TK_ASIG  exp  TK_COMA  optexp  TK_PYC      #stmt4TypeIDAsigComa
     |  type  ID  TK_COMA  optexp  TK_PYC        #stmt4TypeIDComa
     |  ID  TK_ASIG  exp  TK_PYC     #stmt4IDAsig
@@ -358,9 +350,9 @@ TK_PAR_IZQ: '('
 
 TK_PAR_DER: ')';
 
-ID : (('a'..'z')|('A'..'Z'))+(('A'..'Z')|('a'..'z')|('0'..'1')|('_'))*;
+ID : (('a'..'z')|('A'..'Z'))+(('A'..'Z')|('a'..'z')|('0'..'9')|('_'))*;
 
 //TK_CADENA: '"'(('A'..'Z')|('a'..'z')|('0'..'1')|'_'|(' '))*'"';
 
 TK_REAL : ('0'..'9')+'.'('0'..'9')+;
-TK_CADENA: '"'([a-zA-Z0-9_  ])*'"';
+TK_CADENA: '"'([a-zA-Z0-9_  \\])*'"';

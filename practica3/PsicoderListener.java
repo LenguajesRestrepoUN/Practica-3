@@ -1,4 +1,4 @@
-// Generated from Psicoder.g4 by ANTLR 4.5.3
+// Generated from C:/Users/jccaleroe/Documents/Practica-3/practica3\Psicoder.g4 by ANTLR 4.5.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -199,41 +199,41 @@ public interface PsicoderListener extends ParseTreeListener {
 	 */
 	void exitParamsTypeID(PsicoderParser.ParamsTypeIDContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code optpargsArgs}
-	 * labeled alternative in {@link PsicoderParser#optpargs}.
+	 * Enter a parse tree produced by the {@code optargsArgs}
+	 * labeled alternative in {@link PsicoderParser#optargs}.
 	 * @param ctx the parse tree
 	 */
-	void enterOptpargsArgs(PsicoderParser.OptpargsArgsContext ctx);
+	void enterOptargsArgs(PsicoderParser.OptargsArgsContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code optpargsArgs}
-	 * labeled alternative in {@link PsicoderParser#optpargs}.
+	 * Exit a parse tree produced by the {@code optargsArgs}
+	 * labeled alternative in {@link PsicoderParser#optargs}.
 	 * @param ctx the parse tree
 	 */
-	void exitOptpargsArgs(PsicoderParser.OptpargsArgsContext ctx);
+	void exitOptargsArgs(PsicoderParser.OptargsArgsContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code optpargsEpsilon}
-	 * labeled alternative in {@link PsicoderParser#optpargs}.
+	 * Enter a parse tree produced by the {@code optargsEpsilon}
+	 * labeled alternative in {@link PsicoderParser#optargs}.
 	 * @param ctx the parse tree
 	 */
-	void enterOptpargsEpsilon(PsicoderParser.OptpargsEpsilonContext ctx);
+	void enterOptargsEpsilon(PsicoderParser.OptargsEpsilonContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code optpargsEpsilon}
-	 * labeled alternative in {@link PsicoderParser#optpargs}.
+	 * Exit a parse tree produced by the {@code optargsEpsilon}
+	 * labeled alternative in {@link PsicoderParser#optargs}.
 	 * @param ctx the parse tree
 	 */
-	void exitOptpargsEpsilon(PsicoderParser.OptpargsEpsilonContext ctx);
+	void exitOptargsEpsilon(PsicoderParser.OptargsEpsilonContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code argsExpParams}
+	 * Enter a parse tree produced by the {@code argsExpArgs}
 	 * labeled alternative in {@link PsicoderParser#args}.
 	 * @param ctx the parse tree
 	 */
-	void enterArgsExpParams(PsicoderParser.ArgsExpParamsContext ctx);
+	void enterArgsExpArgs(PsicoderParser.ArgsExpArgsContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code argsExpParams}
+	 * Exit a parse tree produced by the {@code argsExpArgs}
 	 * labeled alternative in {@link PsicoderParser#args}.
 	 * @param ctx the parse tree
 	 */
-	void exitArgsExpParams(PsicoderParser.ArgsExpParamsContext ctx);
+	void exitArgsExpArgs(PsicoderParser.ArgsExpArgsContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code argsExp}
 	 * labeled alternative in {@link PsicoderParser#args}.
@@ -1048,30 +1048,6 @@ public interface PsicoderListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpID(PsicoderParser.ExpIDContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code optargsArgs}
-	 * labeled alternative in {@link PsicoderParser#optargs}.
-	 * @param ctx the parse tree
-	 */
-	void enterOptargsArgs(PsicoderParser.OptargsArgsContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code optargsArgs}
-	 * labeled alternative in {@link PsicoderParser#optargs}.
-	 * @param ctx the parse tree
-	 */
-	void exitOptargsArgs(PsicoderParser.OptargsArgsContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code optargsEpsilon}
-	 * labeled alternative in {@link PsicoderParser#optargs}.
-	 * @param ctx the parse tree
-	 */
-	void enterOptargsEpsilon(PsicoderParser.OptargsEpsilonContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code optargsEpsilon}
-	 * labeled alternative in {@link PsicoderParser#optargs}.
-	 * @param ctx the parse tree
-	 */
-	void exitOptargsEpsilon(PsicoderParser.OptargsEpsilonContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code stmt2Romper}
 	 * labeled alternative in {@link PsicoderParser#stmt2}.

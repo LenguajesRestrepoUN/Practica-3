@@ -4,5 +4,8 @@ fin_funcion
 
 funcion_principal
     entero x = 1 + 2;
-    imprimir(x);
+    imprimir(sum(x,y));
+    cadena a = "\n";
+    imprimir(a);
+    imprimir("\n");
 fin_principal

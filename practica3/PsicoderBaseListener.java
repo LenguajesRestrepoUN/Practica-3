@@ -1,4 +1,4 @@
-// Generated from Psicoder.g4 by ANTLR 4.5.3
+// Generated from C:/Users/jccaleroe/Documents/Practica-3/practica3\Psicoder.g4 by ANTLR 4.5.1
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -207,37 +207,37 @@ public class PsicoderBaseListener implements PsicoderListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOptpargsArgs(PsicoderParser.OptpargsArgsContext ctx) { }
+	@Override public void enterOptargsArgs(PsicoderParser.OptargsArgsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitOptpargsArgs(PsicoderParser.OptpargsArgsContext ctx) { }
+	@Override public void exitOptargsArgs(PsicoderParser.OptargsArgsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOptpargsEpsilon(PsicoderParser.OptpargsEpsilonContext ctx) { }
+	@Override public void enterOptargsEpsilon(PsicoderParser.OptargsEpsilonContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitOptpargsEpsilon(PsicoderParser.OptpargsEpsilonContext ctx) { }
+	@Override public void exitOptargsEpsilon(PsicoderParser.OptargsEpsilonContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterArgsExpParams(PsicoderParser.ArgsExpParamsContext ctx) { }
+	@Override public void enterArgsExpArgs(PsicoderParser.ArgsExpArgsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitArgsExpParams(PsicoderParser.ArgsExpParamsContext ctx) { }
+	@Override public void exitArgsExpArgs(PsicoderParser.ArgsExpArgsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1054,30 +1054,6 @@ public class PsicoderBaseListener implements PsicoderListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpID(PsicoderParser.ExpIDContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterOptargsArgs(PsicoderParser.OptargsArgsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOptargsArgs(PsicoderParser.OptargsArgsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterOptargsEpsilon(PsicoderParser.OptargsEpsilonContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOptargsEpsilon(PsicoderParser.OptargsEpsilonContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
