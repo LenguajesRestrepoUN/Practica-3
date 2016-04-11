@@ -1,0 +1,68 @@
+funcion entero sum(entero a, entero b) hacer
+    cadena y = "lol lol";
+    retornar a + b;
+fin_funcion
+
+funcion entero sum(entero a, entero b) hacer
+    retornar a + b;
+fin_funcion
+
+funcion_principal
+
+    booleano flag = verdadero;
+    caracter letter = 'x';
+    entero count = 7;
+    real mean = 3.5;
+    cadena name = "Lenguajesdeprogramacion";
+    entero x,y=1,z=0;
+
+    si ( a < 5 && a>0 ) entonces
+        imprimir (a);
+    fin_si
+
+
+    hacer
+        mientras ( a > 0 ) hacer
+        a = a -17867.0;
+    fin_mientras
+        a = a/2;
+    mientras ( a > 0 );
+
+        entero a = 3;
+        leer (a);
+        seleccionar ( a ) entre
+            caso 0 :
+            imprimir (a);
+            romper;
+            caso 1:
+            imprimir (a*2);
+            romper;
+            defecto:
+        fin_seleccionar
+
+        entero n ;
+        booleano flag = falso ;
+        leer ( n ) ;
+        para ( entero i = 2 ; i < n ; 1 ) hacer
+            a=j;
+        fin_para
+
+        si ( flag == falso ) entonces
+            imprimir ( "esprimo" ) ;
+        fin_si
+
+fin_principal
+
+    estructura C
+    entero a;
+    fin_estructura
+    estructura Point
+    entero x;
+    entero y;
+    real a,b,c;
+    C c;
+    fin_estructura
+
+    funcion entero sum(entero a, entero b) hacer
+        retornar a + b;
+    fin_funcion
