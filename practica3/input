@@ -1,11 +1,14 @@
-funcion entero sum(entero a, entero b) hacer
+funcion entero sum() hacer
+    entero a = 1;
+    entero b = 2;
     retornar a + b;
 fin_funcion
 
+estructura C
+    entero a;
+fin_estructura
+
 funcion_principal
-    entero x = 1 + 2;
-    imprimir(sum(x,y));
     cadena a = "\n";
     imprimir(a);
-    imprimir("\n");
 fin_principal

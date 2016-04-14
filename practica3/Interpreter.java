@@ -12,6 +12,7 @@ public class Interpreter {
             case PsicoderParser.CARACTER :   return Symbol.Type.tCARACTER;
             case PsicoderParser.REAL : return Symbol.Type.tREAL;
             case PsicoderParser.ENTERO : return Symbol.Type.tENTERO ;
+            case PsicoderParser.ESTRUCTURA : return Symbol.Type.tESTRUCTURA ;
         }
         return Symbol.Type.tINVALID;
     }
@@ -38,9 +39,9 @@ public class Interpreter {
 
             System.out.println(tree.toStringTree(parser));
 
-            //ParseTreeWalker walker = new ParseTreeWalker();
-            //DefPhase def = new DefPhase();
-            //walker.walk(def, tree);
+            ParseTreeWalker walker = new ParseTreeWalker();
+            DefPhase def = new DefPhase();
+            walker.walk(def, tree);
 
             //Visitor visitor = new Visitor();
             //visitor.visit(tree);
