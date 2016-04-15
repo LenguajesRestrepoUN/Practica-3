@@ -57,9 +57,44 @@ public class DefPhase extends PsicoderBaseListener{
         currentScope = currentScope.getEnclosingScope();
     }
 
+    //params : type ID TK_COMA params
+    @Override
+    public void exitParamsTypeIDComa(PsicoderParser.ParamsTypeIDComaContext ctx) {
+        defineVar(ctx.type(), ctx.ID().getSymbol());
+    }
+
+    //params : type ID
+    @Override
+    public void exitParamsTypeID(PsicoderParser.ParamsTypeIDContext ctx) {
+        defineVar(ctx.type(), ctx.ID().getSymbol());
+    }
+
+    //stmt: type  ID  TK_ASIG  exp  TK_PYC
+    @Override
+    public void exitStmtTypeAsifExp(PsicoderParser.StmtTypeAsifExpContext ctx) {
+        defineVar(ctx.type(), ctx.ID().getSymbol());
+    }
+
+    //stmt4: type  ID  TK_ASIG  exp  TK_PYC
+    @Override
+    public void exitStmt4TypeIDAsig(PsicoderParser.Stmt4TypeIDAsigContext ctx) {
+        defineVar(ctx.type(), ctx.ID().getSymbol());
+    }
+
+    //stmt4: type  ID  TK_PYC
+    @Override
+    public void exitStmt4TypeID(PsicoderParser.Stmt4TypeIDContext ctx) {
+        defineVar(ctx.type(), ctx.ID().getSymbol());
+    }
+
     void saveScope(ParserRuleContext ctx, Scope s) {
         scopes.put(ctx, s);
     }
 
-
+    void defineVar(PsicoderParser.TypeContext typeCtx, Token nameToken) {
+        int typeTokenType = typeCtx.start.getType();
+        Symbol.Type type = Interpreter.getType(typeTokenType);
+        VariableSymbol var = new VariableSymbol(nameToken.getText(), type);
+        currentScope.define(var);
+    }
 }

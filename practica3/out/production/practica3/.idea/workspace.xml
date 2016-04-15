@@ -2,10 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c8526faa-6bad-4535-aba8-69c81668948a" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/practica3/PsicoderParser$StatementsEpsilonStmtContext.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/practica3/DefPhase.class" afterPath="$PROJECT_DIR$/out/production/practica3/DefPhase.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/practica3/PsicoderBaseListener.class" afterPath="$PROJECT_DIR$/out/production/practica3/PsicoderBaseListener.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/practica3/PsicoderBaseVisitor.class" afterPath="$PROJECT_DIR$/out/production/practica3/PsicoderBaseVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/practica3/PsicoderListener.class" afterPath="$PROJECT_DIR$/out/production/practica3/PsicoderListener.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/practica3/PsicoderParser$StatementsEpsilonContext.class" afterPath="$PROJECT_DIR$/out/production/practica3/PsicoderParser$StatementsEpsilonContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/practica3/PsicoderParser.class" afterPath="$PROJECT_DIR$/out/production/practica3/PsicoderParser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/practica3/PsicoderVisitor.class" afterPath="$PROJECT_DIR$/out/production/practica3/PsicoderVisitor.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DefPhase.java" afterPath="$PROJECT_DIR$/DefPhase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Interpreter.java" afterPath="$PROJECT_DIR$/Interpreter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Symbol.java" afterPath="$PROJECT_DIR$/Symbol.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Psicoder.g4" afterPath="$PROJECT_DIR$/Psicoder.g4" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsicoderBaseListener.java" afterPath="$PROJECT_DIR$/PsicoderBaseListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsicoderBaseVisitor.java" afterPath="$PROJECT_DIR$/PsicoderBaseVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsicoderListener.java" afterPath="$PROJECT_DIR$/PsicoderListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsicoderParser.java" afterPath="$PROJECT_DIR$/PsicoderParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PsicoderVisitor.java" afterPath="$PROJECT_DIR$/PsicoderVisitor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/input" afterPath="$PROJECT_DIR$/input" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/practica3/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/practica3/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/practica3/Psicoder.g4" afterPath="$PROJECT_DIR$/out/production/practica3/Psicoder.g4" />
     </list>
     <ignored path="practica3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,8 +45,8 @@
       <file leaf-file-name="Psicoder.g4" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Psicoder.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3330">
-              <caret line="10" column="7" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="7" />
+            <state relative-caret-position="2703">
+              <caret line="159" column="40" selection-start-line="159" selection-start-column="29" selection-end-line="159" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -41,8 +55,8 @@
       <file leaf-file-name="DefPhase.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DefPhase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="48" column="32" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+            <state relative-caret-position="249">
+              <caret line="81" column="5" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -53,8 +67,8 @@
       <file leaf-file-name="input" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/input">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+            <state relative-caret-position="51">
+              <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -63,8 +77,8 @@
       <file leaf-file-name="PsicoderBaseListener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PsicoderBaseListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="77" column="97" selection-start-line="77" selection-start-column="4" selection-end-line="77" selection-end-column="97" />
+            <state relative-caret-position="185">
+              <caret line="1323" column="45" selection-start-line="1323" selection-start-column="45" selection-end-line="1323" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -73,20 +87,8 @@
       <file leaf-file-name="Interpreter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Interpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FunctionSymbol.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FunctionSymbol.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
+            <state relative-caret-position="85">
+              <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -107,11 +109,9 @@
       <file leaf-file-name="Symbol.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Symbol.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-              <folding>
-                <element signature="e#226#227#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="119">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -138,7 +138,6 @@
       <list>
         <option value="$PROJECT_DIR$/Visitor.java" />
         <option value="$PROJECT_DIR$/PsicoderBaseVisitor.java" />
-        <option value="$PROJECT_DIR$/Psicoder.g4" />
         <option value="$PROJECT_DIR$/Scope.java" />
         <option value="$PROJECT_DIR$/BaseScope.java" />
         <option value="$PROJECT_DIR$/FunctionSymbol.java" />
@@ -146,8 +145,9 @@
         <option value="$PROJECT_DIR$/GlobalScope.java" />
         <option value="$PROJECT_DIR$/VariableSymbol.java" />
         <option value="$PROJECT_DIR$/CheckSymbols.java" />
-        <option value="$PROJECT_DIR$/Interpreter.java" />
         <option value="$PROJECT_DIR$/Symbol.java" />
+        <option value="$PROJECT_DIR$/Interpreter.java" />
+        <option value="$PROJECT_DIR$/Psicoder.g4" />
         <option value="$PROJECT_DIR$/DefPhase.java" />
         <option value="$PROJECT_DIR$/input" />
       </list>
@@ -189,8 +189,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -211,7 +212,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -719,12 +719,15 @@
       <workItem from="1460409506227" duration="233000" />
       <workItem from="1460414621877" duration="11414000" />
       <workItem from="1460476026479" duration="33000" />
-      <workItem from="1460651301569" duration="4672000" />
+      <workItem from="1460651301569" duration="5002000" />
+      <workItem from="1460670261894" duration="745000" />
+      <workItem from="1460687723322" duration="2413000" />
+      <workItem from="1460741331954" duration="620000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46733000" />
+    <option name="totallyTimeSpent" value="50841000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -975,13 +978,6 @@
     </entry>
     <entry file="jar://C:/antlr/antlr-4.5.3-complete.jar!/org/antlr/v4/runtime/atn/LexerATNSimulator.class" />
     <entry file="file://$PROJECT_DIR$/gen/PsicoderLexer.java" />
-    <entry file="file://$PROJECT_DIR$/PsicoderVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PsicoderParser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -996,18 +992,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/input1">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Visitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1015,6 +1003,35 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LocalScope.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GlobalScope.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="46" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BaseScope.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CheckSymbols.java" />
+    <entry file="file://$PROJECT_DIR$/input1">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="57" column="18" selection-start-line="56" selection-start-column="4" selection-end-line="57" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -1026,57 +1043,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LocalScope.java">
+    <entry file="file://$PROJECT_DIR$/FunctionSymbol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GlobalScope.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="46" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
-          <folding>
-            <element signature="e#128#129#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BaseScope.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
+        <state relative-caret-position="56">
+          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#335#336#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CheckSymbols.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Symbol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-          <folding>
-            <element signature="e#226#227#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Psicoder.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3330">
-          <caret line="10" column="7" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="7" />
+        <state relative-caret-position="119">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1089,38 +1069,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Interpreter.java">
+    <entry file="file://$PROJECT_DIR$/Psicoder.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="16" column="36" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PsicoderBaseListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="77" column="97" selection-start-line="77" selection-start-column="4" selection-end-line="77" selection-end-column="97" />
+        <state relative-caret-position="2703">
+          <caret line="159" column="40" selection-start-line="159" selection-start-column="29" selection-end-line="159" selection-end-column="40" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FunctionSymbol.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DefPhase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="48" column="32" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+        <state relative-caret-position="249">
+          <caret line="81" column="5" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsicoderVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PsicoderBaseListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="1323" column="45" selection-start-line="1323" selection-start-column="45" selection-end-line="1323" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Interpreter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1129,8 +1115,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/input">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+        <state relative-caret-position="51">
+          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
           <folding />
         </state>
       </provider>

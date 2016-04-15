@@ -255,13 +255,13 @@ public class PsicoderBaseListener implements PsicoderListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStatementsEpsilonStmt(PsicoderParser.StatementsEpsilonStmtContext ctx) { }
+	@Override public void enterStatementsStmt(PsicoderParser.StatementsStmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStatementsEpsilonStmt(PsicoderParser.StatementsEpsilonStmtContext ctx) { }
+	@Override public void exitStatementsStmt(PsicoderParser.StatementsStmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

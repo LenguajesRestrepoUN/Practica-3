@@ -156,7 +156,7 @@ public class PsicoderBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStatementsEpsilonStmt(PsicoderParser.StatementsEpsilonStmtContext ctx) { return visitChildren(ctx); }
+	@Override public T visitStatementsStmt(PsicoderParser.StatementsStmtContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

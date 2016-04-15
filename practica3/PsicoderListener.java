@@ -247,17 +247,17 @@ public interface PsicoderListener extends ParseTreeListener {
 	 */
 	void exitArgsExp(PsicoderParser.ArgsExpContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code statementsEpsilonStmt}
+	 * Enter a parse tree produced by the {@code statementsStmt}
 	 * labeled alternative in {@link PsicoderParser#statements}.
 	 * @param ctx the parse tree
 	 */
-	void enterStatementsEpsilonStmt(PsicoderParser.StatementsEpsilonStmtContext ctx);
+	void enterStatementsStmt(PsicoderParser.StatementsStmtContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code statementsEpsilonStmt}
+	 * Exit a parse tree produced by the {@code statementsStmt}
 	 * labeled alternative in {@link PsicoderParser#statements}.
 	 * @param ctx the parse tree
 	 */
-	void exitStatementsEpsilonStmt(PsicoderParser.StatementsEpsilonStmtContext ctx);
+	void exitStatementsStmt(PsicoderParser.StatementsStmtContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code statementsEpsilon}
 	 * labeled alternative in {@link PsicoderParser#statements}.
