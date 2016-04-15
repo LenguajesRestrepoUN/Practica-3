@@ -150,12 +150,12 @@ public interface PsicoderVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitArgsExp(PsicoderParser.ArgsExpContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code statementsEpsilonStmt}
+	 * Visit a parse tree produced by the {@code statementsStmt}
 	 * labeled alternative in {@link PsicoderParser#statements}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitStatementsEpsilonStmt(PsicoderParser.StatementsEpsilonStmtContext ctx);
+	T visitStatementsStmt(PsicoderParser.StatementsStmtContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code statementsEpsilon}
 	 * labeled alternative in {@link PsicoderParser#statements}.

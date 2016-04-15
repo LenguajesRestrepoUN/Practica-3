@@ -1,11 +1,13 @@
 funcion entero sum() hacer
     entero a = 1;
     entero b = 2;
+    cadena d= "\n";
     retornar a + b;
 fin_funcion
 
 estructura C
     entero a;
+    cadena d= "\n";
 fin_estructura
 
 funcion_principal

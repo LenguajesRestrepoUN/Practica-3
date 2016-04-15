@@ -38,7 +38,7 @@ args : exp TK_COMA args       #argsExpArgs
     | exp       #argsExp
     ;
 
-statements : stmt  statements   #statementsEpsilonStmt
+statements : stmt  statements   #statementsStmt
     |   #statementsEpsilon
     ;
 

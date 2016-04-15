@@ -981,28 +981,6 @@ public class PsicoderParser extends Parser {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class StatementsEpsilonStmtContext extends StatementsContext {
-		public StmtContext stmt() {
-			return getRuleContext(StmtContext.class,0);
-		}
-		public StatementsContext statements() {
-			return getRuleContext(StatementsContext.class,0);
-		}
-		public StatementsEpsilonStmtContext(StatementsContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).enterStatementsEpsilonStmt(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStatementsEpsilonStmt(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStatementsEpsilonStmt(this);
-			else return visitor.visitChildren(this);
-		}
-	}
 	public static class StatementsEpsilonContext extends StatementsContext {
 		public StatementsEpsilonContext(StatementsContext ctx) { copyFrom(ctx); }
 		@Override
@@ -1016,6 +994,28 @@ public class PsicoderParser extends Parser {
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStatementsEpsilon(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class StatementsStmtContext extends StatementsContext {
+		public StmtContext stmt() {
+			return getRuleContext(StmtContext.class,0);
+		}
+		public StatementsContext statements() {
+			return getRuleContext(StatementsContext.class,0);
+		}
+		public StatementsStmtContext(StatementsContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).enterStatementsStmt(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof PsicoderListener ) ((PsicoderListener)listener).exitStatementsStmt(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PsicoderVisitor ) return ((PsicoderVisitor<? extends T>)visitor).visitStatementsStmt(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1039,7 +1039,7 @@ public class PsicoderParser extends Parser {
 			case REAL:
 			case ENTERO:
 			case ID:
-				_localctx = new StatementsEpsilonStmtContext(_localctx);
+				_localctx = new StatementsStmtContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(106);
