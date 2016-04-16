@@ -6,6 +6,7 @@ public class Symbol {
     String name;
     Type type;
     Scope scope;
+    String value = null;
 
     public Symbol(String name) {
         this.name = name;
@@ -18,6 +19,14 @@ public class Symbol {
 
     public String getName() {
         return name;
+    }
+
+    public String getValue(){
+        return value;
+    }
+
+    public void setValue(String v){
+        value = v;
     }
 
     public String toString() {
