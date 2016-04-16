@@ -117,20 +117,23 @@ exp :  TK_CARACTER      #expCaracter
     |  TK_PAR_IZQ  exp  TK_PAR_DER      #expParExp
     |  ID  TK_PAR_IZQ  optargs  TK_PAR_DER      #expFuncion
 
-    |  exp  TK_O  exp       #expOr
-    |  exp  TK_Y  exp       #expAnd
-    |  exp  TK_IGUAL  exp       #expIgual
+    |  exp  TK_MULT  exp        #expMult
+    |  exp  TK_DIV  exp     #expDiv
+    |  exp  TK_MOD  exp     #expModulo
+    |  exp  TK_MAS  exp     #expMas
+    |  exp  TK_MENOS  exp       #expMenos
+
     |  exp  TK_MENOR  exp       #expMenor
     |  exp  TK_MAYOR  exp       #expMayor
     |  exp  TK_MENOR_IGUAL  exp     #expMenorIgual
     |  exp  TK_MAYOR_IGUAL  exp     #expMayorIgual
+
+    |  exp  TK_IGUAL  exp       #expIgual
     |  exp  TK_DIF  exp     #expDif
 
-    |  exp  TK_MAS  exp     #expMas
-    |  exp  TK_MENOS  exp       #expMenos
-    |  exp  TK_MULT  exp        #expMult
-    |  exp  TK_DIV  exp     #expDiv
-    |  exp  TK_MOD  exp     #expModulo
+    |  exp  TK_Y  exp       #expAnd
+    |  exp  TK_O  exp       #expOr
+
     ;
 
 stmt2 : ROMPER  TK_PYC  #stmt2Romper
@@ -243,7 +246,7 @@ FIN_PRINCIPAL : 'fin_principal'
 BOOLEANO : 'booleano'
     ;
 
-TK_CARACTER: '\''(('A'..'Z')|('a'..'z')|('0'..'1'))'\''
+TK_CARACTER: '\''(('A'..'Z')|('a'..'z')|('0'..'9'))'\''
     ;
 
 VERDADERO: 'verdadero'

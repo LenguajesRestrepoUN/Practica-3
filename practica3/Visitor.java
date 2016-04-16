@@ -26,15 +26,15 @@ public class Visitor extends PsicoderBaseVisitor<String> {
         String name = ctx.ID().getText();
         global.put(name, new ArrayList<>());
         global.get(name).add(ctx.type().getText());
-        System.out.println(global.get(name));
-        System.out.println(ctx.optparams().getChildCount());
+        //System.out.println(global.get(name));
+        //System.out.println(ctx.optparams().getChildCount());
         return visitChildren(ctx);
     }
 
     //element: ESTRUCTURA ID statements4 FIN_ESTRUCTURA     #elementEstructura
     @Override
     public String visitElementEstructura(PsicoderParser.ElementEstructuraContext ctx) { return visitChildren(ctx); }
-    
+
     //type : ENTERO   #typeEntero
     @Override
     public String visitTypeEntero(PsicoderParser.TypeEnteroContext ctx) { return visitChildren(ctx); }
@@ -129,14 +129,18 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     @Override
     public String visitStmtIDAsig(PsicoderParser.StmtIDAsigContext ctx) {
 
-        String expr=  visit(ctx.exp());
-        System.out.println(expr);
+        //System.out.println(visit(ctx.exp()));
         return visitChildren(ctx);
     }
 
     // stmt: type  ID  TK_ASIG  exp  TK_PYC        #stmtTypeAsifExp
     @Override
-    public String visitStmtTypeAsifExp(PsicoderParser.StmtTypeAsifExpContext ctx) { return visitChildren(ctx); }
+    public String visitStmtTypeAsifExp(PsicoderParser.StmtTypeAsifExpContext ctx) {
+        //System.out.println("stmt id == ex");
+        //System.out.println(visit(ctx.exp()));
+        return visitChildren(ctx);
+        //return visitChildren(ctx);
+    }
 
     // stmt: ID  TK_PUNTO  chain  TK_ASIG  exp  TK_PYC     #stmtIDChain
     @Override
@@ -165,9 +169,10 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     //IMPRIMIR  TK_PAR_IZQ  imp_params  TK_PAR_DER  TK_PYC  #stmtImprimir
     @Override
     public String visitStmtImprimir(PsicoderParser.StmtImprimirContext ctx) {
-        return visit(ctx.imp_params());
+        System.out.println(visit(ctx.imp_params()));
+        return null;
     }
-      
+
     // stmt:  PARA  TK_PAR_IZQ  stmt  exp  TK_PYC  exp TK_PAR_DER  HACER  statements3  FIN_PARA     #stmtPara
     @Override
     public String visitStmtPara(PsicoderParser.StmtParaContext ctx) { return visitChildren(ctx); }
@@ -211,18 +216,24 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     //imp_params : exp  TK_COMA  imp_params #imp_paramsChain
     @Override
     public String visitImp_paramsChain(PsicoderParser.Imp_paramsChainContext ctx) {
-        System.out.print(visit(ctx.exp()));
-        visit(ctx.imp_params());
-        return null;
+        if (visit(ctx.exp()).equals("\\n"))
+            System.out.println();
+        else
+            System.out.print(visit(ctx.exp()));
+
+        return visit(ctx.imp_params());
     }
 
     //imp_params : exp   #imp_paramsExp
     @Override
     public String visitImp_paramsExp(PsicoderParser.Imp_paramsExpContext ctx) {
-        System.out.print(visit(ctx.exp()));
-        return null;
-    }      
-      
+        if (visit(ctx.exp()).equals("\\n"))
+            System.out.println();
+        else
+            System.out.print(visit(ctx.exp()));
+        return "";
+    }
+
     // optexp : ID  TK_COMA  optexp    #optexpIDComa
     @Override
     public String visitOptexpIDComa(PsicoderParser.OptexpIDComaContext ctx) { return visitChildren(ctx); }
@@ -249,15 +260,76 @@ public class Visitor extends PsicoderBaseVisitor<String> {
 
     // exp :  TK_NEG  TK_PAR_IZQ  exp  TK_PAR_DER      #expNegParExp
     @Override
-    public String visitExpNegParExp(PsicoderParser.ExpNegParExpContext ctx) { return visitChildren(ctx); }
+    public String visitExpNegParExp(PsicoderParser.ExpNegParExpContext ctx) {
+
+        if (visit(ctx.exp()).equals("verdadero"))
+            return "falso";
+        else if (visit(ctx.exp()).equals("falso"))
+            return "verdadero";
+        return null;
+    }
 
     //exp : exp  TK_MULT  exp        #expMult
     @Override
-    public String visitExpMult(PsicoderParser.ExpMultContext ctx) { return visitChildren(ctx); }
+    public String visitExpMult(PsicoderParser.ExpMultContext ctx) {
+        boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean b=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        Double aux,aux1;
+        String ch = visit(ctx.exp(0));
+        String ch1 = visit(ctx.exp(1));
+
+        if (a)
+            aux= (double) ch.codePointAt(0)+1;
+        else aux =Double.parseDouble(visit(ctx.exp(0)));
+
+        if (b)
+            aux1= (double) ch1.codePointAt(0)+1;
+        else aux1 =Double.parseDouble(visit(ctx.exp(1)));
+
+        return String.valueOf(aux * aux1);
+    }
+
 
     //exp : exp  TK_MOD  exp     #expModulo
     @Override
-    public String visitExpModulo(PsicoderParser.ExpModuloContext ctx) { return visitChildren(ctx); }
+    public String visitExpModulo(PsicoderParser.ExpModuloContext ctx) {
+        boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean b=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        Double aux,aux1;
+        String ch = visit(ctx.exp(0));
+        String ch1 = visit(ctx.exp(1));
+
+        if (a)
+            aux= (double) ch.codePointAt(0)+1;
+        else aux =Double.parseDouble(visit(ctx.exp(0)));
+
+        if (b)
+            aux1= (double) ch1.codePointAt(0)+1;
+        else aux1 =Double.parseDouble(visit(ctx.exp(1)));
+
+        return String.valueOf(aux % aux1);
+    }
+
+    //exp: exp  TK_MENOS  exp       #expMenos
+    @Override
+    public String visitExpMenos(PsicoderParser.ExpMenosContext ctx) {
+        boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean b=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        Double aux,aux1;
+        String ch = visit(ctx.exp(0));
+        String ch1 = visit(ctx.exp(1));
+
+        if (a)
+            aux= (double) ch.codePointAt(0)+1;
+        else aux =Double.parseDouble(visit(ctx.exp(0)));
+
+        if (b)
+            aux1= (double) ch1.codePointAt(0)+1;
+        else aux1 =Double.parseDouble(visit(ctx.exp(1)));
+
+        return String.valueOf(aux - aux1);
+    }
+
 
     // exp: ID  TK_PUNTO  chain      #expIDChain
     @Override
@@ -265,23 +337,90 @@ public class Visitor extends PsicoderBaseVisitor<String> {
 
     //exp:  exp  TK_DIF  exp     #expDif
     @Override
-    public String visitExpDif(PsicoderParser.ExpDifContext ctx) { return visitChildren(ctx); }
+    public String visitExpDif(PsicoderParser.ExpDifContext ctx) {
+        boolean a = (ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean b = (ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCadenaContext");
+        boolean c = (ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean d = (ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCadenaContext");
+        boolean i = (visit(ctx.exp(0))).equals("verdadero");
+        boolean j = (visit(ctx.exp(0))).equals("falso");
+        boolean k = visit(ctx.exp(1)).equals("verdadero");
+        boolean l = (visit(ctx.exp(1))).equals("falso");
+        //System.out.println(ctx.exp(0).getText()+ctx.exp(1).getText());
+        if ((a || b) && (c || d)) {
+            if (visit(ctx.exp(0)).equals(visit(ctx.exp(1))))
+                return "falso";
+            return "verdadero";
+        } else if ((i || j) && (k || l)) {
+            String aux2 = visit(ctx.exp(0));
+            String aux3 = visit(ctx.exp(1));
+            //System.out.println(aux2+aux3);
+            if (aux2.equals(aux3))
+                return "falso";
+            return "verdadero";
+        } else {
+            Double aux0 = Double.parseDouble(visit(ctx.exp(0)));
+            Double aux1 = Double.parseDouble(visit(ctx.exp(1)));
+            //System.out.println(aux0);
+            if (aux0.equals(aux1)) {
+                //System.out.println("igual");
+                return "falso";
+            }
+            return "verdadero";
+        }
+    }
+
+    //exp : TK_MENOS  TK_PAR_IZQ  exp  TK_PAR_DER        #expMenosParExp
+    @Override public String visitExpMenosParExp(PsicoderParser.ExpMenosParExpContext ctx) {
+        boolean a=(ctx.exp().getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        Double aux;
+        String ch = visit(ctx.exp());
+
+        if (a)
+            aux= (double) ch.codePointAt(0)+1;
+        else aux =(-1)*Double.parseDouble(visit(ctx.exp()));
+
+        return String.valueOf(aux);
+    }
 
     //exp: ID  TK_PAR_IZQ  optargs  TK_PAR_DER      #expFuncion
     @Override
     public String visitExpFuncion(PsicoderParser.ExpFuncionContext ctx) { return visitChildren(ctx); }
 
-    //exp: exp  TK_MENOS  exp       #expMenos
-    @Override
-    public String visitExpMenos(PsicoderParser.ExpMenosContext ctx) { return visitChildren(ctx); }
 
     //exp:  exp  TK_MENOR  exp       #expMenor
     @Override
-    public String visitExpMenor(PsicoderParser.ExpMenorContext ctx) { return visitChildren(ctx); }
+    public String visitExpMenor(PsicoderParser.ExpMenorContext ctx) {
+        boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean b=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        Double aux,aux1;
+        String ch = visit(ctx.exp(0));
+        String ch1 = visit(ctx.exp(1));
+
+        if (a)
+            aux= (double) ch.codePointAt(0)+1;
+        else aux =Double.parseDouble(visit(ctx.exp(0)));
+
+        if (b)
+            aux1= (double) ch1.codePointAt(0)+1;
+        else aux1 =Double.parseDouble(visit(ctx.exp(1)));
+
+        if (aux<aux1)
+            return "verdadero";
+        else
+            return "falso";
+    }
 
     //exp: exp  TK_Y  exp       #expAnd
     @Override
-    public String visitExpAnd(PsicoderParser.ExpAndContext ctx) { return visitChildren(ctx); }
+    public String visitExpAnd(PsicoderParser.ExpAndContext ctx) {
+        String aux = visit(ctx.exp(0));
+        String aux1 = visit(ctx.exp(1));
+        if (aux.equals("verdadero")&& aux1.equals("verdaero"))
+            return "verdadero";
+        return
+                "falso";
+    }
 
     //exp: TK_MENOS  ID     #expMenosID
     @Override
@@ -293,18 +432,53 @@ public class Visitor extends PsicoderBaseVisitor<String> {
 
     //exp: exp  TK_DIV  exp     #expDiv
     @Override
-    public String visitExpDiv(PsicoderParser.ExpDivContext ctx) { return visitChildren(ctx); }
+    public String visitExpDiv(PsicoderParser.ExpDivContext ctx) {
+        boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean b=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        Double aux,aux1;
+        String ch = visit(ctx.exp(0));
+        String ch1 = visit(ctx.exp(1));
+
+        if (a)
+            aux= (double) ch.codePointAt(0)+1;
+        else aux =Double.parseDouble(visit(ctx.exp(0)));
+
+        if (b)
+            aux1= (double) ch1.codePointAt(0)+1;
+        else aux1 =Double.parseDouble(visit(ctx.exp(1)));
+
+        return String.valueOf(aux / aux1);
+    }
 
     // exp: TK_ENTERO
     @Override
     public String visitExpEntero(PsicoderParser.ExpEnteroContext ctx) {
-        System.out.println(ctx.getText());
-        return ctx.getText();
+        //System.out.println("entero");
+        return ctx.TK_ENTERO().getText();
     }
 
     //exp: exp  TK_MAYOR_IGUAL  exp     #expMayorIgual
     @Override
-    public String visitExpMayorIgual(PsicoderParser.ExpMayorIgualContext ctx) { return visitChildren(ctx); }
+    public String visitExpMayorIgual(PsicoderParser.ExpMayorIgualContext ctx) {
+        boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean b=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        Double aux,aux1;
+        String ch = visit(ctx.exp(0));
+        String ch1 = visit(ctx.exp(1));
+
+        if (a)
+            aux= (double) ch.codePointAt(0)+1;
+        else aux =Double.parseDouble(visit(ctx.exp(0)));
+
+        if (b)
+            aux1= (double) ch1.codePointAt(0)+1;
+        else aux1 =Double.parseDouble(visit(ctx.exp(1)));
+
+        if (aux>=aux1)
+            return "verdadero";
+        else
+            return "falso";
+    }
 
     // exp: TK_NEG  ID  TK_PUNTO  chain      #expNegChain
     @Override
@@ -312,77 +486,208 @@ public class Visitor extends PsicoderBaseVisitor<String> {
 
     // exp: exp  TK_O  exp       #expOr
     @Override
-    public String visitExpOr(PsicoderParser.ExpOrContext ctx) { return visitChildren(ctx); }
+    public String visitExpOr(PsicoderParser.ExpOrContext ctx) {
+
+            String aux = visit(ctx.exp(0));
+            String aux1 = visit(ctx.exp(1));
+            if (aux.equals("verdadero")|| aux1.equals("verdaero"))
+                return "verdadero";
+            return
+                    "falso";
+
+    }
 
     // exp:  exp  TK_MAYOR  exp       #expMayor
     @Override
-    public String visitExpMayor(PsicoderParser.ExpMayorContext ctx) { return visitChildren(ctx); }
+    public String visitExpMayor(PsicoderParser.ExpMayorContext ctx) {
+        boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean b=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        Double aux,aux1;
+        String ch = visit(ctx.exp(0));
+        String ch1 = visit(ctx.exp(1));
+
+        if (a)
+            aux= (double) ch.codePointAt(0)+1;
+        else aux =Double.parseDouble(visit(ctx.exp(0)));
+
+        if (b)
+            aux1= (double) ch1.codePointAt(0)+1;
+        else aux1 =Double.parseDouble(visit(ctx.exp(1)));
+
+        if (aux>aux1)
+            return "verdadero";
+        else
+            return "falso";
+    }
 
     // exp: exp  TK_MENOR_IGUAL  exp     #expMenorIgual
     @Override
-    public String visitExpMenorIgual(PsicoderParser.ExpMenorIgualContext ctx) { return visitChildren(ctx); }
+    public String visitExpMenorIgual(PsicoderParser.ExpMenorIgualContext ctx) {
+        boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean b=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        Double aux,aux1;
+        String ch = visit(ctx.exp(0));
+        String ch1 = visit(ctx.exp(1));
+
+        if (a)
+            aux= (double) ch.codePointAt(0)+1;
+        else aux =Double.parseDouble(visit(ctx.exp(0)));
+
+        if (b)
+            aux1= (double) ch1.codePointAt(0)+1;
+        else aux1 =Double.parseDouble(visit(ctx.exp(1)));
+
+        if (aux<=aux1)
+            return "verdadero";
+        else
+            return "falso";
+    }
 
     //exp -> exp  TK_MAS  exp
     @Override
     public String visitExpMas(PsicoderParser.ExpMasContext ctx) {
-        int left = Integer.parseInt(visit(ctx.exp(0)));
-        int right = Integer.parseInt(visit(ctx.exp(1)));
-        return Integer.toString(left + right);
-        //return visitChildren(ctx);
+        boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean b=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        Double aux,aux1;
+        String ch = visit(ctx.exp(0));
+        String ch1 = visit(ctx.exp(1));
+
+        if (a)
+            aux= (double) ch.codePointAt(0)+1;
+        else aux =Double.parseDouble(visit(ctx.exp(0)));
+
+        if (b)
+            aux1= (double) ch1.codePointAt(0)+1;
+        else aux1 =Double.parseDouble(visit(ctx.exp(1)));
+
+        return String.valueOf(aux +aux1);
     }
-      
+
     //  exp: TK_NEG  VERDADERO        #expNegVerdadero
-    @Override public String visitExpNegVerdadero(PsicoderParser.ExpNegVerdaderoContext ctx) { return visitChildren(ctx); }
-    
+    @Override
+    public String visitExpNegVerdadero(PsicoderParser.ExpNegVerdaderoContext ctx) {
+        //System.out.println("hora");
+        return "falso";
+    }
+
+    //exp: TK_NEG  exp      #expNegExp
+    @Override
+    public String visitExpNegExp(PsicoderParser.ExpNegExpContext ctx) {
+        if (visit(ctx.exp()).equals("verdadero"))
+            return "falso";
+        return "verdadero";
+    }
+
     // exp: TK_CADENA
     @Override
     public String visitExpCadena(PsicoderParser.ExpCadenaContext ctx) {
-        System.out.println(ctx.getText());
-        return ctx.getText();
+        //System.out.println(ctx.getText());
+        String aux =ctx.TK_CADENA().getText();
+        aux=aux.substring(1,aux.length()-1);
+        //System.out.println(aux);
+        return aux;
     }
 
     //exp : TK_NEG  FALSO        #expNegFalso
     @Override
-    public String visitExpNegFalso(PsicoderParser.ExpNegFalsoContext ctx) { return visitChildren(ctx); }
+    public String visitExpNegFalso(PsicoderParser.ExpNegFalsoContext ctx) {
+        return "verdadero";
+    }
 
     //exp : TK_PAR_IZQ  exp  TK_PAR_DER      #expParExp
     @Override
-    public String visitExpParExp(PsicoderParser.ExpParExpContext ctx) { return visitChildren(ctx); }
+    public String visitExpParExp(PsicoderParser.ExpParExpContext ctx) {
+        return visit(ctx.exp());
+    }
 
     //exp : VERDADERO        #expVerdadero
     @Override
-    public String visitExpVerdadero(PsicoderParser.ExpVerdaderoContext ctx) { return visitChildren(ctx); }
+    public String visitExpVerdadero(PsicoderParser.ExpVerdaderoContext ctx) {
+
+        return ctx.VERDADERO().getText();
+    }
 
     //exp : TK_MENOS  TK_REAL        #expMenosReal
     @Override
-    public String visitExpMenosReal(PsicoderParser.ExpMenosRealContext ctx) { return visitChildren(ctx); }
+    public String visitExpMenosReal(PsicoderParser.ExpMenosRealContext ctx) {
+
+        return visit(ctx);
+    }
 
     //exp: exp  TK_IGUAL  exp       #expIgual
     @Override
-    public String visitExpIgual(PsicoderParser.ExpIgualContext ctx) { return visitChildren(ctx); }
+    public String visitExpIgual(PsicoderParser.ExpIgualContext ctx) {
+        //System.out.println(ctx.exp(0).getText()+ctx.exp(1).getText());
+        //System.out.println(visit(ctx.exp(0))+visit(ctx.exp(1)));
+        boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean b=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCadenaContext");
+        boolean c=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean d=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCadenaContext");
+        boolean i=(visit(ctx.exp(0))).equals("verdadero");
+        boolean j=(visit(ctx.exp(0))).equals("falso");
+        boolean k=visit(ctx.exp(1)).equals("verdadero");
+        boolean l=(visit(ctx.exp(1))).equals("falso");
+        //System.out.println(ctx.exp(0).getText()+ctx.exp(1).getText());
+        if((a||b)&&(c||d)){
+            if (visit(ctx.exp(0)).equals(visit(ctx.exp(1))))
+                return "verdadero";
+            return "falso";
+        }
+        else  if((i||j)&&(k||l)){
+            String aux2=visit(ctx.exp(0));
+            String aux3=visit(ctx.exp(1));
+            //System.out.println(aux2+aux3);
+            if (aux2.equals(aux3))
+                return "verdadero";
+            return "falso";
+        }
+        else {
+            Double aux0 = Double.parseDouble(visit(ctx.exp(0)));
+            Double aux1 = Double.parseDouble(visit(ctx.exp(1)));
+            //System.out.println(aux0);
+            if (aux0.equals(aux1)) {
+                //System.out.println("igual");
+                return "verdadero";
+            }
+            return "falso";
+        }
+    }
 
     //exp: TK_MENOS  TK_ENTERO      #expMenosEntero
-    @Override public String visitExpMenosEntero(PsicoderParser.ExpMenosEnteroContext ctx) { return visitChildren(ctx); }
-    
+    @Override
+    public String visitExpMenosEntero(PsicoderParser.ExpMenosEnteroContext ctx) {
+
+        return ctx.getText();
+    }
+
     // exp: TK_REAL
     @Override
     public String visitExpReal(PsicoderParser.ExpRealContext ctx) {
-        System.out.println(ctx.getText());
-        return ctx.getText();
+        //System.out.println(ctx.getText());
+        return ctx.TK_REAL().getText();
     }
 
     // exp : TK_CARACTER      #expCaracter
     @Override
-    public String visitExpCaracter(PsicoderParser.ExpCaracterContext ctx) { return visitChildren(ctx); }
+    public String visitExpCaracter(PsicoderParser.ExpCaracterContext ctx) {
+
+        String aux = ctx.TK_CARACTER().getText();
+        String letra = aux.substring(1,2);
+        //System.out.println(letra+"hol");
+        return letra;
+    }
 
     // exp : FALSO        #expFalso
     @Override
-    public String visitExpFalso(PsicoderParser.ExpFalsoContext ctx) { return visitChildren(ctx); }
+    public String visitExpFalso(PsicoderParser.ExpFalsoContext ctx) {
+        //System.out.println(ctx.getRuleContext().getText());
+        return ctx.FALSO().getText();
+    }
 
-
-   // exp : ID
+    // exp : ID
     @Override
     public String visitExpID(PsicoderParser.ExpIDContext ctx) {
+
         return ctx.getText();
     }
 
@@ -436,7 +741,10 @@ public class Visitor extends PsicoderBaseVisitor<String> {
 
     // stmt2: IMPRIMIR  TK_PAR_IZQ  imp_params  TK_PAR_DER  TK_PYC #stmt2Imprimir
     @Override
-    public String visitStmt2Imprimir(PsicoderParser.Stmt2ImprimirContext ctx) { return visitChildren(ctx); }
+    public String visitStmt2Imprimir(PsicoderParser.Stmt2ImprimirContext ctx) {
+        System.out.println(visit(ctx.imp_params()));
+        return null;
+    }
 
     // stmt2: PARA  TK_PAR_IZQ  stmt  exp  TK_PYC  exp TK_PAR_DER  HACER  statements3  FIN_PARA  #stmt2Para
     @Override
@@ -465,19 +773,19 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     // stmt4: type  ID  TK_COMA  optexp  TK_PYC        #stmt4TypeIDComa
     @Override
     public String visitStmt4TypeIDComa(PsicoderParser.Stmt4TypeIDComaContext ctx) { return visitChildren(ctx); }
-    
+
     // stmt4: ID  TK_ASIG  exp  TK_PYC     #stmt4IDAsig
     @Override
     public String visitStmt4IDAsig(PsicoderParser.Stmt4IDAsigContext ctx) { return visitChildren(ctx); }
-    
+
     // stmt4: type  ID  TK_ASIG  exp  TK_PYC       #stmt4TypeIDAsig
     @Override
     public String visitStmt4TypeIDAsig(PsicoderParser.Stmt4TypeIDAsigContext ctx) { return visitChildren(ctx); }
-    
+
     // stmt4:  ID  TK_PUNTO  chain  TK_ASIG  exp  TK_PYC        #stmt4IDChainAsig
     @Override
     public String visitStmt4IDChainAsig(PsicoderParser.Stmt4IDChainAsigContext ctx) { return visitChildren(ctx); }
-    
+
     // stmt4:  type  ID  TK_PYC     #stmt4TypeID
     @Override
     public String visitStmt4TypeID(PsicoderParser.Stmt4TypeIDContext ctx) { return visitChildren(ctx); }

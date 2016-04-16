@@ -1,4 +1,4 @@
-// Generated from C:/Users/jccaleroe/Documents/Practica-3/practica3\Psicoder.g4 by ANTLR 4.5.1
+// Generated from C:/Users/Orlando S/Desktop/v4/practica3\Psicoder.g4 by ANTLR 4.5.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -520,19 +520,19 @@ public interface PsicoderVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpNegChain(PsicoderParser.ExpNegChainContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code expOr}
-	 * labeled alternative in {@link PsicoderParser#exp}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExpOr(PsicoderParser.ExpOrContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code expMayor}
 	 * labeled alternative in {@link PsicoderParser#exp}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitExpMayor(PsicoderParser.ExpMayorContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expOr}
+	 * labeled alternative in {@link PsicoderParser#exp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpOr(PsicoderParser.ExpOrContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code expMenorIgual}
 	 * labeled alternative in {@link PsicoderParser#exp}.

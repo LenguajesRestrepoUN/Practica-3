@@ -1,4 +1,4 @@
-// Generated from C:/Users/jccaleroe/Documents/Practica-3/practica3\Psicoder.g4 by ANTLR 4.5.1
+// Generated from C:/Users/Orlando S/Desktop/v4/practica3\Psicoder.g4 by ANTLR 4.5.1
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -527,14 +527,14 @@ public class PsicoderBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitExpOr(PsicoderParser.ExpOrContext ctx) { return visitChildren(ctx); }
+	@Override public T visitExpMayor(PsicoderParser.ExpMayorContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitExpMayor(PsicoderParser.ExpMayorContext ctx) { return visitChildren(ctx); }
+	@Override public T visitExpOr(PsicoderParser.ExpOrContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

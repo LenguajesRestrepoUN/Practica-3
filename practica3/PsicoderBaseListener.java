@@ -1,4 +1,4 @@
-// Generated from C:/Users/jccaleroe/Documents/Practica-3/practica3\Psicoder.g4 by ANTLR 4.5.1
+// Generated from C:/Users/Orlando S/Desktop/v4/practica3\Psicoder.g4 by ANTLR 4.5.1
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -891,18 +891,6 @@ public class PsicoderBaseListener implements PsicoderListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpOr(PsicoderParser.ExpOrContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitExpOr(PsicoderParser.ExpOrContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterExpMayor(PsicoderParser.ExpMayorContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -910,6 +898,18 @@ public class PsicoderBaseListener implements PsicoderListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpMayor(PsicoderParser.ExpMayorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpOr(PsicoderParser.ExpOrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpOr(PsicoderParser.ExpOrContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

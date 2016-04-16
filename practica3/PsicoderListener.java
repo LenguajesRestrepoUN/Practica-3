@@ -1,4 +1,4 @@
-// Generated from C:/Users/jccaleroe/Documents/Practica-3/practica3\Psicoder.g4 by ANTLR 4.5.1
+// Generated from C:/Users/Orlando S/Desktop/v4/practica3\Psicoder.g4 by ANTLR 4.5.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -881,18 +881,6 @@ public interface PsicoderListener extends ParseTreeListener {
 	 */
 	void exitExpNegChain(PsicoderParser.ExpNegChainContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code expOr}
-	 * labeled alternative in {@link PsicoderParser#exp}.
-	 * @param ctx the parse tree
-	 */
-	void enterExpOr(PsicoderParser.ExpOrContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code expOr}
-	 * labeled alternative in {@link PsicoderParser#exp}.
-	 * @param ctx the parse tree
-	 */
-	void exitExpOr(PsicoderParser.ExpOrContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code expMayor}
 	 * labeled alternative in {@link PsicoderParser#exp}.
 	 * @param ctx the parse tree
@@ -904,6 +892,18 @@ public interface PsicoderListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpMayor(PsicoderParser.ExpMayorContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expOr}
+	 * labeled alternative in {@link PsicoderParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpOr(PsicoderParser.ExpOrContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expOr}
+	 * labeled alternative in {@link PsicoderParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpOr(PsicoderParser.ExpOrContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code expMenorIgual}
 	 * labeled alternative in {@link PsicoderParser#exp}.

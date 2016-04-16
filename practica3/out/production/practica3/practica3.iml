@@ -7,10 +7,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/Program Files/ANTLR/antlr-4.5.3-complete.jar!/" />
+          <root url="jar://C:/antlr/antlr-4.5.3-complete.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
