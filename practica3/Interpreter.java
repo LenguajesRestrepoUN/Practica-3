@@ -29,12 +29,12 @@ public class Interpreter {
         try {
             PsicoderLexer lexer;
 
-            /*if (args.length > 0)
+            if (args.length > 0)
                 lexer = new PsicoderLexer(new ANTLRFileStream(args[0]));
             else
-                lexer = new PsicoderLexer(new ANTLRInputStream(System.in));*/
-            ANTLRFileStream input = new ANTLRFileStream("input2.txt");
-            lexer = new PsicoderLexer(input);
+                lexer = new PsicoderLexer(new ANTLRInputStream(System.in));
+            //ANTLRFileStream input = new ANTLRFileStream("input2.txt");
+            //lexer = new PsicoderLexer(input);
 
             CommonTokenStream tokens = new CommonTokenStream(lexer);
 
