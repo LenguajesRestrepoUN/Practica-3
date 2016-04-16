@@ -105,13 +105,14 @@ exp :  TK_CARACTER      #expCaracter
     |  TK_MENOS  TK_REAL        #expMenosReal
     |  TK_MENOS  TK_ENTERO      #expMenosEntero
     |  TK_MENOS  ID     #expMenosID
-    |  TK_MENOS  ID  TK_PUNTO  chain        #expIDChain
-    |  TK_MENOS  TK_PAR_IZQ  exp  TK_PAR_DER        #expParExp
+    |  TK_MENOS  ID  TK_PUNTO  chain        #expMenosIDChain
+    |  TK_MENOS  TK_PAR_IZQ  exp  TK_PAR_DER        #expMenosParExp
     |  TK_NEG  ID       #expNegID
     |  TK_NEG  ID  TK_PUNTO  chain      #expNegChain
     |  TK_NEG  VERDADERO        #expNegVerdadero
     |  TK_NEG  FALSO        #expNegFalso
     |  TK_NEG  TK_PAR_IZQ  exp  TK_PAR_DER      #expNegParExp
+    |  TK_NEG  exp      #expNegExp
 
     |  TK_PAR_IZQ  exp  TK_PAR_DER      #expParExp
     |  ID  TK_PAR_IZQ  optargs  TK_PAR_DER      #expFuncion
@@ -355,4 +356,4 @@ ID : (('a'..'z')|('A'..'Z'))+(('A'..'Z')|('a'..'z')|('0'..'9')|('_'))*;
 //TK_CADENA: '"'(('A'..'Z')|('a'..'z')|('0'..'1')|'_'|(' '))*'"';
 
 TK_REAL : ('0'..'9')+'.'('0'..'9')+;
-TK_CADENA: ('"'(([a-zA-Z0-9_  ])* )'"');
+TK_CADENA: '"'([a-zA-Z0-9_  \\])*'"';

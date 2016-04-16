@@ -93,7 +93,7 @@ public class Visitor extends PsicoderBaseVisitor<String> {
 
     //  statements : stmt  statements   #statementsEpsilonStmt
     @Override
-    public String visitStatementsEpsilonStmt(PsicoderParser.StatementsEpsilonStmtContext ctx) { return visitChildren(ctx); }
+    public String visitStatementsStmt(PsicoderParser.StatementsStmtContext ctx) { return visitChildren(ctx); }
 
     //  statements :    #statementsEpsilon
     @Override

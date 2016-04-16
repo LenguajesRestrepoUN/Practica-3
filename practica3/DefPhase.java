@@ -4,9 +4,10 @@ import org.antlr.v4.runtime.tree.ParseTreeProperty;
 
 public class DefPhase extends PsicoderBaseListener{
 
-    ParseTreeProperty<Scope> scopes = new ParseTreeProperty<Scope>();
-    GlobalScope globals;
-    Scope currentScope;
+    static ParseTreeProperty<Scope> scopes = new ParseTreeProperty<Scope>();
+    static GlobalScope globals;
+    public static Scope currentScope;
+    private TypeVisitor visitor = new TypeVisitor();
 
     //ps : element ps
     @Override
@@ -45,7 +46,7 @@ public class DefPhase extends PsicoderBaseListener{
         String name = ctx.ID().getText();
         int typeTokenType = ctx.ESTRUCTURA().getSymbol().getType();
         Symbol.Type type = Interpreter.getType(typeTokenType);
-        FunctionSymbol function = new FunctionSymbol(name, type, currentScope);
+        StructSymbol function = new StructSymbol(name, type, currentScope);
         currentScope.define(function);
         saveScope(ctx, function);
         currentScope = function;
@@ -72,13 +73,23 @@ public class DefPhase extends PsicoderBaseListener{
     //stmt: type  ID  TK_ASIG  exp  TK_PYC
     @Override
     public void exitStmtTypeAsifExp(PsicoderParser.StmtTypeAsifExpContext ctx) {
-        defineVar(ctx.type(), ctx.ID().getSymbol());
+        Symbol.Type type = defineType(ctx.type());
+        Symbol.Type type2 = visitor.visit(ctx.exp());
+        if (type == type2)
+            defineVar(type, ctx.ID().getSymbol());
+        else
+            Interpreter.error(ctx.ID().getSymbol(), ctx.ID().getSymbol().getText()+ " es de tipo " + type + " pero se le asigno " + type2);
     }
 
     //stmt4: type  ID  TK_ASIG  exp  TK_PYC
     @Override
     public void exitStmt4TypeIDAsig(PsicoderParser.Stmt4TypeIDAsigContext ctx) {
-        defineVar(ctx.type(), ctx.ID().getSymbol());
+        Symbol.Type type = defineType(ctx.type());
+        Symbol.Type type2 = visitor.visit(ctx.exp());
+        if (type == type2)
+            defineVar(type, ctx.ID().getSymbol());
+        else
+            Interpreter.error(ctx.ID().getSymbol(), ctx.ID().getSymbol().getText()+" es de tipo " + type + " pero se le asigno " + type2);
     }
 
     //stmt4: type  ID  TK_PYC
@@ -92,9 +103,19 @@ public class DefPhase extends PsicoderBaseListener{
     }
 
     void defineVar(PsicoderParser.TypeContext typeCtx, Token nameToken) {
-        int typeTokenType = typeCtx.start.getType();
-        Symbol.Type type = Interpreter.getType(typeTokenType);
+        Symbol.Type type = defineType(typeCtx);
         VariableSymbol var = new VariableSymbol(nameToken.getText(), type);
         currentScope.define(var);
+    }
+
+    void defineVar(Symbol.Type type, Token nameToken) {
+        VariableSymbol var = new VariableSymbol(nameToken.getText(), type);
+        currentScope.define(var);
+    }
+
+    Symbol.Type defineType(PsicoderParser.TypeContext typeCtx){
+        int typeTokenType = typeCtx.start.getType();
+        Symbol.Type type = Interpreter.getType(typeTokenType);
+        return type;
     }
 }

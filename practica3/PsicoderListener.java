@@ -797,6 +797,18 @@ public interface PsicoderListener extends ParseTreeListener {
 	 */
 	void exitExpMenosID(PsicoderParser.ExpMenosIDContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code expMenosParExp}
+	 * labeled alternative in {@link PsicoderParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpMenosParExp(PsicoderParser.ExpMenosParExpContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expMenosParExp}
+	 * labeled alternative in {@link PsicoderParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpMenosParExp(PsicoderParser.ExpMenosParExpContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code expNegID}
 	 * labeled alternative in {@link PsicoderParser#exp}.
 	 * @param ctx the parse tree
@@ -844,6 +856,18 @@ public interface PsicoderListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpMayorIgual(PsicoderParser.ExpMayorIgualContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expMenosIDChain}
+	 * labeled alternative in {@link PsicoderParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpMenosIDChain(PsicoderParser.ExpMenosIDChainContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expMenosIDChain}
+	 * labeled alternative in {@link PsicoderParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpMenosIDChain(PsicoderParser.ExpMenosIDChainContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code expNegChain}
 	 * labeled alternative in {@link PsicoderParser#exp}.
@@ -1000,6 +1024,18 @@ public interface PsicoderListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpMenosEntero(PsicoderParser.ExpMenosEnteroContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expNegExp}
+	 * labeled alternative in {@link PsicoderParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpNegExp(PsicoderParser.ExpNegExpContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expNegExp}
+	 * labeled alternative in {@link PsicoderParser#exp}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpNegExp(PsicoderParser.ExpNegExpContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code expReal}
 	 * labeled alternative in {@link PsicoderParser#exp}.

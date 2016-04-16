@@ -13,6 +13,7 @@ public class Interpreter {
             case PsicoderParser.REAL : return Symbol.Type.tREAL;
             case PsicoderParser.ENTERO : return Symbol.Type.tENTERO ;
             case PsicoderParser.ESTRUCTURA : return Symbol.Type.tESTRUCTURA ;
+            case PsicoderParser.BOOLEANO : return Symbol.Type.tBOOLEANO;
         }
         return Symbol.Type.tINVALID;
     }
@@ -26,12 +27,12 @@ public class Interpreter {
         try {
             PsicoderLexer lexer;
 
-            /*if (args.length > 0)
+            if (args.length > 0)
                 lexer = new PsicoderLexer(new ANTLRFileStream(args[0]));
             else
-                lexer = new PsicoderLexer(new ANTLRInputStream(System.in));*/
-            ANTLRFileStream input = new ANTLRFileStream("input2.txt");
-            lexer = new PsicoderLexer(input);
+                lexer = new PsicoderLexer(new ANTLRInputStream(System.in));
+            //ANTLRFileStream input = new ANTLRFileStream("input2.txt");
+            //lexer = new PsicoderLexer(input);
 
             CommonTokenStream tokens = new CommonTokenStream(lexer);
 
@@ -39,14 +40,14 @@ public class Interpreter {
 
             ParseTree tree = parser.ps();
 
-            //System.out.println(tree.toStringTree(parser));
+            System.out.println(tree.toStringTree(parser));
 
             ParseTreeWalker walker = new ParseTreeWalker();
             DefPhase def = new DefPhase();
             walker.walk(def, tree);
 
-            Visitor visitor = new Visitor();
-            visitor.visit(tree);
+            //Visitor visitor = new Visitor();
+            //visitor.visit(tree);
             System.out.println();
 
         } catch (Exception e) {

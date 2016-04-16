@@ -807,6 +807,18 @@ public class PsicoderBaseListener implements PsicoderListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterExpMenosParExp(PsicoderParser.ExpMenosParExpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpMenosParExp(PsicoderParser.ExpMenosParExpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterExpNegID(PsicoderParser.ExpNegIDContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -850,6 +862,18 @@ public class PsicoderBaseListener implements PsicoderListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpMayorIgual(PsicoderParser.ExpMayorIgualContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpMenosIDChain(PsicoderParser.ExpMenosIDChainContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpMenosIDChain(PsicoderParser.ExpMenosIDChainContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1006,6 +1030,18 @@ public class PsicoderBaseListener implements PsicoderListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpMenosEntero(PsicoderParser.ExpMenosEnteroContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpNegExp(PsicoderParser.ExpNegExpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpNegExp(PsicoderParser.ExpNegExpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

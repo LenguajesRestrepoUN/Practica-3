@@ -1,7 +1,7 @@
 
 public class Symbol {
 
-    public static enum Type {tINVALID, tENTERO, tREAL, tCADENA, tCARACTER, tESTRUCTURA}
+    public static enum Type {tINVALID, tENTERO, tREAL, tCADENA, tCARACTER, tESTRUCTURA, tBOOLEANO}
 
     String name;
     Type type;

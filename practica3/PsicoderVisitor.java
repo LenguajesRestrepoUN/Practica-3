@@ -471,6 +471,13 @@ public interface PsicoderVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpMenosID(PsicoderParser.ExpMenosIDContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code expMenosParExp}
+	 * labeled alternative in {@link PsicoderParser#exp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpMenosParExp(PsicoderParser.ExpMenosParExpContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code expNegID}
 	 * labeled alternative in {@link PsicoderParser#exp}.
 	 * @param ctx the parse tree
@@ -498,6 +505,13 @@ public interface PsicoderVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitExpMayorIgual(PsicoderParser.ExpMayorIgualContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expMenosIDChain}
+	 * labeled alternative in {@link PsicoderParser#exp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpMenosIDChain(PsicoderParser.ExpMenosIDChainContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code expNegChain}
 	 * labeled alternative in {@link PsicoderParser#exp}.
@@ -589,6 +603,13 @@ public interface PsicoderVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitExpMenosEntero(PsicoderParser.ExpMenosEnteroContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code expNegExp}
+	 * labeled alternative in {@link PsicoderParser#exp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpNegExp(PsicoderParser.ExpNegExpContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code expReal}
 	 * labeled alternative in {@link PsicoderParser#exp}.
