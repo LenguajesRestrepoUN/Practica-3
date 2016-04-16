@@ -1,12 +1,10 @@
 import org.antlr.v4.runtime.Token;
-
 import java.util.HashMap;
 
 public class DefPhase extends PsicoderBaseListener{
 
-    //static ParseTreeProperty<Scope> scopes = new ParseTreeProperty<Scope>();
-    static HashMap<String, Scope> scopes = new HashMap<String, Scope>();
-    static GlobalScope globals;
+    public static HashMap<String, Scope> scopes = new HashMap<String, Scope>();
+    private static GlobalScope globals;
     public static Scope currentScope;
     private FunctionSymbol tmp;
     private TypeVisitor visitor = new TypeVisitor();
@@ -46,6 +44,24 @@ public class DefPhase extends PsicoderBaseListener{
         System.out.println(currentScope);
     }
 
+    //element: ESTRUCTURA ID statements4 FIN_ESTRUCTURA
+    @Override
+    public void enterElementEstructura(PsicoderParser.ElementEstructuraContext ctx) {
+        String name = ctx.ID().getText();
+        int typeTokenType = ctx.ESTRUCTURA().getSymbol().getType();
+        Symbol.Type type = Interpreter.getType(typeTokenType);
+        StructSymbol function = new StructSymbol(name, type, currentScope);
+        currentScope.define(function);
+        saveScope(name, function);
+        currentScope = function;
+    }
+
+    @Override
+    public void exitElementEstructura(PsicoderParser.ElementEstructuraContext ctx) {
+        System.out.println(currentScope);
+        currentScope = currentScope.getEnclosingScope();
+    }
+
     //element : FUNCION type ID TK_PAR_IZQ optparams TK_PAR_DER HACER statements RETORNAR exp TK_PYC FIN_FUNCION
     @Override
     public void enterElementFuncion(PsicoderParser.ElementFuncionContext ctx) {
@@ -62,7 +78,6 @@ public class DefPhase extends PsicoderBaseListener{
     @Override
     public void exitElementFuncion(PsicoderParser.ElementFuncionContext ctx) {
         System.out.println(currentScope);
-        //System.out.println(((FunctionSymbol) currentScope).parameters.size());
         currentScope = currentScope.getEnclosingScope();
     }
 
@@ -74,7 +89,7 @@ public class DefPhase extends PsicoderBaseListener{
             String name = ctx.type().getText();
             Symbol var = currentScope.resolve(name);
             if ( var==null )
-                Interpreter.error(ctx.ID().getSymbol(), ctx.ID().getSymbol().getText()+ " es de tipo " + type + " pero se le asigno " + var.type);
+                Interpreter.error(ctx.ID().getSymbol(), "Tipo de vairable no definido");
             if ( var instanceof StructSymbol ) {
                 name = ctx.ID().getText();
                 StructSymbol struct = new StructSymbol(name, var.type, currentScope);
@@ -84,6 +99,8 @@ public class DefPhase extends PsicoderBaseListener{
                 ((FunctionSymbol) currentScope).parameters.put(functionArgument,name);
                 functionArgument ++;
             }
+            else
+                Interpreter.error(ctx.ID().getSymbol(), "Tipo de vairable no definido");
         }
         else{
             ((FunctionSymbol) currentScope).parameters.put(functionArgument,ctx.ID().getText());
@@ -100,7 +117,7 @@ public class DefPhase extends PsicoderBaseListener{
             String name = ctx.type().getText();
             Symbol var = currentScope.resolve(name);
             if ( var==null )
-                Interpreter.error(ctx.ID().getSymbol(), ctx.ID().getSymbol().getText()+ " es de tipo " + type + " pero se le asigno " + var.type);
+                Interpreter.error(ctx.ID().getSymbol(), "Tipo de vairable no definido");
             if ( var instanceof StructSymbol ) {
                 StructSymbol struct = new StructSymbol(ctx.ID().getText(), var.type, currentScope);
                 currentScope.define(struct);
@@ -109,6 +126,8 @@ public class DefPhase extends PsicoderBaseListener{
                 ((FunctionSymbol) currentScope).parameters.put(functionArgument,name);
                 functionArgument ++;
             }
+            else
+                Interpreter.error(ctx.ID().getSymbol(), "Tipo de vairable no definido");
         }
         else{
             ((FunctionSymbol) currentScope).parameters.put(functionArgument,ctx.ID().getText());
@@ -117,6 +136,7 @@ public class DefPhase extends PsicoderBaseListener{
         }
     }
 
+    //exp: ID  TK_PAR_IZQ  optargs  TK_PAR_DER  TK_PYC
     @Override
     public void enterExpFuncion(PsicoderParser.ExpFuncionContext ctx) {
         String name = ctx.ID().getText();
@@ -125,7 +145,6 @@ public class DefPhase extends PsicoderBaseListener{
             System.out.println("La funcion " + name + " no se ha declarado");
         else{
             tmp = ((FunctionSymbol) scopes.get(name));
-            //System.out.println("llamando" + currentScope);
             functionArgument = 0;
         }
     }
@@ -193,22 +212,10 @@ public class DefPhase extends PsicoderBaseListener{
         functionArgument ++;
     }
 
-    //element: ESTRUCTURA ID statements4 FIN_ESTRUCTURA
+    //stmt: type  ID  TK_ASIG  exp  TK_COMA  optexp  TK_PYC
     @Override
-    public void enterElementEstructura(PsicoderParser.ElementEstructuraContext ctx) {
-        String name = ctx.ID().getText();
-        int typeTokenType = ctx.ESTRUCTURA().getSymbol().getType();
-        Symbol.Type type = Interpreter.getType(typeTokenType);
-        StructSymbol function = new StructSymbol(name, type, currentScope);
-        currentScope.define(function);
-        saveScope(name, function);
-        currentScope = function;
-    }
+    public void enterStmtTypeAsig(PsicoderParser.StmtTypeAsigContext ctx) {
 
-    @Override
-    public void exitElementEstructura(PsicoderParser.ElementEstructuraContext ctx) {
-        System.out.println(currentScope);
-        currentScope = currentScope.getEnclosingScope();
     }
 
     //stmt: type  ID  TK_ASIG  exp  TK_PYC
@@ -230,13 +237,15 @@ public class DefPhase extends PsicoderBaseListener{
             String name = ctx.type().getText();
             Symbol var = currentScope.resolve(name);
             if ( var==null )
-                Interpreter.error(ctx.ID().getSymbol(), ctx.ID().getSymbol().getText()+ " es de tipo " + type + " pero se le asigno " + var.type);
+                Interpreter.error(ctx.ID().getSymbol(), "Tipo de vairable no definido");
             if ( var instanceof StructSymbol ) {
                 StructSymbol struct = new StructSymbol(ctx.ID().getText(), var.type, currentScope);
                 currentScope.define(struct);
                 saveScope(ctx.ID().getText(), struct);
                 struct.arguments = ((StructSymbol) var).arguments;
             }
+            else
+                Interpreter.error(ctx.ID().getSymbol(), "Tipo de vairable no definido");
         }
         else{
             defineVar(ctx.type(), ctx.ID().getSymbol());
@@ -262,37 +271,94 @@ public class DefPhase extends PsicoderBaseListener{
             String name = ctx.type().getText();
             Symbol var = currentScope.resolve(name);
             if ( var==null )
-                Interpreter.error(ctx.ID().getSymbol(), ctx.ID().getSymbol().getText()+ " es de tipo " + type + " pero se le asigno " + var.type);
+                Interpreter.error(ctx.ID().getSymbol(), "Tipo de vairable no definido");
             if ( var instanceof StructSymbol ) {
                 StructSymbol struct = new StructSymbol(ctx.ID().getText(), var.type, currentScope);
                 currentScope.define(struct);
                 saveScope(ctx.ID().getText(), struct);
                 struct.arguments = ((StructSymbol) var).arguments;
             }
+            else
+                Interpreter.error(ctx.ID().getSymbol(), "Tipo de vairable no definido");
         }
         else{
             defineVar(ctx.type(), ctx.ID().getSymbol());
         }
     }
 
-    void saveScope(String id, Scope s) {
+    private void saveScope(String id, Scope s) {
         scopes.put(id, s);
     }
 
-    void defineVar(PsicoderParser.TypeContext typeCtx, Token nameToken) {
+    private void defineVar(PsicoderParser.TypeContext typeCtx, Token nameToken) {
         Symbol.Type type = defineType(typeCtx);
         VariableSymbol var = new VariableSymbol(nameToken.getText(), type);
         currentScope.define(var);
     }
 
-    void defineVar(Symbol.Type type, Token nameToken) {
+    private void defineVar(Symbol.Type type, Token nameToken) {
         VariableSymbol var = new VariableSymbol(nameToken.getText(), type);
         currentScope.define(var);
     }
 
-    Symbol.Type defineType(PsicoderParser.TypeContext typeCtx){
+    private Symbol.Type defineType(PsicoderParser.TypeContext typeCtx){
         int typeTokenType = typeCtx.start.getType();
-        Symbol.Type type = Interpreter.getType(typeTokenType);
-        return type;
+        return Interpreter.getType(typeTokenType);
+    }
+
+
+
+    /// --------------- Statements 2 -------------------------
+
+    //stmt2: ID  TK_PAR_IZQ  optargs  TK_PAR_DER  TK_PYC
+    @Override
+    public void enterStmt2CallFunction(PsicoderParser.Stmt2CallFunctionContext ctx) {
+        String name = ctx.ID().getText();
+        Symbol var = currentScope.resolve(name);
+        if(var == null)
+            System.out.println("La funcion " + name + " no se ha declarado");
+        else{
+            tmp = ((FunctionSymbol) scopes.get(name));
+            functionArgument = 0;
+        }
+    }
+
+    @Override
+    public void exitStmt2CallFunction(PsicoderParser.Stmt2CallFunctionContext ctx) {
+        functionArgument = 0;
+    }
+
+    //stmt2: type  ID  TK_ASIG  exp  TK_PYC
+    @Override
+    public void exitStmt2TypeAsifExp(PsicoderParser.Stmt2TypeAsifExpContext ctx) {
+        Symbol.Type type = defineType(ctx.type());
+        Symbol.Type type2 = visitor.visit(ctx.exp());
+        if (type == type2)
+            defineVar(type, ctx.ID().getSymbol());
+        else
+            Interpreter.error(ctx.ID().getSymbol(), ctx.ID().getSymbol().getText()+ " es de tipo " + type + " pero se le asigno " + type2);
+    }
+
+    //stmt2: type  ID  TK_PYC
+    @Override
+    public void exitStmt2ID(PsicoderParser.Stmt2IDContext ctx) {
+        Symbol.Type type = defineType(ctx.type());
+        if (type == Symbol.Type.tID) {
+            String name = ctx.type().getText();
+            Symbol var = currentScope.resolve(name);
+            if ( var==null )
+                Interpreter.error(ctx.ID().getSymbol(), "Tipo de vairable no definido");
+            if ( var instanceof StructSymbol ) {
+                StructSymbol struct = new StructSymbol(ctx.ID().getText(), var.type, currentScope);
+                currentScope.define(struct);
+                saveScope(ctx.ID().getText(), struct);
+                struct.arguments = ((StructSymbol) var).arguments;
+            }
+            else
+                Interpreter.error(ctx.ID().getSymbol(), "Tipo de vairable no definido");
+        }
+        else{
+            defineVar(ctx.type(), ctx.ID().getSymbol());
+        }
     }
 }
