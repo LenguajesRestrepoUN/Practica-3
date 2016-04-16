@@ -1,6 +1,8 @@
 
 public class TypeVisitor extends PsicoderBaseVisitor<Symbol.Type>{
 
+    Scope current;
+
     // exp : TK_CARACTER      #expCaracter
     @Override
     public Symbol.Type visitExpCaracter(PsicoderParser.ExpCaracterContext ctx) {
@@ -125,7 +127,7 @@ public class TypeVisitor extends PsicoderBaseVisitor<Symbol.Type>{
         return Symbol.Type.tINVALID;
     }
 
-    // exp : ID , chain
+    // exp : ID TK_PUNTO chain
     @Override
     public Symbol.Type visitExpIDChain(PsicoderParser.ExpIDChainContext ctx) {
         String name = ctx.ID().getSymbol().getText();
@@ -133,8 +135,38 @@ public class TypeVisitor extends PsicoderBaseVisitor<Symbol.Type>{
         if ( var==null )
             return Symbol.Type.tINVALID;
         if ( var instanceof StructSymbol ) {
-            return var.type;
+            current = DefPhase.scopes.get(name);
+            return visit(ctx.chain());
         }
+        return Symbol.Type.tINVALID;
+    }
+
+    //chain : ID  TK_PUNTO  chain
+    @Override
+    public Symbol.Type visitChainIDPunto(PsicoderParser.ChainIDPuntoContext ctx) {
+        String name = ctx.ID().getSymbol().getText();
+        Symbol var = current.resolve(name);
+        if ( var==null )
+            return Symbol.Type.tINVALID;
+        if ( var instanceof StructSymbol ) {
+            current = DefPhase.scopes.get(name);
+            return visit(ctx.chain());
+        }
+        if( var.type == Symbol.Type.tESTRUCTURA ) {
+
+        }
+        return Symbol.Type.tINVALID;
+    }
+
+    //chain : ID
+    @Override
+    public Symbol.Type visitChainID(PsicoderParser.ChainIDContext ctx) {
+        String name = ctx.ID().getSymbol().getText();
+        Symbol var = current.resolve(name);
+        if ( var==null )
+            return Symbol.Type.tINVALID;
+        if ( var instanceof VariableSymbol )
+            return var.type;
         return Symbol.Type.tINVALID;
     }
 

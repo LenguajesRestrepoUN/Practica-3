@@ -14,6 +14,7 @@ public class Interpreter {
             case PsicoderParser.ENTERO : return Symbol.Type.tENTERO ;
             case PsicoderParser.ESTRUCTURA : return Symbol.Type.tESTRUCTURA ;
             case PsicoderParser.BOOLEANO : return Symbol.Type.tBOOLEANO;
+            case PsicoderParser.ID  :   return Symbol.Type.tID;
         }
         return Symbol.Type.tINVALID;
     }
@@ -40,7 +41,7 @@ public class Interpreter {
 
             ParseTree tree = parser.ps();
 
-            System.out.println(tree.toStringTree(parser));
+            //System.out.println(tree.toStringTree(parser));
 
             ParseTreeWalker walker = new ParseTreeWalker();
             DefPhase def = new DefPhase();

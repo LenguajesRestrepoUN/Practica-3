@@ -2,9 +2,12 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTreeProperty;
 
+import java.util.HashMap;
+
 public class DefPhase extends PsicoderBaseListener{
 
-    static ParseTreeProperty<Scope> scopes = new ParseTreeProperty<Scope>();
+    //static ParseTreeProperty<Scope> scopes = new ParseTreeProperty<Scope>();
+    static HashMap<String, Scope> scopes = new HashMap<String, Scope>();
     static GlobalScope globals;
     public static Scope currentScope;
     private TypeVisitor visitor = new TypeVisitor();
@@ -20,7 +23,29 @@ public class DefPhase extends PsicoderBaseListener{
 
     //ps: b
     @Override
-    public void enterPsB(PsicoderParser.PsBContext ctx) {}
+    public void enterPsB(PsicoderParser.PsBContext ctx) {
+        if(globals == null){
+            globals = new GlobalScope(null);
+        }
+        currentScope = globals;
+    }
+
+    //b :FUNCION_PRINCIPAL statements FIN_PRINCIPAL
+    @Override
+    public void enterBFuncionPrincipal(PsicoderParser.BFuncionPrincipalContext ctx) {
+        FunctionSymbol function = new FunctionSymbol("funcionPrincipal", Symbol.Type.tINVALID, currentScope);
+        currentScope.define(function);
+        saveScope("funcionPrincipal", function);
+        currentScope = function;
+    }
+
+    @Override
+    public void exitBFuncionPrincipal(PsicoderParser.BFuncionPrincipalContext ctx) {
+        System.out.println(currentScope);
+        currentScope = currentScope.getEnclosingScope();
+        System.out.println(currentScope);
+    }
+
 
     //element : FUNCION type ID TK_PAR_IZQ optparams TK_PAR_DER HACER statements RETORNAR exp TK_PYC FIN_FUNCION
     @Override
@@ -30,7 +55,7 @@ public class DefPhase extends PsicoderBaseListener{
         Symbol.Type type = Interpreter.getType(typeTokenType);
         FunctionSymbol function = new FunctionSymbol(name, type, currentScope);
         currentScope.define(function);
-        saveScope(ctx, function);
+        saveScope(name, function);
         currentScope = function;
     }
 
@@ -48,7 +73,7 @@ public class DefPhase extends PsicoderBaseListener{
         Symbol.Type type = Interpreter.getType(typeTokenType);
         StructSymbol function = new StructSymbol(name, type, currentScope);
         currentScope.define(function);
-        saveScope(ctx, function);
+        saveScope(name, function);
         currentScope = function;
     }
 
@@ -67,7 +92,19 @@ public class DefPhase extends PsicoderBaseListener{
     //params : type ID
     @Override
     public void exitParamsTypeID(PsicoderParser.ParamsTypeIDContext ctx) {
-        defineVar(ctx.type(), ctx.ID().getSymbol());
+        Symbol.Type type = defineType(ctx.type());
+        if (type == Symbol.Type.tID) {
+            String name = ctx.type().getText();
+            Symbol var = currentScope.resolve(name);
+            if ( var==null )
+                Interpreter.error(ctx.ID().getSymbol(), ctx.ID().getSymbol().getText()+ " es de tipo " + type + " pero se le asigno " + var.type);
+            if ( var instanceof StructSymbol ) {
+                defineVar(Symbol.Type.tESTRUCTURA, ctx.ID().getSymbol());
+            }
+        }
+        else{
+            defineVar(ctx.type(), ctx.ID().getSymbol());
+        }
     }
 
     //stmt: type  ID  TK_ASIG  exp  TK_PYC
@@ -95,11 +132,49 @@ public class DefPhase extends PsicoderBaseListener{
     //stmt4: type  ID  TK_PYC
     @Override
     public void exitStmt4TypeID(PsicoderParser.Stmt4TypeIDContext ctx) {
-        defineVar(ctx.type(), ctx.ID().getSymbol());
+        Symbol.Type type = defineType(ctx.type());
+        if (type == Symbol.Type.tID) {
+            String name = ctx.type().getText();
+            Symbol var = currentScope.resolve(name);
+            if ( var==null )
+                Interpreter.error(ctx.ID().getSymbol(), ctx.ID().getSymbol().getText()+ " es de tipo " + type + " pero se le asigno " + var.type);
+            if ( var instanceof StructSymbol ) {
+                StructSymbol struct = new StructSymbol(ctx.ID().getText(), var.type, currentScope);
+                currentScope.define(struct);
+                saveScope(ctx.ID().getText(), struct);
+                struct.arguments = ((StructSymbol) var).arguments;
+                //currentScope = function;
+            }
+        }
+        else{
+            defineVar(ctx.type(), ctx.ID().getSymbol());
+        }
     }
 
-    void saveScope(ParserRuleContext ctx, Scope s) {
-        scopes.put(ctx, s);
+    //stmt: type  ID  TK_PYC
+    @Override
+    public void exitStmtID(PsicoderParser.StmtIDContext ctx) {
+        Symbol.Type type = defineType(ctx.type());
+        if (type == Symbol.Type.tID) {
+            String name = ctx.type().getText();
+            Symbol var = currentScope.resolve(name);
+            if ( var==null )
+                Interpreter.error(ctx.ID().getSymbol(), ctx.ID().getSymbol().getText()+ " es de tipo " + type + " pero se le asigno " + var.type);
+            if ( var instanceof StructSymbol ) {
+                StructSymbol struct = new StructSymbol(ctx.ID().getText(), var.type, currentScope);
+                currentScope.define(struct);
+                saveScope(ctx.ID().getText(), struct);
+                struct.arguments = ((StructSymbol) var).arguments;
+                //currentScope = function;
+            }
+        }
+        else{
+            defineVar(ctx.type(), ctx.ID().getSymbol());
+        }
+    }
+
+    void saveScope(String id, Scope s) {
+        scopes.put(id, s);
     }
 
     void defineVar(PsicoderParser.TypeContext typeCtx, Token nameToken) {

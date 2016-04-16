@@ -1,16 +1,24 @@
 funcion entero sum() hacer
     entero a = 1;
-    real b = 2;
+    entero b = 2;
     cadena d= "\n";
     retornar a + b;
 fin_funcion
 
 estructura C
-    entero a;
+    entero a = 2;
     cadena d = "\n";
+fin_estructura
+
+estructura D
+    entero a = 2;
+    C c;
 fin_estructura
 
 funcion_principal
     cadena a = "\n";
+    D d;
+    entero b = d.c.a;
+    entero f = D.c.a;
     imprimir(a);
 fin_principal
