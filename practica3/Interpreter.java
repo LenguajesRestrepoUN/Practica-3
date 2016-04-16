@@ -21,6 +21,7 @@ public class Interpreter {
 
     public static void error(Token t, String msg) {
         System.err.printf("line %d:%d %s\n", t.getLine(), t.getCharPositionInLine(), msg);
+        //System.exit(1);
     }
 
     public static void main(String[] args) throws Exception {

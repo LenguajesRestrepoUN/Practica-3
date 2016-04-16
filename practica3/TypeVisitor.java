@@ -234,7 +234,6 @@ public class TypeVisitor extends PsicoderBaseVisitor<Symbol.Type>{
         return Symbol.Type.tINVALID;
     }
 
-
     @Override
     public Symbol.Type visitExpOr(PsicoderParser.ExpOrContext ctx) {
         return Symbol.Type.tBOOLEANO;
