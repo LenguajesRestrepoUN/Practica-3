@@ -546,21 +546,30 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     //exp -> exp  TK_MAS  exp
     @Override
     public String visitExpMas(PsicoderParser.ExpMasContext ctx) {
+        //System.out.println(ctx.exp(1).getClass().getName());
         boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
         boolean b=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
-        Double aux,aux1;
-        String ch = visit(ctx.exp(0));
-        String ch1 = visit(ctx.exp(1));
+        boolean c=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCadenaContext");
+        boolean d=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCadenaContext");
+        if (c && d)
+            return visit(ctx.exp(0))+visit(ctx.exp(1));
+        else {
+            Double aux, aux1;
+            String ch = visit(ctx.exp(0));
+            String ch1 = visit(ctx.exp(1));
+            //System.out.println(a + " " + b + " " + c + " " + d);
+            if (a)
+                aux = (double) ch.codePointAt(0) + 1;
+            else aux = Double.parseDouble(visit(ctx.exp(0)));
 
-        if (a)
-            aux= (double) ch.codePointAt(0)+1;
-        else aux =Double.parseDouble(visit(ctx.exp(0)));
+            if (b)
+                aux1 = (double) ch1.codePointAt(0) + 1;
+            else aux1 = Double.parseDouble(visit(ctx.exp(1)));
 
-        if (b)
-            aux1= (double) ch1.codePointAt(0)+1;
-        else aux1 =Double.parseDouble(visit(ctx.exp(1)));
+            //System.out.println(visit(ctx.exp(0))+visit(ctx.exp(1)));
 
-        return String.valueOf(aux +aux1);
+            return String.valueOf(aux + aux1);
+        }
     }
 
     //  exp: TK_NEG  VERDADERO        #expNegVerdadero

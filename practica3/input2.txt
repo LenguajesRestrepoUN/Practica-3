@@ -1,4 +1,4 @@
 funcion_principal
-imprimir(2*3-1,"\n",falso==!verdadero);
+imprimir('d'+1);
 
 fin_principal
