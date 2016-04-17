@@ -135,7 +135,7 @@ public class Visitor extends PsicoderBaseVisitor<String> {
 
     // stmt: type  ID  TK_ASIG  exp  TK_PYC        #stmtTypeAsifExp
     @Override
-    public String visitStmtTypeAsifExp(PsicoderParser.StmtTypeAsifExpContext ctx) {
+    public String visitStmtTypeAsigExp(PsicoderParser.StmtTypeAsigExpContext ctx) {
         //System.out.println("stmt id == ex");
         //System.out.println(visit(ctx.exp()));
         return visitChildren(ctx);
@@ -199,7 +199,7 @@ public class Visitor extends PsicoderBaseVisitor<String> {
 
     //cases2 : CASO  exp  TK_POSD  statements3  cases2    #cases2cacso
     @Override
-    public String visitCases2cacso(PsicoderParser.Cases2cacsoContext ctx) { return visitChildren(ctx); }
+    public String visitCases2Caso(PsicoderParser.Cases2CasoContext ctx) { return visitChildren(ctx); }
 
     // cases2: #cases2Epsilon
     @Override
@@ -713,7 +713,7 @@ public class Visitor extends PsicoderBaseVisitor<String> {
 
     // stmt2: type  ID  TK_ASIG  exp  TK_PYC   #stmt2TypeAsifExp
     @Override
-    public String visitStmt2TypeAsifExp(PsicoderParser.Stmt2TypeAsifExpContext ctx) { return visitChildren(ctx); }
+    public String visitStmt2TypeAsigExp(PsicoderParser.Stmt2TypeAsigExpContext ctx) { return visitChildren(ctx); }
 
     // stmt2:  ID  TK_PUNTO  chain  TK_ASIG  exp  TK_PYC    #stmt2IDChain
     @Override

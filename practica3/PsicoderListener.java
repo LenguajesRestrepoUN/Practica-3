@@ -1,4 +1,4 @@
-// Generated from C:/Users/Orlando S/Desktop/v4/practica3\Psicoder.g4 by ANTLR 4.5.1
+// Generated from C:/Users/jccaleroe/Documents/Practica-3/practica3\Psicoder.g4 by ANTLR 4.5.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -367,17 +367,17 @@ public interface PsicoderListener extends ParseTreeListener {
 	 */
 	void exitStmtIDAsig(PsicoderParser.StmtIDAsigContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code stmtTypeAsifExp}
+	 * Enter a parse tree produced by the {@code stmtTypeAsigExp}
 	 * labeled alternative in {@link PsicoderParser#stmt}.
 	 * @param ctx the parse tree
 	 */
-	void enterStmtTypeAsifExp(PsicoderParser.StmtTypeAsifExpContext ctx);
+	void enterStmtTypeAsigExp(PsicoderParser.StmtTypeAsigExpContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code stmtTypeAsifExp}
+	 * Exit a parse tree produced by the {@code stmtTypeAsigExp}
 	 * labeled alternative in {@link PsicoderParser#stmt}.
 	 * @param ctx the parse tree
 	 */
-	void exitStmtTypeAsifExp(PsicoderParser.StmtTypeAsifExpContext ctx);
+	void exitStmtTypeAsigExp(PsicoderParser.StmtTypeAsigExpContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code stmtIDChain}
 	 * labeled alternative in {@link PsicoderParser#stmt}.
@@ -511,6 +511,66 @@ public interface PsicoderListener extends ParseTreeListener {
 	 */
 	void exitStmtSeleccionar(PsicoderParser.StmtSeleccionarContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code paraStmtIDAsig}
+	 * labeled alternative in {@link PsicoderParser#para_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterParaStmtIDAsig(PsicoderParser.ParaStmtIDAsigContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code paraStmtIDAsig}
+	 * labeled alternative in {@link PsicoderParser#para_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitParaStmtIDAsig(PsicoderParser.ParaStmtIDAsigContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code paraStmtTypeAsigExp}
+	 * labeled alternative in {@link PsicoderParser#para_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterParaStmtTypeAsigExp(PsicoderParser.ParaStmtTypeAsigExpContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code paraStmtTypeAsigExp}
+	 * labeled alternative in {@link PsicoderParser#para_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitParaStmtTypeAsigExp(PsicoderParser.ParaStmtTypeAsigExpContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code paraStmtIDChain}
+	 * labeled alternative in {@link PsicoderParser#para_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterParaStmtIDChain(PsicoderParser.ParaStmtIDChainContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code paraStmtIDChain}
+	 * labeled alternative in {@link PsicoderParser#para_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitParaStmtIDChain(PsicoderParser.ParaStmtIDChainContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code si_no}
+	 * labeled alternative in {@link PsicoderParser#si_noBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterSi_no(PsicoderParser.Si_noContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code si_no}
+	 * labeled alternative in {@link PsicoderParser#si_noBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitSi_no(PsicoderParser.Si_noContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code si_no2}
+	 * labeled alternative in {@link PsicoderParser#si_noBlock2}.
+	 * @param ctx the parse tree
+	 */
+	void enterSi_no2(PsicoderParser.Si_no2Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code si_no2}
+	 * labeled alternative in {@link PsicoderParser#si_noBlock2}.
+	 * @param ctx the parse tree
+	 */
+	void exitSi_no2(PsicoderParser.Si_no2Context ctx);
+	/**
 	 * Enter a parse tree produced by the {@code casesCaso}
 	 * labeled alternative in {@link PsicoderParser#cases}.
 	 * @param ctx the parse tree
@@ -535,17 +595,17 @@ public interface PsicoderListener extends ParseTreeListener {
 	 */
 	void exitCasesDefecto(PsicoderParser.CasesDefectoContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code cases2cacso}
+	 * Enter a parse tree produced by the {@code cases2Caso}
 	 * labeled alternative in {@link PsicoderParser#cases2}.
 	 * @param ctx the parse tree
 	 */
-	void enterCases2cacso(PsicoderParser.Cases2cacsoContext ctx);
+	void enterCases2Caso(PsicoderParser.Cases2CasoContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code cases2cacso}
+	 * Exit a parse tree produced by the {@code cases2Caso}
 	 * labeled alternative in {@link PsicoderParser#cases2}.
 	 * @param ctx the parse tree
 	 */
-	void exitCases2cacso(PsicoderParser.Cases2cacsoContext ctx);
+	void exitCases2Caso(PsicoderParser.Cases2CasoContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code cases2Epsilon}
 	 * labeled alternative in {@link PsicoderParser#cases2}.
@@ -1145,17 +1205,17 @@ public interface PsicoderListener extends ParseTreeListener {
 	 */
 	void exitStmt2IDAsig(PsicoderParser.Stmt2IDAsigContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code stmt2TypeAsifExp}
+	 * Enter a parse tree produced by the {@code stmt2TypeAsigExp}
 	 * labeled alternative in {@link PsicoderParser#stmt2}.
 	 * @param ctx the parse tree
 	 */
-	void enterStmt2TypeAsifExp(PsicoderParser.Stmt2TypeAsifExpContext ctx);
+	void enterStmt2TypeAsigExp(PsicoderParser.Stmt2TypeAsigExpContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code stmt2TypeAsifExp}
+	 * Exit a parse tree produced by the {@code stmt2TypeAsigExp}
 	 * labeled alternative in {@link PsicoderParser#stmt2}.
 	 * @param ctx the parse tree
 	 */
-	void exitStmt2TypeAsifExp(PsicoderParser.Stmt2TypeAsifExpContext ctx);
+	void exitStmt2TypeAsigExp(PsicoderParser.Stmt2TypeAsigExpContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code stmt2IDChain}
 	 * labeled alternative in {@link PsicoderParser#stmt2}.
@@ -1205,18 +1265,6 @@ public interface PsicoderListener extends ParseTreeListener {
 	 */
 	void exitStmt2SiNo(PsicoderParser.Stmt2SiNoContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code stmt2LeerID}
-	 * labeled alternative in {@link PsicoderParser#stmt2}.
-	 * @param ctx the parse tree
-	 */
-	void enterStmt2LeerID(PsicoderParser.Stmt2LeerIDContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code stmt2LeerID}
-	 * labeled alternative in {@link PsicoderParser#stmt2}.
-	 * @param ctx the parse tree
-	 */
-	void exitStmt2LeerID(PsicoderParser.Stmt2LeerIDContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code stmt2LeerChain}
 	 * labeled alternative in {@link PsicoderParser#stmt2}.
 	 * @param ctx the parse tree
@@ -1228,6 +1276,18 @@ public interface PsicoderListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitStmt2LeerChain(PsicoderParser.Stmt2LeerChainContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code stmt2LeerID}
+	 * labeled alternative in {@link PsicoderParser#stmt2}.
+	 * @param ctx the parse tree
+	 */
+	void enterStmt2LeerID(PsicoderParser.Stmt2LeerIDContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code stmt2LeerID}
+	 * labeled alternative in {@link PsicoderParser#stmt2}.
+	 * @param ctx the parse tree
+	 */
+	void exitStmt2LeerID(PsicoderParser.Stmt2LeerIDContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code stmt2Imprimir}
 	 * labeled alternative in {@link PsicoderParser#stmt2}.

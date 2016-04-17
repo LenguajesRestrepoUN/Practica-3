@@ -48,9 +48,9 @@ public class Interpreter {
             DefPhase def = new DefPhase();
             walker.walk(def, tree);
 
-            Visitor visitor = new Visitor();
-            visitor.visit(tree);
-            System.out.println();
+            //Visitor visitor = new Visitor();
+            //visitor.visit(tree);
+            //System.out.println();
 
         } catch (Exception e) {
             System.err.println("Error (Test): " + e);

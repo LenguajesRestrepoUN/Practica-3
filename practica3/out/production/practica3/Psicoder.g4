@@ -54,25 +54,35 @@ stmt : ID  TK_PAR_IZQ  optargs  TK_PAR_DER  TK_PYC     #stmtCallFunction
     | type  ID  TK_ASIG  exp  TK_COMA  optexp  TK_PYC       #stmtTypeAsig
     | type  ID  TK_COMA  optexp  TK_PYC     #stmtTypeAsigOptexp
     | ID  TK_ASIG  exp  TK_PYC      #stmtIDAsig
-    | type  ID  TK_ASIG  exp  TK_PYC        #stmtTypeAsifExp
+    | type  ID  TK_ASIG  exp  TK_PYC        #stmtTypeAsigExp
     | ID  TK_PUNTO  chain  TK_ASIG  exp  TK_PYC     #stmtIDChain
     | type  ID  TK_PYC      #stmtID
     | SI  TK_PAR_IZQ  exp  TK_PAR_DER  ENTONCES  statements  FIN_SI     #stmtSi
-    | SI  TK_PAR_IZQ  exp  TK_PAR_DER  ENTONCES  statements SI_NO  statements  FIN_SI       #stmtSiNo
+    | SI  TK_PAR_IZQ  exp  TK_PAR_DER  ENTONCES  statements si_noBlock       #stmtSiNo
     | LEER  TK_PAR_IZQ  ID  TK_PAR_DER  TK_PYC      #stmtLeerID
     | LEER  TK_PAR_IZQ  ID  TK_PUNTO  chain  TK_PAR_DER  TK_PYC     #stmtLeerChain
     | IMPRIMIR  TK_PAR_IZQ  imp_params  TK_PAR_DER  TK_PYC      #stmtImprimir
-    | PARA  TK_PAR_IZQ  stmt  exp  TK_PYC  exp TK_PAR_DER  HACER  statements3  FIN_PARA     #stmtPara
+    | PARA  TK_PAR_IZQ  para_stmt  exp  TK_PYC  exp TK_PAR_DER  HACER  statements3  FIN_PARA     #stmtPara
     | MIENTRAS  TK_PAR_IZQ  exp  TK_PAR_DER  HACER statements3  FIN_MIENTRAS        #stmtMientras
     | HACER  statements3  MIENTRAS  TK_PAR_IZQ  exp TK_PAR_DER  TK_PYC      #stmtHacer
     | SELECCIONAR  TK_PAR_IZQ  ID  TK_PAR_DER  ENTRE  cases FIN_SELECCIONAR     #stmtSeleccionar
+    ;
+para_stmt: ID  TK_ASIG  exp  TK_PYC     #paraStmtIDAsig
+    |type  ID  TK_ASIG  exp  TK_PYC        #paraStmtTypeAsigExp
+    |ID  TK_PUNTO  chain  TK_ASIG  exp  TK_PYC     #paraStmtIDChain
+    ;
+
+si_noBlock: SI_NO  statements  FIN_SI #si_no
+    ;
+
+si_noBlock2: SI_NO  statements3  FIN_SI #si_no2
     ;
 
 cases : CASO  exp  TK_POSD  statements3  cases2 #casesCaso
     | deft  #casesDefecto
     ;
 
-cases2 : CASO  exp  TK_POSD  statements3  cases2    #cases2cacso
+cases2 : CASO  exp  TK_POSD  statements3  cases2    #cases2Caso
     |   #cases2Epsilon
     | deft  #cases2Defecto
     ;
@@ -141,15 +151,15 @@ stmt2 : ROMPER  TK_PYC  #stmt2Romper
     |  type  ID  TK_ASIG  exp  TK_COMA  optexp  TK_PYC  #stmt2TypeAsig
     |  type  ID  TK_COMA  optexp  TK_PYC    #stmt2TypeAsigOptexp
     |  ID  TK_ASIG  exp  TK_PYC #stmt2IDAsig
-    |  type  ID  TK_ASIG  exp  TK_PYC   #stmt2TypeAsifExp
+    |  type  ID  TK_ASIG  exp  TK_PYC   #stmt2TypeAsigExp
     |  ID  TK_PUNTO  chain  TK_ASIG  exp  TK_PYC    #stmt2IDChain
     |  type  ID  TK_PYC #stmt2ID
     |  SI  TK_PAR_IZQ  exp  TK_PAR_DER ENTONCES  statements3  FIN_SI #stmt2Si
-    |  SI  TK_PAR_IZQ  exp  TK_PAR_DER  ENTONCES  statements3 SI_NO  statements3  FIN_SI    #stmt2SiNo
-    |  LEER  TK_PAR_IZQ  ID  TK_PUNTO  chain  TK_PAR_DER  TK_PYC    #stmt2LeerID
-    |  LEER  TK_PAR_IZQ  ID  TK_PAR_DER  TK_PYC #stmt2LeerChain
+    |  SI  TK_PAR_IZQ  exp  TK_PAR_DER  ENTONCES  statements3 si_noBlock2    #stmt2SiNo
+    |  LEER  TK_PAR_IZQ  ID  TK_PUNTO  chain  TK_PAR_DER  TK_PYC    #stmt2LeerChain
+    |  LEER  TK_PAR_IZQ  ID  TK_PAR_DER  TK_PYC     #stmt2LeerID
     |  IMPRIMIR  TK_PAR_IZQ  imp_params  TK_PAR_DER  TK_PYC #stmt2Imprimir
-    |  PARA  TK_PAR_IZQ  stmt  exp  TK_PYC  exp TK_PAR_DER  HACER  statements3  FIN_PARA  #stmt2Para
+    |  PARA  TK_PAR_IZQ  para_stmt  exp  TK_PYC  exp TK_PAR_DER  HACER  statements3  FIN_PARA  #stmt2Para
     |  MIENTRAS  TK_PAR_IZQ  exp  TK_PAR_DER  HACER statements3  FIN_MIENTRAS #stmt2Mientras
     |  HACER  statements3  MIENTRAS  TK_PAR_IZQ  exp TK_PAR_DER  TK_PYC    #stmt2Hacer
     |  SELECCIONAR  TK_PAR_IZQ  ID  TK_PAR_DER  ENTRE  cases FIN_SELECCIONAR   #stmt2Seleccionar
