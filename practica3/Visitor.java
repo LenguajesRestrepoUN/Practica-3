@@ -2,42 +2,64 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Visitor extends PsicoderBaseVisitor<String> {
-    HashMap<String, ArrayList<String>> global = new HashMap<String, ArrayList<String>>();
+
+    private static HashMap<String, Scope> scopes = DefPhase.scopes;
+    private static GlobalScope globals = DefPhase.globals;
+    private static Scope currentScope = DefPhase.currentScope;
+    private Integer functionScopes = 0;
 
     //ps :   element ps   #psElement
     @Override
-    public String visitPsElement(PsicoderParser.PsElementContext ctx) { return visitChildren(ctx); }
+    public String visitPsElement(PsicoderParser.PsElementContext ctx) {
+        currentScope = globals;
+        return visitChildren(ctx);
+    }
 
     //ps: b              #psB
     @Override
-    public String visitPsB(PsicoderParser.PsBContext ctx) { return visitChildren(ctx); }
+    public String visitPsB(PsicoderParser.PsBContext ctx) {
+        currentScope = globals;
+        return visitChildren(ctx);
+    }
 
     //ps:                #psEpsilon
     @Override
-    public String visitPsEpsilon(PsicoderParser.PsEpsilonContext ctx) { return visitChildren(ctx); }
+    public String visitPsEpsilon(PsicoderParser.PsEpsilonContext ctx) {return visitChildren(ctx);}
+
 
     //b :FUNCION_PRINCIPAL statements FIN_PRINCIPAL  #bFuncionPrincipal
     @Override
-    public String visitBFuncionPrincipal(PsicoderParser.BFuncionPrincipalContext ctx) { return visitChildren(ctx); }
+    public String visitBFuncionPrincipal(PsicoderParser.BFuncionPrincipalContext ctx) {
+        currentScope = scopes.get("funcionPrincipal");
+        functionScopes = 1;
+        return visitChildren(ctx);
+    }
+
 
     //FUNCION type ID TK_PAR_IZQ optparams TK_PAR_DER HACER statements RETORNAR exp TK_PYC FIN_FUNCION
     @Override
     public String visitElementFuncion(PsicoderParser.ElementFuncionContext ctx) {
-        String name = ctx.ID().getText();
-        global.put(name, new ArrayList<>());
-        global.get(name).add(ctx.type().getText());
-        //System.out.println(global.get(name));
-        //System.out.println(ctx.optparams().getChildCount());
-        return visitChildren(ctx);
+        currentScope = scopes.get(ctx.ID().getText());
+        functionScopes = 1;
+        visitChildren(ctx);
+        currentScope = currentScope.getEnclosingScope();
+        return null;
     }
 
     //element: ESTRUCTURA ID statements4 FIN_ESTRUCTURA     #elementEstructura
     @Override
-    public String visitElementEstructura(PsicoderParser.ElementEstructuraContext ctx) { return visitChildren(ctx); }
+    public String visitElementEstructura(PsicoderParser.ElementEstructuraContext ctx) {
+        currentScope = scopes.get(ctx.ID().getText());
+        visitChildren(ctx);
+        currentScope = currentScope.getEnclosingScope();
+        return null;
+    }
 
     //type : ENTERO   #typeEntero
     @Override
-    public String visitTypeEntero(PsicoderParser.TypeEnteroContext ctx) { return visitChildren(ctx); }
+    public String visitTypeEntero(PsicoderParser.TypeEnteroContext ctx) {
+        return visitChildren(ctx);
+    }
 
     //type: CARACTER  #typeCaracter
     @Override
@@ -138,7 +160,9 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     public String visitStmtTypeAsigExp(PsicoderParser.StmtTypeAsigExpContext ctx) {
         //System.out.println("stmt id == ex");
         //System.out.println(visit(ctx.exp()));
-        return visitChildren(ctx);
+        Symbol symbol = currentScope.resolve(ctx.ID().getText());
+        symbol.value = visit(ctx.exp());
+        return null;
         //return visitChildren(ctx);
     }
 
@@ -696,8 +720,9 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     // exp : ID
     @Override
     public String visitExpID(PsicoderParser.ExpIDContext ctx) {
-
-        return ctx.getText();
+        String name = ctx.ID().getText();
+        Symbol var = currentScope.resolve(name);
+        return var.value;
     }
 
     // stmt2 : ROMPER  TK_PYC  #stmt2Romper

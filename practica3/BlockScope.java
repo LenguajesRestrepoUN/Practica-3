@@ -6,8 +6,10 @@ public class BlockScope implements Scope{
 
     Map<String, Symbol> arguments = new LinkedHashMap<String, Symbol>();
     Scope enclosingScope;
+    String name;
 
-    public BlockScope(Scope scope){
+    public BlockScope(String name, Scope scope){
+        this.name = name;
         enclosingScope = scope;
     }
 
@@ -32,10 +34,8 @@ public class BlockScope implements Scope{
     }
 
     public String getScopeName() {
-        return "Block Scope";
+        return name;
     }
 
-    public String toString() {
-        return "Block Scope" + super.toString() + ":" + arguments.values();
-    }
+    public String toString() { return "Block<" + name + ">:" + arguments.values(); }
 }

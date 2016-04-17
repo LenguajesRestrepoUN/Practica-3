@@ -4,12 +4,12 @@ import java.util.HashMap;
 public class DefPhase extends PsicoderBaseListener{
 
     public static HashMap<String, Scope> scopes = new HashMap<String, Scope>();
-    private static GlobalScope globals;
+    public static GlobalScope globals;
     public static Scope currentScope;
     private TypeVisitor visitor = new TypeVisitor();
 
     private Integer functionArgument = 0;
-    private static Scope currentTmp;
+    private Integer functionScopes = 0;
     private FunctionSymbol tmp;
     private Symbol.Type symbolTmp;
 
@@ -38,6 +38,7 @@ public class DefPhase extends PsicoderBaseListener{
         currentScope.define(function);
         saveScope("funcionPrincipal", function);
         currentScope = function;
+        functionScopes = 1;
     }
 
     @Override
@@ -76,12 +77,14 @@ public class DefPhase extends PsicoderBaseListener{
         saveScope(name, function);
         currentScope = function;
         functionArgument = 0;
+        functionScopes = 1;
     }
 
     @Override
     public void exitElementFuncion(PsicoderParser.ElementFuncionContext ctx) {
         System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
+        functionScopes = 0;
     }
 
     //params : type ID TK_COMA params
@@ -368,11 +371,15 @@ public class DefPhase extends PsicoderBaseListener{
         if(type != Symbol.Type.tBOOLEANO){
             Interpreter.error(ctx.exp().getStart(), "no se tiene una expresion booleana");
         }
-        currentScope = new BlockScope(currentScope);
+        BlockScope bs = new BlockScope(currentScope.getScopeName() + functionScopes, currentScope);
+        saveScope(bs.getScopeName(), bs);
+        currentScope = bs;
+        functionScopes++;
     }
 
     @Override
     public void exitStmtSi(PsicoderParser.StmtSiContext ctx) {
+        System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
@@ -383,16 +390,24 @@ public class DefPhase extends PsicoderBaseListener{
         if(type != Symbol.Type.tBOOLEANO){
             Interpreter.error(ctx.exp().getStart(), "no se tiene una expresion booleana");
         }
-        currentScope = new BlockScope(currentScope);
+        BlockScope bs = new BlockScope(currentScope.getScopeName() + functionScopes, currentScope);
+        saveScope(bs.getScopeName(), bs);
+        currentScope = bs;
+        functionScopes++;
     }
 
     //si_noBlock: SI_NO  statements  FIN_SI
     @Override public void enterSi_no(PsicoderParser.Si_noContext ctx) {
+        System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
-        currentScope = new BlockScope(currentScope);
+        BlockScope bs = new BlockScope(currentScope.getScopeName() + functionScopes, currentScope);
+        saveScope(bs.getScopeName(), bs);
+        currentScope = bs;
+        functionScopes++;
     }
 
     @Override public void exitSi_no(PsicoderParser.Si_noContext ctx) {
+        System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
@@ -431,15 +446,19 @@ public class DefPhase extends PsicoderBaseListener{
     //PARA  TK_PAR_IZQ  para_stmt  exp  TK_PYC  exp TK_PAR_DER  HACER  statements3  FIN_PARA
     @Override
     public void enterStmtPara(PsicoderParser.StmtParaContext ctx) {
-        Symbol.Type type = visitor.visit(ctx.exp(0));
-        if(type != Symbol.Type.tBOOLEANO){
-            Interpreter.error(ctx.exp(0).getStart(), "no se tiene una expresion booleana");
-        }
-        currentScope = new BlockScope(currentScope);
+        BlockScope bs = new BlockScope(currentScope.getScopeName() + functionScopes, currentScope);
+        saveScope(bs.getScopeName(), bs);
+        currentScope = bs;
+        functionScopes++;
     }
 
     @Override
     public void exitStmtPara(PsicoderParser.StmtParaContext ctx) {
+        Symbol.Type type = visitor.visit(ctx.exp(0));
+        if(type != Symbol.Type.tBOOLEANO){
+            Interpreter.error(ctx.exp(0).getStart(), "no se tiene una expresion booleana");
+        }
+        System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
@@ -450,26 +469,34 @@ public class DefPhase extends PsicoderBaseListener{
         if(type != Symbol.Type.tBOOLEANO){
             Interpreter.error(ctx.exp().getStart(), "no se tiene una expresion booleana");
         }
-        currentScope = new BlockScope(currentScope);
+        BlockScope bs = new BlockScope(currentScope.getScopeName() + functionScopes, currentScope);
+        saveScope(bs.getScopeName(), bs);
+        currentScope = bs;
+        functionScopes++;
     }
 
     @Override
     public void exitStmtMientras(PsicoderParser.StmtMientrasContext ctx) {
+        System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
     //stmt: HACER  statements3  MIENTRAS  TK_PAR_IZQ  exp TK_PAR_DER  TK_PYC
     @Override
     public void enterStmtHacer(PsicoderParser.StmtHacerContext ctx) {
-        Symbol.Type type = visitor.visit(ctx.exp());
-        if(type != Symbol.Type.tBOOLEANO){
-            Interpreter.error(ctx.exp().getStart(), "no se tiene una expresion booleana");
-        }
-        currentScope = new BlockScope(currentScope);
+        BlockScope bs = new BlockScope(currentScope.getScopeName() + functionScopes, currentScope);
+        saveScope(bs.getScopeName(), bs);
+        currentScope = bs;
+        functionScopes++;
     }
 
     @Override
     public void exitStmtHacer(PsicoderParser.StmtHacerContext ctx) {
+        Symbol.Type type = visitor.visit(ctx.exp());
+        if(type != Symbol.Type.tBOOLEANO){
+            Interpreter.error(ctx.exp().getStart(), "no se tiene una expresion booleana");
+        }
+        System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
@@ -721,7 +748,10 @@ public class DefPhase extends PsicoderBaseListener{
         if(type != Symbol.Type.tBOOLEANO){
             Interpreter.error(ctx.exp().getStart(), "no se tiene una expresion booleana");
         }
-        currentScope = new BlockScope(currentScope);
+        BlockScope bs = new BlockScope(currentScope.getScopeName() + functionScopes, currentScope);
+        saveScope(bs.getScopeName(), bs);
+        currentScope = bs;
+        functionScopes++;
     }
 
     @Override
@@ -736,12 +766,18 @@ public class DefPhase extends PsicoderBaseListener{
         if(type != Symbol.Type.tBOOLEANO){
             Interpreter.error(ctx.exp().getStart(), "no se tiene una expresion booleana");
         }
-        currentScope = new BlockScope(currentScope);
+        BlockScope bs = new BlockScope(currentScope.getScopeName() + functionScopes, currentScope);
+        saveScope(bs.getScopeName(), bs);
+        currentScope = bs;
+        functionScopes++;
     }
 
     @Override public void enterSi_no2(PsicoderParser.Si_no2Context ctx) {
         currentScope = currentScope.getEnclosingScope();
-        currentScope = new BlockScope(currentScope);
+        BlockScope bs = new BlockScope(currentScope.getScopeName() + functionScopes, currentScope);
+        saveScope(bs.getScopeName(), bs);
+        currentScope = bs;
+        functionScopes++;
     }
 
     @Override public void exitSi_no2(PsicoderParser.Si_no2Context ctx) {
@@ -767,15 +803,19 @@ public class DefPhase extends PsicoderBaseListener{
     //PARA  TK_PAR_IZQ  para_stmt  exp  TK_PYC  exp TK_PAR_DER  HACER  statements3  FIN_PARA
     @Override
     public void enterStmt2Para(PsicoderParser.Stmt2ParaContext ctx) {
-        Symbol.Type type = visitor.visit(ctx.exp(0));
-        if(type != Symbol.Type.tBOOLEANO){
-            Interpreter.error(ctx.exp(0).getStart(), "no se tiene una expresion booleana");
-        }
-        currentScope = new BlockScope(currentScope);
+        BlockScope bs = new BlockScope(currentScope.getScopeName() + functionScopes, currentScope);
+        saveScope(bs.getScopeName(), bs);
+        currentScope = bs;
+        functionScopes++;
     }
 
     @Override
     public void exitStmt2Para(PsicoderParser.Stmt2ParaContext ctx) {
+        Symbol.Type type = visitor.visit(ctx.exp(0));
+        if(type != Symbol.Type.tBOOLEANO){
+            Interpreter.error(ctx.exp(0).getStart(), "no se tiene una expresion booleana");
+        }
+        System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
@@ -786,26 +826,34 @@ public class DefPhase extends PsicoderBaseListener{
         if(type != Symbol.Type.tBOOLEANO){
             Interpreter.error(ctx.exp().getStart(), "no se tiene una expresion booleana");
         }
-        currentScope = new BlockScope(currentScope);
+        BlockScope bs = new BlockScope(currentScope.getScopeName() + functionScopes, currentScope);
+        saveScope(bs.getScopeName(), bs);
+        currentScope = bs;
+        functionScopes++;
     }
 
     @Override
     public void exitStmt2Mientras(PsicoderParser.Stmt2MientrasContext ctx) {
+        System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
     //stmt: HACER  statements3  MIENTRAS  TK_PAR_IZQ  exp TK_PAR_DER  TK_PYC
     @Override
     public void enterStmt2Hacer(PsicoderParser.Stmt2HacerContext ctx) {
-        Symbol.Type type = visitor.visit(ctx.exp());
-        if(type != Symbol.Type.tBOOLEANO){
-            Interpreter.error(ctx.exp().getStart(), "no se tiene una expresion booleana");
-        }
-        currentScope = new BlockScope(currentScope);
+        BlockScope bs = new BlockScope(currentScope.getScopeName() + functionScopes, currentScope);
+        saveScope(bs.getScopeName(), bs);
+        currentScope = bs;
+        functionScopes++;
     }
 
     @Override
     public void exitStmt2Hacer(PsicoderParser.Stmt2HacerContext ctx) {
+        Symbol.Type type = visitor.visit(ctx.exp());
+        if(type != Symbol.Type.tBOOLEANO){
+            Interpreter.error(ctx.exp().getStart(), "no se tiene una expresion booleana");
+        }
+        System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
@@ -818,5 +866,4 @@ public class DefPhase extends PsicoderBaseListener{
         }
         symbolTmp = symbol.type;
     }
-
 }

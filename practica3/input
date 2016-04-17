@@ -2,6 +2,12 @@ funcion entero sum(entero x, entero y) hacer
     entero a = 1;
     entero b = 2;
     cadena d= "\n";
+    para (entero i = 0; i < 10; 1) hacer
+            imprimir(i);
+            para (entero j = 0; i < 10; 1) hacer
+                imprimir(i);
+            fin_para
+    fin_para
     retornar a + b;
 fin_funcion
 
@@ -9,6 +15,14 @@ funcion entero resta() hacer
     entero a = 1;
     entero b = 2;
     cadena d= "\n";
+    entero res;
+    si ( a > b ) entonces
+        res = a;
+        booleano flag = verdadero;
+    si_no
+        booleano flag = falso;
+        res = b;
+    fin_si
     retornar a + b;
 fin_funcion
 
