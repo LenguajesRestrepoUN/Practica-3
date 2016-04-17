@@ -45,6 +45,20 @@ funcion_principal
     sum(b,f);
     imprimir(a);
     resta();
-    cadena a = resta(1);
-    sum();
+    //cadena a = resta(1);
+    //sum();
+    entero a = 2;
+    seleccionar ( a ) entre
+    	caso 0 :
+    		imprimir (a);
+    		romper;
+    	caso 1:
+    		imprimir (a*2);
+    		real a = 2.1;
+    	    romper;
+    	defecto:
+    		j = 1;
+    		real a = 4.1;
+    		romper;
+    fin_seleccionar
 fin_principal

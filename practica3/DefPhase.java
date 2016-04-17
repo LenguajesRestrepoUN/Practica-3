@@ -501,7 +501,8 @@ public class DefPhase extends PsicoderBaseListener{
     }
 
     //SELECCIONAR  TK_PAR_IZQ  ID  TK_PAR_DER  ENTRE  cases FIN_SELECCIONAR
-    @Override public void enterStmtSeleccionar(PsicoderParser.StmtSeleccionarContext ctx) {
+    @Override
+    public void enterStmtSeleccionar(PsicoderParser.StmtSeleccionarContext ctx) {
         Symbol symbol = currentScope.resolve(ctx.ID().getText());
         if(symbol == null) {
             Interpreter.error(ctx.ID().getSymbol(), "Variable no definida");
@@ -510,21 +511,70 @@ public class DefPhase extends PsicoderBaseListener{
         symbolTmp = symbol.type;
     }
 
+    @Override
+    public void exitStmtSeleccionar(PsicoderParser.StmtSeleccionarContext ctx) {
+        System.out.println(currentScope);
+        currentScope = currentScope.getEnclosingScope();
+    }
+
     //cases: CASO  exp  TK_POSD  statements3  cases2
-    @Override public void enterCasesCaso(PsicoderParser.CasesCasoContext ctx) {
+    @Override
+    public void enterCasesCaso(PsicoderParser.CasesCasoContext ctx) {
         Symbol.Type type = visitor.visit(ctx.exp());
         if(type != symbolTmp){
             Interpreter.error(ctx.exp().getStart(), "Tipo de variables no iguales");
+            return;
         }
+        BlockScope bs = new BlockScope(currentScope.getScopeName() + functionScopes, currentScope);
+        saveScope(bs.getScopeName(), bs);
+        currentScope = bs;
+        functionScopes++;
+    }
+
+    //cases: CASO  exp  TK_POSD  statements3  cases2
+    @Override
+    public void exitCasesCaso(PsicoderParser.CasesCasoContext ctx) {
+        //System.out.println(currentScope);
+        //currentScope = currentScope.getEnclosingScope();
     }
 
     //cases2 : CASO  exp  TK_POSD  statements3  cases2
     @Override
     public void enterCases2Caso(PsicoderParser.Cases2CasoContext ctx) {
+        System.out.println(currentScope);
+        currentScope = currentScope.getEnclosingScope();
         Symbol.Type type = visitor.visit(ctx.exp());
         if(type != symbolTmp){
             Interpreter.error(ctx.exp().getStart(), "Tipo de variables no iguales");
+            return;
         }
+        BlockScope bs = new BlockScope(currentScope.getScopeName() + functionScopes, currentScope);
+        saveScope(bs.getScopeName(), bs);
+        currentScope = bs;
+        functionScopes++;
+    }
+
+    @Override
+    public void exitCases2Caso(PsicoderParser.Cases2CasoContext ctx) {
+        //System.out.println(currentScope);
+        //currentScope = currentScope.getEnclosingScope();
+    }
+
+    //deft : DEFECTO  TK_POSD  statements3
+    @Override
+    public void enterDeft(PsicoderParser.DeftContext ctx) {
+        System.out.println(currentScope);
+        currentScope = currentScope.getEnclosingScope();
+        BlockScope bs = new BlockScope(currentScope.getScopeName() + functionScopes, currentScope);
+        saveScope(bs.getScopeName(), bs);
+        currentScope = bs;
+        functionScopes++;
+    }
+
+    @Override
+    public void exitDeft(PsicoderParser.DeftContext ctx) {
+        //System.out.println(currentScope);
+        //currentScope = currentScope.getEnclosingScope();
     }
 
     //stmt4: type  ID  TK_ASIG  exp  TK_PYC
@@ -865,5 +915,11 @@ public class DefPhase extends PsicoderBaseListener{
             return;
         }
         symbolTmp = symbol.type;
+    }
+
+    @Override
+    public void exitStmt2Seleccionar(PsicoderParser.Stmt2SeleccionarContext ctx) {
+        System.out.println(currentScope);
+        currentScope = currentScope.getEnclosingScope();
     }
 }
