@@ -1,5 +1,5 @@
 funcion_principal
-    imprimir('d'+1);
+    //imprimir('d'+1);
     entero a = 2;
     entero b = a;
     imprimir(a);

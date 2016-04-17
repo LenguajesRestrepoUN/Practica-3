@@ -7,8 +7,12 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     private static GlobalScope globals = DefPhase.globals;
     private static Scope currentScope = DefPhase.currentScope;
     private Integer functionScopes = 0;
+    private Integer functionArgument = 0;
+    private FunctionSymbol tmp;
+    private Scope current;
+    private String stringTmp;
 
-    //ps :   element ps   #psElement
+/*    //ps :   element ps   #psElement
     @Override
     public String visitPsElement(PsicoderParser.PsElementContext ctx) {
         currentScope = globals;
@@ -26,26 +30,6 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     @Override
     public String visitPsEpsilon(PsicoderParser.PsEpsilonContext ctx) {return visitChildren(ctx);}
 
-
-    //b :FUNCION_PRINCIPAL statements FIN_PRINCIPAL  #bFuncionPrincipal
-    @Override
-    public String visitBFuncionPrincipal(PsicoderParser.BFuncionPrincipalContext ctx) {
-        currentScope = scopes.get("funcionPrincipal");
-        functionScopes = 1;
-        return visitChildren(ctx);
-    }
-
-
-    //FUNCION type ID TK_PAR_IZQ optparams TK_PAR_DER HACER statements RETORNAR exp TK_PYC FIN_FUNCION
-    @Override
-    public String visitElementFuncion(PsicoderParser.ElementFuncionContext ctx) {
-        currentScope = scopes.get(ctx.ID().getText());
-        functionScopes = 1;
-        visitChildren(ctx);
-        currentScope = currentScope.getEnclosingScope();
-        return null;
-    }
-
     //element: ESTRUCTURA ID statements4 FIN_ESTRUCTURA     #elementEstructura
     @Override
     public String visitElementEstructura(PsicoderParser.ElementEstructuraContext ctx) {
@@ -54,182 +38,186 @@ public class Visitor extends PsicoderBaseVisitor<String> {
         currentScope = currentScope.getEnclosingScope();
         return null;
     }
+*/
 
-    //type : ENTERO   #typeEntero
+    //b :FUNCION_PRINCIPAL statements FIN_PRINCIPAL  #bFuncionPrincipal
     @Override
-    public String visitTypeEntero(PsicoderParser.TypeEnteroContext ctx) {
-        return visitChildren(ctx);
+    public String visitBFuncionPrincipal(PsicoderParser.BFuncionPrincipalContext ctx) {
+        currentScope = scopes.get("funcionPrincipal");
+        currentScope.setCounter(1);
+        functionScopes = 1;
+        visit(ctx.statements());
+        return null;
     }
 
-    //type: CARACTER  #typeCaracter
+    //FUNCION type ID TK_PAR_IZQ optparams TK_PAR_DER HACER statements RETORNAR exp TK_PYC FIN_FUNCION
     @Override
-    public String visitTypeCaracter(PsicoderParser.TypeCaracterContext ctx) { return visitChildren(ctx); }
-
-    //type: CARACTER  #typeCaracter
-    @Override
-    public String visitTypeCadena(PsicoderParser.TypeCadenaContext ctx) { return visitChildren(ctx); }
-
-    //type: REAL      #typeReal
-    @Override
-    public String visitTypeReal(PsicoderParser.TypeRealContext ctx) { return visitChildren(ctx); }
-
-    // type: BOOLEANO  #typeBooleano
-    @Override
-    public String visitTypeBooleano(PsicoderParser.TypeBooleanoContext ctx) { return visitChildren(ctx); }
-
-    // type: ID        #typeID
-    @Override
-    public String visitTypeID(PsicoderParser.TypeIDContext ctx) { return visitChildren(ctx); }
-
-    //optparams : params  #optparamsP
-    @Override
-    public String visitOptparamsP(PsicoderParser.OptparamsPContext ctx) { return visitChildren(ctx); }
-
-    //optparams:    #optparamsEpsilon
-    @Override
-    public String visitOptparamsEpsilon(PsicoderParser.OptparamsEpsilonContext ctx) { return visitChildren(ctx); }
-
-    //    params : type ID TK_COMA params #paramsTypeIDComa
-    @Override
-    public String visitParamsTypeIDComa(PsicoderParser.ParamsTypeIDComaContext ctx) { return visitChildren(ctx); }
-
-    //params: type ID   #paramsTypeID
-    @Override
-    public String visitParamsTypeID(PsicoderParser.ParamsTypeIDContext ctx) { return visitChildren(ctx); }
-
-    // optargs : args  #optargsArgs
-    @Override
-    public String visitOptargsArgs(PsicoderParser.OptargsArgsContext ctx) { return visitChildren(ctx); }
-
-    // optargs : #optargsEpsilon
-    @Override
-    public String visitOptargsEpsilon(PsicoderParser.OptargsEpsilonContext ctx) { return visitChildren(ctx); }
-
-    // args : exp TK_COMA args       #argsExpArgs
-    @Override
-    public String visitArgsExpArgs(PsicoderParser.ArgsExpArgsContext ctx) { return visitChildren(ctx); }
-
-    // args : exp       #argsExp
-    @Override
-    public String visitArgsExp(PsicoderParser.ArgsExpContext ctx) { return visitChildren(ctx); }
-
-    //  statements : stmt  statements   #statementsEpsilonStmt
-    @Override
-    public String visitStatementsStmt(PsicoderParser.StatementsStmtContext ctx) { return visitChildren(ctx); }
-
-    //  statements :    #statementsEpsilon
-    @Override
-    public String visitStatementsEpsilon(PsicoderParser.StatementsEpsilonContext ctx) { return visitChildren(ctx); }
-
-    //  statements3 : stmt2  statements3        #statements3Stmt
-    @Override
-    public String visitStatements3Stmt(PsicoderParser.Statements3StmtContext ctx) { return visitChildren(ctx); }
-
-    //statements3 :       #statements3Epsilon
-    @Override
-    public String visitStatements3Epsilon(PsicoderParser.Statements3EpsilonContext ctx) { return visitChildren(ctx); }
-
-    //statements4 : stmt4  statements4        #statements4Stmt
-    @Override
-    public String visitStatements4Stmt(PsicoderParser.Statements4StmtContext ctx) { return visitChildren(ctx); }
-
-    // statements4 :       #statements3Epsilon
-    @Override
-    public String visitStatements4Epsilon(PsicoderParser.Statements4EpsilonContext ctx) { return visitChildren(ctx); }
+    public String visitElementFuncion(PsicoderParser.ElementFuncionContext ctx) {
+        currentScope = scopes.get(ctx.ID().getText());
+        currentScope.setCounter(1);
+        functionScopes = 1;
+        visit(ctx.statements());
+        String a = visit(ctx.exp());
+        currentScope = currentScope.getEnclosingScope();
+        return a;
+    }
 
     //stmt : ID  TK_PAR_IZQ  optargs  TK_PAR_DER  TK_PYC     #stmtCallFunction
     @Override
-    public String visitStmtCallFunction(PsicoderParser.StmtCallFunctionContext ctx) { return visitChildren(ctx); }
+    public String visitStmtCallFunction(PsicoderParser.StmtCallFunctionContext ctx) {
+        String name = ctx.ID().getText();
+        tmp = ((FunctionSymbol) scopes.get(name));
+        functionArgument = 0;
+        visit(ctx.optargs());
+        visitElementFuncion(tmp.ctx);
+        return null;
+    }
+
+    // args : exp       #argsExp
+    @Override
+    public String visitArgsExp(PsicoderParser.ArgsExpContext ctx) {
+        tmp.arguments.get( tmp.parameters.get(functionArgument) ).value = visit(ctx.exp());
+        return null;
+    }
+
+    // args : exp TK_COMA args       #argsExpArgs
+    @Override
+    public String visitArgsExpArgs(PsicoderParser.ArgsExpArgsContext ctx) {
+        tmp.arguments.get( tmp.parameters.get(functionArgument) ).value = visit(ctx.exp());
+        functionArgument++;
+        return null;
+    }
 
     //stmt:  type  ID  TK_ASIG  exp  TK_COMA  optexp  TK_PYC       #stmtTypeAsig
-    @Override public String visitStmtTypeAsig(PsicoderParser.StmtTypeAsigContext ctx) { return visitChildren(ctx); }
+    @Override public String visitStmtTypeAsig(PsicoderParser.StmtTypeAsigContext ctx) {
+        currentScope.resolve(ctx.ID().getText()).value = visit(ctx.exp());
+        visitChildren(ctx.optexp());
+        return null;
+    }
 
-    //stmt:  type  ID  TK_COMA  optexp  TK_PYC     #stmtTypeAsigOptexp
-    @Override public String visitStmtTypeAsigOptexp(PsicoderParser.StmtTypeAsigOptexpContext ctx) { return visitChildren(ctx); }
+    // optexp:  ID  TK_ASIG  exp  TK_COMA  optexp #optexpIDAsigExpComa
+    @Override
+    public String visitOptexpIDAsigExpComa(PsicoderParser.OptexpIDAsigExpComaContext ctx) {
+        currentScope.resolve(ctx.ID().getText()).value = visit(ctx.exp());
+        visitChildren(ctx.optexp());
+        return null;
+    }
+
+    // optexp: ID  TK_ASIG  exp  #optexpIDAsigExp
+    @Override
+    public String visitOptexpIDAsigExp(PsicoderParser.OptexpIDAsigExpContext ctx) {
+        currentScope.resolve(ctx.ID().getText()).value = visit(ctx.exp());
+        return null;
+    }
 
     // stmt: ID  TK_ASIG  exp  TK_PYC   #stmtIDAsig
     @Override
     public String visitStmtIDAsig(PsicoderParser.StmtIDAsigContext ctx) {
-
-        //System.out.println(visit(ctx.exp()));
-        return visitChildren(ctx);
+        currentScope.resolve(ctx.ID().getText()).value = visit(ctx.exp());
+        return null;
     }
 
     // stmt: type  ID  TK_ASIG  exp  TK_PYC        #stmtTypeAsifExp
     @Override
     public String visitStmtTypeAsigExp(PsicoderParser.StmtTypeAsigExpContext ctx) {
-        //System.out.println("stmt id == ex");
-        //System.out.println(visit(ctx.exp()));
-        Symbol symbol = currentScope.resolve(ctx.ID().getText());
-        symbol.value = visit(ctx.exp());
+        currentScope.resolve(ctx.ID().getText()).value = visit(ctx.exp());
         return null;
-        //return visitChildren(ctx);
     }
 
     // stmt: ID  TK_PUNTO  chain  TK_ASIG  exp  TK_PYC     #stmtIDChain
     @Override
-    public String visitStmtIDChain(PsicoderParser.StmtIDChainContext ctx) { return visitChildren(ctx); }
+    public String visitStmtIDChain(PsicoderParser.StmtIDChainContext ctx) {
+        String name = ctx.ID().getText();
+        Symbol var = currentScope.resolve(name);
+        current = DefPhase.scopes.get(name);
+        stringTmp = visit(ctx.exp());
+        visit(ctx.chain());
+        return null;
+    }
 
-    // stmt: type  ID  TK_PYC      #stmtID
+    //chain : ID  TK_PUNTO  chain
     @Override
-    public String visitStmtID(PsicoderParser.StmtIDContext ctx) { return visitChildren(ctx); }
+    public String visitChainIDPunto(PsicoderParser.ChainIDPuntoContext ctx) {
+        String name = ctx.ID().getSymbol().getText();
+        Symbol var = current.resolve(name);
+        current = DefPhase.scopes.get(name);
+        visit(ctx.chain());
+        return null;
+    }
+
+    //chain : ID
+    @Override
+    public String visitChainID(PsicoderParser.ChainIDContext ctx) {
+        String name = ctx.ID().getSymbol().getText();
+        Symbol var = current.resolve(name);
+        var.value = stringTmp;
+        return null;
+    }
 
     // stmt: SI  TK_PAR_IZQ  exp  TK_PAR_DER  ENTONCES  statements  FIN_SI     #stmtSi
     @Override
     public String visitStmtSi(PsicoderParser.StmtSiContext ctx) {
-        visit(ctx.exp());
-        currentScope = scopes.get(currentScope.getScopeName() + functionScopes);
-        functionScopes++;
-        visit(ctx.statements());
-        currentScope = currentScope.getEnclosingScope();
+        String flag = visit(ctx.exp());
+        if(flag.equals("verdadero")){
+            currentScope = scopes.get(currentScope.getScopeName() + currentScope.getCounter());
+            visit(ctx.statements());
+            currentScope.setCounter(1);
+            currentScope = currentScope.getEnclosingScope();
+            currentScope.setCounter(currentScope.getCounter() + 1);
+        }
         return null;
     }
 
     //stmt: SI  TK_PAR_IZQ  exp  TK_PAR_DER  ENTONCES  statements si_noBlock       #stmtSiNo
     @Override
     public String visitStmtSiNo(PsicoderParser.StmtSiNoContext ctx) {
-        visit(ctx.exp());
-        currentScope = scopes.get(currentScope.getScopeName() + functionScopes);
-        functionScopes++;
-        visit(ctx.statements());
-        currentScope = currentScope.getEnclosingScope();
-        visit(ctx.si_noBlock());
+        String flag = visit(ctx.exp());
+        if(flag.equals("verdadero")){
+            currentScope = scopes.get(currentScope.getScopeName() + currentScope.getCounter());
+            visit(ctx.statements());
+            currentScope.setCounter(1);
+            currentScope = currentScope.getEnclosingScope();
+            currentScope.setCounter(currentScope.getCounter() + 1);
+        }
+        else {
+            currentScope.setCounter(currentScope.getCounter() + 1);
+            visit(ctx.si_noBlock());
+        }
         return null;
     }
 
     //si_noBlock: SI_NO  statements  FIN_SI
     @Override
     public String visitSi_no(PsicoderParser.Si_noContext ctx) {
-        BlockScope bs = new BlockScope(currentScope.getScopeName() + functionScopes, currentScope);
-        currentScope = scopes.get(currentScope.getScopeName() + functionScopes);
-        functionScopes++;
+        currentScope = scopes.get(currentScope.getScopeName() + currentScope.getCounter());
         visit(ctx.statements());
+        currentScope.setCounter(1);
         currentScope = currentScope.getEnclosingScope();
-        return null;
-    }
-
-    // stmt:  LEER  TK_PAR_IZQ  ID  TK_PAR_DER  TK_PYC      #stmtLeerID
-    @Override
-    public String visitStmtLeerID(PsicoderParser.StmtLeerIDContext ctx) { return visitChildren(ctx); }
-
-    //  LEER  TK_PAR_IZQ  ID  TK_PUNTO  chain  TK_PAR_DER  TK_PYC     #stmtLeerChain
-    @Override
-    public String visitStmtLeerChain(PsicoderParser.StmtLeerChainContext ctx) { return visitChildren(ctx); }
-
-    //IMPRIMIR  TK_PAR_IZQ  imp_params  TK_PAR_DER  TK_PYC  #stmtImprimir
-    @Override
-    public String visitStmtImprimir(PsicoderParser.StmtImprimirContext ctx) {
-        System.out.println(visit(ctx.imp_params()));
+        currentScope.setCounter(currentScope.getCounter() + 1);
         return null;
     }
 
     // stmt:  PARA  TK_PAR_IZQ  para_stmt  exp  TK_PYC  exp TK_PAR_DER  HACER  statements3  FIN_PARA     #stmtPara
     @Override
     public String visitStmtPara(PsicoderParser.StmtParaContext ctx) {
-        currentScope = scopes.get(currentScope.getScopeName() + functionScopes);
-        functionScopes++;
-        visitChildren(ctx);
+        currentScope = scopes.get(currentScope.getScopeName() + currentScope.getCounter());
+        visit(ctx.para_stmt());
+        visit(ctx.statements3());
+        currentScope.setCounter(1);
         currentScope = currentScope.getEnclosingScope();
+        currentScope.setCounter(currentScope.getCounter() + 1);
+        return null;
+    }
+
+    //para_stmt: ID  TK_ASIG  exp  TK_PYC
+    @Override
+    public String visitParaStmtIDAsig(PsicoderParser.ParaStmtIDAsigContext ctx) {
+        return null;
+    }
+
+    //para_stmt: type  ID  TK_ASIG  exp  TK_PYC
+    @Override
+    public String visitParaStmtTypeAsigExp(PsicoderParser.ParaStmtTypeAsigExpContext ctx) {
         return null;
     }
 
@@ -301,6 +289,21 @@ public class Visitor extends PsicoderBaseVisitor<String> {
         return null;
     }
 
+    // stmt:  LEER  TK_PAR_IZQ  ID  TK_PAR_DER  TK_PYC      #stmtLeerID
+    @Override
+    public String visitStmtLeerID(PsicoderParser.StmtLeerIDContext ctx) { return visitChildren(ctx); }
+
+    //  LEER  TK_PAR_IZQ  ID  TK_PUNTO  chain  TK_PAR_DER  TK_PYC     #stmtLeerChain
+    @Override
+    public String visitStmtLeerChain(PsicoderParser.StmtLeerChainContext ctx) { return visitChildren(ctx); }
+
+    //IMPRIMIR  TK_PAR_IZQ  imp_params  TK_PAR_DER  TK_PYC  #stmtImprimir
+    @Override
+    public String visitStmtImprimir(PsicoderParser.StmtImprimirContext ctx) {
+        System.out.println(visit(ctx.imp_params()));
+        return null;
+    }
+
     //imp_params : exp  TK_COMA  imp_params #imp_paramsChain
     @Override
     public String visitImp_paramsChain(PsicoderParser.Imp_paramsChainContext ctx) {
@@ -321,30 +324,6 @@ public class Visitor extends PsicoderBaseVisitor<String> {
             System.out.print(visit(ctx.exp()));
         return "";
     }
-
-    // optexp : ID  TK_COMA  optexp    #optexpIDComa
-    @Override
-    public String visitOptexpIDComa(PsicoderParser.OptexpIDComaContext ctx) { return visitChildren(ctx); }
-
-    // optexp:  ID  TK_ASIG  exp  TK_COMA  optexp #optexpIDAsigExpComa
-    @Override
-    public String visitOptexpIDAsigExpComa(PsicoderParser.OptexpIDAsigExpComaContext ctx) { return visitChildren(ctx); }
-
-    // optexp : ID    #optexpID
-    @Override
-    public String visitOptexpID(PsicoderParser.OptexpIDContext ctx) { return visitChildren(ctx); }
-
-    // optexp: ID  TK_ASIG  exp  #optexpIDAsigExp
-    @Override
-    public String visitOptexpIDAsigExp(PsicoderParser.OptexpIDAsigExpContext ctx) { return visitChildren(ctx); }
-
-    // chain : ID  TK_PUNTO  chain #chainIDPunto
-    @Override
-    public String visitChainIDPunto(PsicoderParser.ChainIDPuntoContext ctx) { return visitChildren(ctx); }
-
-    // chain:  ID    #chainID
-    @Override
-    public String visitChainID(PsicoderParser.ChainIDContext ctx) { return visitChildren(ctx); }
 
     // exp :  TK_NEG  TK_PAR_IZQ  exp  TK_PAR_DER      #expNegParExp
     @Override
@@ -830,7 +809,7 @@ public class Visitor extends PsicoderBaseVisitor<String> {
         return null;
     }
 
-    // stmt2:  SI  TK_PAR_IZQ  exp  TK_PAR_DER  ENTONCES  statements3 SI_NO  statements3  FIN_SI    #stmt2SiNo
+    // stmt2:  SI  TK_PAR_IZQ  exp  TK_PAR_DER  ENTONCES  statements3 SI_noBlock2    #stmt2SiNo
     @Override
     public String visitStmt2SiNo(PsicoderParser.Stmt2SiNoContext ctx) {
         visit(ctx.exp());
@@ -839,6 +818,16 @@ public class Visitor extends PsicoderBaseVisitor<String> {
         visit(ctx.statements3());
         currentScope = currentScope.getEnclosingScope();
         visit(ctx.si_noBlock2());
+        return null;
+    }
+
+    //si_noBlock2: SI_NO  statements3  FIN_SI
+    @Override
+    public String visitSi_no2(PsicoderParser.Si_no2Context ctx) {
+        currentScope = scopes.get(currentScope.getScopeName() + functionScopes);
+        functionScopes++;
+        visit(ctx.statements3());
+        currentScope = currentScope.getEnclosingScope();
         return null;
     }
 
@@ -921,15 +910,69 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     @Override
     public String visitStmt4TypeID(PsicoderParser.Stmt4TypeIDContext ctx) { return visitChildren(ctx); }
 
-    //si_noBlock2: SI_NO  statements3  FIN_SI
-    @Override
-    public String visitSi_no2(PsicoderParser.Si_no2Context ctx) {
-        BlockScope bs = new BlockScope(currentScope.getScopeName() + functionScopes, currentScope);
-        currentScope = scopes.get(currentScope.getScopeName() + functionScopes);
-        functionScopes++;
-        visit(ctx.statements3());
-        currentScope = currentScope.getEnclosingScope();
-        return null;
-    }
 
+    //-----------------------No son necesarias (Creo)----------------------------------
+
+    //optparams : params  #optparamsP
+    @Override
+    public String visitOptparamsP(PsicoderParser.OptparamsPContext ctx) { return visitChildren(ctx); }
+
+    //optparams:    #optparamsEpsilon
+    @Override
+    public String visitOptparamsEpsilon(PsicoderParser.OptparamsEpsilonContext ctx) { return visitChildren(ctx); }
+
+    //    params : type ID TK_COMA params #paramsTypeIDComa
+    @Override
+    public String visitParamsTypeIDComa(PsicoderParser.ParamsTypeIDComaContext ctx) { return visitChildren(ctx); }
+
+    //params: type ID   #paramsTypeID
+    @Override
+    public String visitParamsTypeID(PsicoderParser.ParamsTypeIDContext ctx) { return visitChildren(ctx); }
+
+    //  statements : stmt  statements   #statementsEpsilonStmt
+    @Override
+    public String visitStatementsStmt(PsicoderParser.StatementsStmtContext ctx) { return visitChildren(ctx); }
+
+    //  statements :    #statementsEpsilon
+    @Override
+    public String visitStatementsEpsilon(PsicoderParser.StatementsEpsilonContext ctx) { return visitChildren(ctx); }
+
+    //  statements3 : stmt2  statements3        #statements3Stmt
+    @Override
+    public String visitStatements3Stmt(PsicoderParser.Statements3StmtContext ctx) { return visitChildren(ctx); }
+
+    //statements3 :       #statements3Epsilon
+    @Override
+    public String visitStatements3Epsilon(PsicoderParser.Statements3EpsilonContext ctx) { return visitChildren(ctx); }
+
+    //statements4 : stmt4  statements4        #statements4Stmt
+    @Override
+    public String visitStatements4Stmt(PsicoderParser.Statements4StmtContext ctx) { return visitChildren(ctx); }
+
+    // statements4 :       #statements3Epsilon
+    @Override
+    public String visitStatements4Epsilon(PsicoderParser.Statements4EpsilonContext ctx) { return visitChildren(ctx); }
+
+    // optargs : args  #optargsArgs
+    @Override
+    public String visitOptargsArgs(PsicoderParser.OptargsArgsContext ctx) { return visitChildren(ctx); }
+
+    // optargs : #optargsEpsilon
+    @Override
+    public String visitOptargsEpsilon(PsicoderParser.OptargsEpsilonContext ctx) { return visitChildren(ctx); }
+
+    // optexp : ID  TK_COMA  optexp    #optexpIDComa
+    @Override
+    public String visitOptexpIDComa(PsicoderParser.OptexpIDComaContext ctx) { return visitChildren(ctx); }
+
+    // optexp : ID    #optexpID
+    @Override
+    public String visitOptexpID(PsicoderParser.OptexpIDContext ctx) { return visitChildren(ctx); }
+
+    //stmt:  type  ID  TK_COMA  optexp  TK_PYC     #stmtTypeAsigOptexp
+    @Override public String visitStmtTypeAsigOptexp(PsicoderParser.StmtTypeAsigOptexpContext ctx) { return visitChildren(ctx); }
+
+    // stmt: type  ID  TK_PYC      #stmtID
+    @Override
+    public String visitStmtID(PsicoderParser.StmtIDContext ctx) { return visitChildren(ctx); }
 }

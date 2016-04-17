@@ -6,5 +6,9 @@ public interface Scope {
     public void define(Symbol sym);
 
     public Symbol resolve(String name);
+
+    public Integer getCounter();
+
+    public void setCounter(Integer i);
 }
 

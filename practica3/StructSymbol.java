@@ -6,7 +6,15 @@ public class StructSymbol extends Symbol implements Scope{
 
     Map<String, Symbol> arguments = new LinkedHashMap<String, Symbol>();
     Scope enclosingScope;
+    public Integer counter = 1;
 
+    public Integer getCounter(){
+        return counter;
+    }
+
+    public void setCounter(Integer i){
+        counter = i;
+    }
     public StructSymbol(String name, Symbol.Type retType, Scope enclosingScope) {
         super(name, retType);
         this.enclosingScope = enclosingScope;

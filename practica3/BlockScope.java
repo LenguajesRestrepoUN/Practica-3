@@ -7,6 +7,15 @@ public class BlockScope implements Scope{
     Map<String, Symbol> arguments = new LinkedHashMap<String, Symbol>();
     Scope enclosingScope;
     String name;
+    public Integer counter = 1;
+
+    public Integer getCounter(){
+        return counter;
+    }
+
+    public void setCounter(Integer i){
+        counter = i;
+    }
 
     public BlockScope(String name, Scope scope){
         this.name = name;

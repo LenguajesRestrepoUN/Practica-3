@@ -1,7 +1,7 @@
 
 public class TypeVisitor extends PsicoderBaseVisitor<Symbol.Type>{
 
-    Scope current;
+    private Scope current;
 
     // exp : TK_CARACTER      #expCaracter
     @Override
@@ -62,7 +62,7 @@ public class TypeVisitor extends PsicoderBaseVisitor<Symbol.Type>{
     // exp : ID
     @Override
     public Symbol.Type visitExpID(PsicoderParser.ExpIDContext ctx) {
-        String name = ctx.ID().getSymbol().getText();
+        String name = ctx.ID().getText();
         Symbol var = DefPhase.currentScope.resolve(name);
         if ( var==null )
             return Symbol.Type.tINVALID;
@@ -214,9 +214,6 @@ public class TypeVisitor extends PsicoderBaseVisitor<Symbol.Type>{
         if ( var instanceof StructSymbol ) {
             current = DefPhase.scopes.get(name);
             return visit(ctx.chain());
-        }
-        if( var.type == Symbol.Type.tESTRUCTURA ) {
-
         }
         return Symbol.Type.tINVALID;
     }

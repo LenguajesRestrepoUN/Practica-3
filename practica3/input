@@ -19,6 +19,20 @@ funcion entero resta() hacer
     si ( a > b ) entonces
         res = a;
         booleano flag = verdadero;
+        si ( a > b ) entonces
+                entero res = a;
+                booleano flag2 = verdadero;
+                si ( a > b ) entonces
+                                entero res = a;
+                                booleano flag2 = verdadero;
+                            si_no
+                                booleano flag2 = falso;
+                                entero res = b;
+                fin_si
+            si_no
+                booleano flag2 = falso;
+                entero res = b;
+        fin_si
     si_no
         booleano flag = falso;
         res = b;
@@ -45,8 +59,8 @@ funcion_principal
     sum(b,f);
     imprimir(a);
     resta();
-    //cadena a = resta(1);
-    //sum();
+    cadena a = resta(1);
+    sum();
     entero a = 2;
     seleccionar ( a ) entre
     	caso 0 :

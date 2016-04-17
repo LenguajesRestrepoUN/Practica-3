@@ -7,6 +7,16 @@ public class FunctionSymbol extends Symbol implements Scope {
     HashMap<Integer, String> parameters = new HashMap<>();
     Map<String, Symbol> arguments = new LinkedHashMap<String, Symbol>();
     Scope enclosingScope;
+    PsicoderParser.ElementFuncionContext ctx;
+    public Integer counter = 1;
+
+    public Integer getCounter(){
+        return counter;
+    }
+
+    public void setCounter(Integer i){
+        counter = i;
+    }
 
     public FunctionSymbol(String name, Type retType, Scope enclosingScope) {
         super(name, retType);
