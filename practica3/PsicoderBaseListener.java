@@ -1,4 +1,4 @@
-// Generated from C:/Users/Orlando S/Desktop/v4/practica3\Psicoder.g4 by ANTLR 4.5.1
+// Generated from C:/Users/jccaleroe/Documents/Practica-3/practica3\Psicoder.g4 by ANTLR 4.5.1
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -375,13 +375,13 @@ public class PsicoderBaseListener implements PsicoderListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStmtTypeAsifExp(PsicoderParser.StmtTypeAsifExpContext ctx) { }
+	@Override public void enterStmtTypeAsigExp(PsicoderParser.StmtTypeAsigExpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStmtTypeAsifExp(PsicoderParser.StmtTypeAsifExpContext ctx) { }
+	@Override public void exitStmtTypeAsigExp(PsicoderParser.StmtTypeAsigExpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -519,6 +519,66 @@ public class PsicoderBaseListener implements PsicoderListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterParaStmtIDAsig(PsicoderParser.ParaStmtIDAsigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParaStmtIDAsig(PsicoderParser.ParaStmtIDAsigContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParaStmtTypeAsigExp(PsicoderParser.ParaStmtTypeAsigExpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParaStmtTypeAsigExp(PsicoderParser.ParaStmtTypeAsigExpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParaStmtIDChain(PsicoderParser.ParaStmtIDChainContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParaStmtIDChain(PsicoderParser.ParaStmtIDChainContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSi_no(PsicoderParser.Si_noContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSi_no(PsicoderParser.Si_noContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSi_no2(PsicoderParser.Si_no2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSi_no2(PsicoderParser.Si_no2Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCasesCaso(PsicoderParser.CasesCasoContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -543,13 +603,13 @@ public class PsicoderBaseListener implements PsicoderListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCases2cacso(PsicoderParser.Cases2cacsoContext ctx) { }
+	@Override public void enterCases2Caso(PsicoderParser.Cases2CasoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCases2cacso(PsicoderParser.Cases2cacsoContext ctx) { }
+	@Override public void exitCases2Caso(PsicoderParser.Cases2CasoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1155,13 +1215,13 @@ public class PsicoderBaseListener implements PsicoderListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStmt2TypeAsifExp(PsicoderParser.Stmt2TypeAsifExpContext ctx) { }
+	@Override public void enterStmt2TypeAsigExp(PsicoderParser.Stmt2TypeAsigExpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStmt2TypeAsifExp(PsicoderParser.Stmt2TypeAsifExpContext ctx) { }
+	@Override public void exitStmt2TypeAsigExp(PsicoderParser.Stmt2TypeAsigExpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -1215,18 +1275,6 @@ public class PsicoderBaseListener implements PsicoderListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStmt2LeerID(PsicoderParser.Stmt2LeerIDContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitStmt2LeerID(PsicoderParser.Stmt2LeerIDContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterStmt2LeerChain(PsicoderParser.Stmt2LeerChainContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1234,6 +1282,18 @@ public class PsicoderBaseListener implements PsicoderListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitStmt2LeerChain(PsicoderParser.Stmt2LeerChainContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStmt2LeerID(PsicoderParser.Stmt2LeerIDContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStmt2LeerID(PsicoderParser.Stmt2LeerIDContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

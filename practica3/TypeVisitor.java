@@ -127,10 +127,73 @@ public class TypeVisitor extends PsicoderBaseVisitor<Symbol.Type>{
         return Symbol.Type.tINVALID;
     }
 
+    //stmt: LEER  TK_PAR_IZQ  ID  TK_PUNTO  chain  TK_PAR_DER  TK_PYC
+    @Override
+    public Symbol.Type visitStmtLeerChain(PsicoderParser.StmtLeerChainContext ctx) {
+        String name = ctx.ID().getText();
+        Symbol var = DefPhase.currentScope.resolve(name);
+        if(var == null) {
+            Interpreter.error(ctx.ID().getSymbol(), "Variable" + name + "no definida");
+            return Symbol.Type.tINVALID;
+        }
+        if ( var instanceof StructSymbol ) {
+            current = DefPhase.scopes.get(name);
+            return visit(ctx.chain());
+        }
+        return Symbol.Type.tINVALID;
+    }
+
+    //para_stmt: ID  TK_PUNTO  chain  TK_ASIG  exp  TK_PYC
+    @Override
+    public Symbol.Type visitParaStmtIDChain(PsicoderParser.ParaStmtIDChainContext ctx) {
+        String name = ctx.ID().getText();
+        Symbol var = DefPhase.currentScope.resolve(name);
+        if(var == null) {
+            Interpreter.error(ctx.ID().getSymbol(), "Variable" + name + "no definida");
+            return Symbol.Type.tINVALID;
+        }
+        if ( var instanceof StructSymbol ) {
+            current = DefPhase.scopes.get(name);
+            return visit(ctx.chain());
+        }
+        return Symbol.Type.tINVALID;
+    }
+
+    //stmt: ID  TK_PUNTO  chain  TK_ASIG  exp  TK_PYC
+    @Override
+    public Symbol.Type visitStmtIDChain(PsicoderParser.StmtIDChainContext ctx) {
+        String name = ctx.ID().getText();
+        Symbol var = DefPhase.currentScope.resolve(name);
+        if(var == null) {
+            Interpreter.error(ctx.ID().getSymbol(), "Variable" + name + "no definida");
+            return Symbol.Type.tINVALID;
+        }
+        if ( var instanceof StructSymbol ) {
+            current = DefPhase.scopes.get(name);
+            return visit(ctx.chain());
+        }
+        return Symbol.Type.tINVALID;
+    }
+
+    @Override
+    public Symbol.Type visitStmt2IDChain(PsicoderParser.Stmt2IDChainContext ctx) {
+        String name = ctx.ID().getText();
+        Symbol var = DefPhase.currentScope.resolve(name);
+        if(var == null) {
+            Interpreter.error(ctx.ID().getSymbol(), "Variable" + name + "no definida");
+            return Symbol.Type.tINVALID;
+        }
+        if ( var instanceof StructSymbol ) {
+            current = DefPhase.scopes.get(name);
+            return visit(ctx.chain());
+        }
+        return Symbol.Type.tINVALID;
+    }
+
     // exp : ID TK_PUNTO chain
     @Override
     public Symbol.Type visitExpIDChain(PsicoderParser.ExpIDChainContext ctx) {
-        String name = ctx.ID().getSymbol().getText();
+        String name = ctx.ID().getText();
         Symbol var = DefPhase.currentScope.resolve(name);
         if ( var==null )
             return Symbol.Type.tINVALID;
@@ -292,5 +355,36 @@ public class TypeVisitor extends PsicoderBaseVisitor<Symbol.Type>{
         Symbol.Type type1 = visit(ctx.exp(0));
         Symbol.Type type2 = visit(ctx.exp(1));
         return getNumCompOperation(type1, type2);
+    }
+
+    @Override
+    public Symbol.Type visitStmt2LeerChain(PsicoderParser.Stmt2LeerChainContext ctx) {
+        String name = ctx.ID().getText();
+        Symbol var = DefPhase.currentScope.resolve(name);
+        if(var == null) {
+            Interpreter.error(ctx.ID().getSymbol(), "Variable" + name + "no definida");
+            return Symbol.Type.tINVALID;
+        }
+        if ( var instanceof StructSymbol ) {
+            current = DefPhase.scopes.get(name);
+            return visit(ctx.chain());
+        }
+        return Symbol.Type.tINVALID;
+    }
+
+    //stmt: ID  TK_PUNTO  chain  TK_ASIG  exp  TK_PYC
+    @Override
+    public Symbol.Type visitStmt4IDChainAsig(PsicoderParser.Stmt4IDChainAsigContext ctx) {
+        String name = ctx.ID().getText();
+        Symbol var = DefPhase.currentScope.resolve(name);
+        if(var == null) {
+            Interpreter.error(ctx.ID().getSymbol(), "Variable" + name + "no definida");
+            return Symbol.Type.tINVALID;
+        }
+        if ( var instanceof StructSymbol ) {
+            current = DefPhase.scopes.get(name);
+            return visit(ctx.chain());
+        }
+        return Symbol.Type.tINVALID;
     }
 }

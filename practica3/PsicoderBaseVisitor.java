@@ -1,4 +1,4 @@
-// Generated from C:/Users/Orlando S/Desktop/v4/practica3\Psicoder.g4 by ANTLR 4.5.1
+// Generated from C:/Users/jccaleroe/Documents/Practica-3/practica3\Psicoder.g4 by ANTLR 4.5.1
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -226,7 +226,7 @@ public class PsicoderBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStmtTypeAsifExp(PsicoderParser.StmtTypeAsifExpContext ctx) { return visitChildren(ctx); }
+	@Override public T visitStmtTypeAsigExp(PsicoderParser.StmtTypeAsigExpContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -310,6 +310,41 @@ public class PsicoderBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitParaStmtIDAsig(PsicoderParser.ParaStmtIDAsigContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitParaStmtTypeAsigExp(PsicoderParser.ParaStmtTypeAsigExpContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitParaStmtIDChain(PsicoderParser.ParaStmtIDChainContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitSi_no(PsicoderParser.Si_noContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitSi_no2(PsicoderParser.Si_no2Context ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitCasesCaso(PsicoderParser.CasesCasoContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -324,7 +359,7 @@ public class PsicoderBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCases2cacso(PsicoderParser.Cases2cacsoContext ctx) { return visitChildren(ctx); }
+	@Override public T visitCases2Caso(PsicoderParser.Cases2CasoContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -681,7 +716,7 @@ public class PsicoderBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStmt2TypeAsifExp(PsicoderParser.Stmt2TypeAsifExpContext ctx) { return visitChildren(ctx); }
+	@Override public T visitStmt2TypeAsigExp(PsicoderParser.Stmt2TypeAsigExpContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -716,14 +751,14 @@ public class PsicoderBaseVisitor<T> extends AbstractParseTreeVisitor<T> implemen
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStmt2LeerID(PsicoderParser.Stmt2LeerIDContext ctx) { return visitChildren(ctx); }
+	@Override public T visitStmt2LeerChain(PsicoderParser.Stmt2LeerChainContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStmt2LeerChain(PsicoderParser.Stmt2LeerChainContext ctx) { return visitChildren(ctx); }
+	@Override public T visitStmt2LeerID(PsicoderParser.Stmt2LeerIDContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
