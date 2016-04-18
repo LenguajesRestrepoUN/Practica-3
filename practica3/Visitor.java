@@ -836,6 +836,9 @@ public class Visitor extends PsicoderBaseVisitor<String> {
         return var.value;
     }
 
+    //-------------------Statements2------------------------------------------------
+    
+
     // stmt: SI  TK_PAR_IZQ  exp  TK_PAR_DER  ENTONCES  statements  FIN_SI     #stmtSi
     @Override
     public String visitStmt2Si(PsicoderParser.Stmt2SiContext ctx) {
