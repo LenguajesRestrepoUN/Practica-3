@@ -1,4 +1,4 @@
 funcion_principal
-    cadena a = "hola";
-    cadena b= a+"hhhh";
+    caracter a = 'f';
+    imprimir( 1000000 <'d');
 fin_principal

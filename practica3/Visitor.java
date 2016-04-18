@@ -378,19 +378,21 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     public String visitExpMult(PsicoderParser.ExpMultContext ctx) {
         boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
         boolean b=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean c = (String.valueOf(visitor.visit(ctx.exp(0)))).equals("tCARACTER");
+        boolean d = (String.valueOf(visitor.visit(ctx.exp(1)))).equals("tCARACTER");
         Double aux,aux1;
         String ch = visit(ctx.exp(0));
         String ch1 = visit(ctx.exp(1));
 
-        if (a)
+        if (a||c)
             aux= (double) ch.codePointAt(0)+1;
         else aux =Double.parseDouble(visit(ctx.exp(0)));
 
-        if (b)
+        if (b||d)
             aux1= (double) ch1.codePointAt(0)+1;
         else aux1 =Double.parseDouble(visit(ctx.exp(1)));
 
-        return String.valueOf(aux * aux1);
+        return String.valueOf((int)(aux * aux1));
     }
 
     //exp : exp  TK_MOD  exp     #expModulo
@@ -398,19 +400,21 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     public String visitExpModulo(PsicoderParser.ExpModuloContext ctx) {
         boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
         boolean b=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean c = (String.valueOf(visitor.visit(ctx.exp(0)))).equals("tCARACTER");
+        boolean d = (String.valueOf(visitor.visit(ctx.exp(1)))).equals("tCARACTER");
         Double aux,aux1;
         String ch = visit(ctx.exp(0));
         String ch1 = visit(ctx.exp(1));
 
-        if (a)
+        if (a||c)
             aux= (double) ch.codePointAt(0)+1;
         else aux =Double.parseDouble(visit(ctx.exp(0)));
 
-        if (b)
+        if (b||d)
             aux1= (double) ch1.codePointAt(0)+1;
         else aux1 =Double.parseDouble(visit(ctx.exp(1)));
 
-        return String.valueOf(aux % aux1);
+        return String.valueOf((int)(aux % aux1));
     }
 
     //exp: exp  TK_MENOS  exp       #expMenos
@@ -418,19 +422,21 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     public String visitExpMenos(PsicoderParser.ExpMenosContext ctx) {
         boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
         boolean b=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean c = (String.valueOf(visitor.visit(ctx.exp(0)))).equals("tCARACTER");
+        boolean d = (String.valueOf(visitor.visit(ctx.exp(1)))).equals("tCARACTER");
         Double aux,aux1;
         String ch = visit(ctx.exp(0));
         String ch1 = visit(ctx.exp(1));
 
-        if (a)
+        if (a||c)
             aux= (double) ch.codePointAt(0)+1;
         else aux =Double.parseDouble(visit(ctx.exp(0)));
 
-        if (b)
+        if (b||d)
             aux1= (double) ch1.codePointAt(0)+1;
         else aux1 =Double.parseDouble(visit(ctx.exp(1)));
 
-        return String.valueOf(aux - aux1);
+        return String.valueOf((int)(aux - aux1));
     }
 
     // exp: ID  TK_PUNTO  chain      #expIDChain
@@ -495,15 +501,17 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     public String visitExpMenor(PsicoderParser.ExpMenorContext ctx) {
         boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
         boolean b=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean c = (String.valueOf(visitor.visit(ctx.exp(0)))).equals("tCARACTER");
+        boolean d = (String.valueOf(visitor.visit(ctx.exp(1)))).equals("tCARACTER");
         Double aux,aux1;
         String ch = visit(ctx.exp(0));
         String ch1 = visit(ctx.exp(1));
 
-        if (a)
+        if (a||c)
             aux= (double) ch.codePointAt(0)+1;
         else aux =Double.parseDouble(visit(ctx.exp(0)));
 
-        if (b)
+        if (b||d)
             aux1= (double) ch1.codePointAt(0)+1;
         else aux1 =Double.parseDouble(visit(ctx.exp(1)));
 
@@ -537,15 +545,17 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     public String visitExpDiv(PsicoderParser.ExpDivContext ctx) {
         boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
         boolean b=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean c = (String.valueOf(visitor.visit(ctx.exp(0)))).equals("tCARACTER");
+        boolean d = (String.valueOf(visitor.visit(ctx.exp(1)))).equals("tCARACTER");
         Double aux,aux1;
         String ch = visit(ctx.exp(0));
         String ch1 = visit(ctx.exp(1));
 
-        if (a)
+        if (a||c)
             aux= (double) ch.codePointAt(0)+1;
         else aux =Double.parseDouble(visit(ctx.exp(0)));
 
-        if (b)
+        if (b||d)
             aux1= (double) ch1.codePointAt(0)+1;
         else aux1 =Double.parseDouble(visit(ctx.exp(1)));
 
@@ -564,15 +574,17 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     public String visitExpMayorIgual(PsicoderParser.ExpMayorIgualContext ctx) {
         boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
         boolean b=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean c = (String.valueOf(visitor.visit(ctx.exp(0)))).equals("tCARACTER");
+        boolean d = (String.valueOf(visitor.visit(ctx.exp(1)))).equals("tCARACTER");
         Double aux,aux1;
         String ch = visit(ctx.exp(0));
         String ch1 = visit(ctx.exp(1));
 
-        if (a)
+        if (a||c)
             aux= (double) ch.codePointAt(0)+1;
         else aux =Double.parseDouble(visit(ctx.exp(0)));
 
-        if (b)
+        if (b||d)
             aux1= (double) ch1.codePointAt(0)+1;
         else aux1 =Double.parseDouble(visit(ctx.exp(1)));
 
@@ -604,15 +616,17 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     public String visitExpMayor(PsicoderParser.ExpMayorContext ctx) {
         boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
         boolean b=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean c = (String.valueOf(visitor.visit(ctx.exp(0)))).equals("tCARACTER");
+        boolean d = (String.valueOf(visitor.visit(ctx.exp(1)))).equals("tCARACTER");
         Double aux,aux1;
         String ch = visit(ctx.exp(0));
         String ch1 = visit(ctx.exp(1));
 
-        if (a)
+        if (a||c)
             aux= (double) ch.codePointAt(0)+1;
         else aux =Double.parseDouble(visit(ctx.exp(0)));
 
-        if (b)
+        if (b||d)
             aux1= (double) ch1.codePointAt(0)+1;
         else aux1 =Double.parseDouble(visit(ctx.exp(1)));
 
@@ -627,15 +641,17 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     public String visitExpMenorIgual(PsicoderParser.ExpMenorIgualContext ctx) {
         boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
         boolean b=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean c = (String.valueOf(visitor.visit(ctx.exp(0)))).equals("tCARACTER");
+        boolean d = (String.valueOf(visitor.visit(ctx.exp(1)))).equals("tCARACTER");
         Double aux,aux1;
         String ch = visit(ctx.exp(0));
         String ch1 = visit(ctx.exp(1));
 
-        if (a)
+        if (a||c)
             aux= (double) ch.codePointAt(0)+1;
         else aux =Double.parseDouble(visit(ctx.exp(0)));
 
-        if (b)
+        if (b||d)
             aux1= (double) ch1.codePointAt(0)+1;
         else aux1 =Double.parseDouble(visit(ctx.exp(1)));
 
@@ -649,31 +665,39 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     @Override
     public String visitExpMas(PsicoderParser.ExpMasContext ctx) {
         //System.out.println(ctx.exp(1).getClass().getName());
+        //System.out.println( visitor.visit(ctx.exp(0))+"hola");
+
         boolean a=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
         boolean b=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCaracterContext");
+        boolean g = (String.valueOf(visitor.visit(ctx.exp(0)))).equals("tCARACTER");
+        boolean h = (String.valueOf(visitor.visit(ctx.exp(1)))).equals("tCARACTER");
         boolean c=(ctx.exp(0).getClass().getName()).equals("PsicoderParser$ExpCadenaContext");
         boolean d=(ctx.exp(1).getClass().getName()).equals("PsicoderParser$ExpCadenaContext");
-        if (c && d)
+        boolean e = (String.valueOf(visitor.visit(ctx.exp(0)))).equals("tCADENA");
+        boolean f = (String.valueOf(visitor.visit(ctx.exp(1)))).equals("tCADENA");
+        //System.out.println(g+""+h);
+        if ((c||e) && (d||f)){
+            //System.out.println(visit(ctx.exp(0))+visit(ctx.exp(1)));
             return visit(ctx.exp(0))+visit(ctx.exp(1));
+        }
         else {
             Double aux, aux1;
             String ch = visit(ctx.exp(0));
             String ch1 = visit(ctx.exp(1));
             //System.out.println(a + " " + b + " " + c + " " + d);
-            if (a)
+            if (a||g)
                 aux = (double) ch.codePointAt(0) + 1;
             else aux = Double.parseDouble(visit(ctx.exp(0)));
 
-            if (b)
+            if (b||h)
                 aux1 = (double) ch1.codePointAt(0) + 1;
             else aux1 = Double.parseDouble(visit(ctx.exp(1)));
 
             //System.out.println(visit(ctx.exp(0))+visit(ctx.exp(1)));
 
-            return String.valueOf(aux + aux1);
+            return String.valueOf((int)(aux + aux1));
         }
     }
-
     //  exp: TK_NEG  VERDADERO        #expNegVerdadero
     @Override
     public String visitExpNegVerdadero(PsicoderParser.ExpNegVerdaderoContext ctx) {
