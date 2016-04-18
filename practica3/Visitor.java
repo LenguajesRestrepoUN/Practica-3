@@ -4,13 +4,14 @@ import java.util.Scanner;
 
 public class Visitor extends PsicoderBaseVisitor<String> {
 
-    private static HashMap<String, Scope> scopes = DefPhase.scopes;
+    public static HashMap<String, Scope> scopes = DefPhase.scopes;
     private static GlobalScope globals = DefPhase.globals;
-    private static Scope currentScope = DefPhase.currentScope;
+    public static Scope currentScope = DefPhase.currentScope;
     private Integer functionArgument = 0;
     private FunctionSymbol tmp;
     private Scope current;
     private String stringTmp;
+    private TypeVisitor2 visitor = new TypeVisitor2();
 
 /*    //ps :   element ps   #psElement
     @Override

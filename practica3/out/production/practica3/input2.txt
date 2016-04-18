@@ -1,7 +1,4 @@
 funcion_principal
-    //imprimir('d'+1);
-    entero a = 2;
-    entero b = a;
-    imprimir(a);
-    imprimir(b);
+    cadena a = "hola";
+    cadena b= a+"hhhh";
 fin_principal

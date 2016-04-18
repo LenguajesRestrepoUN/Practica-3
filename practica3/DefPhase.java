@@ -46,8 +46,8 @@ public class DefPhase extends PsicoderBaseListener{
         System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
         System.out.println(currentScope);
-        //Visitor visitor2 = new Visitor();
-        //visitor2.visitBFuncionPrincipal(ctx);
+        Visitor visitor2 = new Visitor();
+        visitor2.visitBFuncionPrincipal(ctx);
     }
 
     //element: ESTRUCTURA ID statements4 FIN_ESTRUCTURA
