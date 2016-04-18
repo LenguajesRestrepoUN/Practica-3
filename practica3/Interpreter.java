@@ -33,12 +33,12 @@ public class Interpreter {
 
     public static void error(Token t, String msg) {
         System.err.printf("<%d:%d> Error semantico: %s\n", t.getLine(), t.getCharPositionInLine(), msg);
-        //System.exit(0);
+        System.exit(0);
     }
 
     public static void error2(Token t, String msg) {
         System.err.printf("<%d> Error semantico: %s\n", t.getLine(), msg);
-        //System.exit(0);
+        System.exit(0);
     }
 
     public static void main(String[] args) throws Exception {
@@ -64,10 +64,6 @@ public class Interpreter {
             ParseTreeWalker walker = new ParseTreeWalker();
             DefPhase def = new DefPhase();
             walker.walk(def, tree);
-
-            //Visitor visitor = new Visitor();
-            //visitor.visit(tree);
-            //System.out.println();
 
         } catch (Exception e) {
             System.err.println("Error (Test): " + e);

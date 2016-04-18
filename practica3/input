@@ -73,8 +73,6 @@ funcion_principal
     sum(b,f);
     imprimir(a);
     resta();
-    cadena a = resta(1);
-    sum();
     entero a = 2;
     seleccionar ( a ) entre
     	caso 0 :

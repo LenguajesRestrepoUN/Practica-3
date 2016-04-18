@@ -237,6 +237,9 @@ public class TypeVisitor extends PsicoderBaseVisitor<Symbol.Type>{
         if (type1 == Symbol.Type.tENTERO && type1 == type2)
             return Symbol.Type.tENTERO;
 
+        if (type1 == Symbol.Type.tENTERO && type2 == Symbol.Type.tCARACTER)
+            return Symbol.Type.tENTERO;
+
         return Symbol.Type.tINVALID;
     }
 
@@ -263,6 +266,9 @@ public class TypeVisitor extends PsicoderBaseVisitor<Symbol.Type>{
 
         if (type1 == Symbol.Type.tCADENA && type1 == type2)
             return Symbol.Type.tCADENA;
+
+        if (type1 == Symbol.Type.tENTERO && type2 == Symbol.Type.tCARACTER)
+            return Symbol.Type.tENTERO;
 
         return Symbol.Type.tINVALID;
     }

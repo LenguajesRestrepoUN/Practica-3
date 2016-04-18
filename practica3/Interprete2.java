@@ -19,9 +19,26 @@ public class Interprete2 {
         return Symbol.Type.tINVALID;
     }
 
+    public static String getTypeString(Symbol.Type name){
+        switch ( name ) {
+            case tCADENA :  return "cadena";
+            case tCARACTER :   return "caracter";
+            case tENTERO: return "entero";
+            case tREAL : return "real";
+            case tESTRUCTURA: return "estructura";
+            case tBOOLEANO: return "booleano";
+        }
+        return name.toString();
+    }
+
     public static void error(Token t, String msg) {
-        System.err.printf("line %d:%d %s\n", t.getLine(), t.getCharPositionInLine(), msg);
-        //System.exit(1);
+        System.err.printf("<%d:%d> Error semantico: %s\n", t.getLine(), t.getCharPositionInLine(), msg);
+        System.exit(0);
+    }
+
+    public static void error2(Token t, String msg) {
+        System.err.printf("<%d> Error semantico: %s\n", t.getLine(), msg);
+        System.exit(0);
     }
 
     public static void main(String[] args) throws Exception {
@@ -29,10 +46,6 @@ public class Interprete2 {
         try {
             PsicoderLexer lexer;
 
-            /*if (args.length > 0)
-                lexer = new PsicoderLexer(new ANTLRFileStream(args[0]));
-            else
-                lexer = new PsicoderLexer(new ANTLRInputStream(System.in));*/
             ANTLRFileStream input = new ANTLRFileStream("input2.txt");
             lexer = new PsicoderLexer(input);
 
@@ -47,10 +60,6 @@ public class Interprete2 {
             ParseTreeWalker walker = new ParseTreeWalker();
             DefPhase def = new DefPhase();
             walker.walk(def, tree);
-
-            Visitor visitor = new Visitor();
-            visitor.visit(tree);
-            System.out.println();
 
         } catch (Exception e) {
             System.err.println("Error (Test): " + e);

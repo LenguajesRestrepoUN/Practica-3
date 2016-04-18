@@ -67,14 +67,12 @@ fin_estructura
 funcion_principal
     cadena a = "\n";
     D d;
-    entero b = d.c.a;
-    entero f = D.c.a;
+    //entero b = d.c.a;
+    //entero f = D.c.a;
     entero j = sum(b, f);
     sum(b,f);
     imprimir(a);
     resta();
-    cadena a = resta(1);
-    sum();
     entero a = 2;
     seleccionar ( a ) entre
     	caso 0 :
