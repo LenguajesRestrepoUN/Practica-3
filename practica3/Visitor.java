@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Visitor extends PsicoderBaseVisitor<String> {
 
     private static HashMap<String, Scope> scopes = DefPhase.scopes;
     private static GlobalScope globals = DefPhase.globals;
     private static Scope currentScope = DefPhase.currentScope;
-    private Integer functionScopes = 0;
     private Integer functionArgument = 0;
     private FunctionSymbol tmp;
     private Scope current;
@@ -45,7 +45,6 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     public String visitBFuncionPrincipal(PsicoderParser.BFuncionPrincipalContext ctx) {
         currentScope = scopes.get("funcionPrincipal");
         currentScope.setCounter(1);
-        functionScopes = 1;
         visit(ctx.statements());
         return null;
     }
@@ -55,7 +54,6 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     public String visitElementFuncion(PsicoderParser.ElementFuncionContext ctx) {
         currentScope = scopes.get(ctx.ID().getText());
         currentScope.setCounter(1);
-        functionScopes = 1;
         visit(ctx.statements());
         String a = visit(ctx.exp());
         currentScope = currentScope.getEnclosingScope();
@@ -197,49 +195,59 @@ public class Visitor extends PsicoderBaseVisitor<String> {
         return null;
     }
 
-    // stmt:  PARA  TK_PAR_IZQ  para_stmt  exp  TK_PYC  exp TK_PAR_DER  HACER  statements3  FIN_PARA     #stmtPara
-    @Override
-    public String visitStmtPara(PsicoderParser.StmtParaContext ctx) {
-        currentScope = scopes.get(currentScope.getScopeName() + currentScope.getCounter());
-        visit(ctx.para_stmt());
-        visit(ctx.statements3());
-        currentScope.setCounter(1);
-        currentScope = currentScope.getEnclosingScope();
-        currentScope.setCounter(currentScope.getCounter() + 1);
-        return null;
-    }
-
     //para_stmt: ID  TK_ASIG  exp  TK_PYC
     @Override
     public String visitParaStmtIDAsig(PsicoderParser.ParaStmtIDAsigContext ctx) {
+        currentScope.resolve(ctx.ID().getText()).value = visit(ctx.exp());
         return null;
     }
 
     //para_stmt: type  ID  TK_ASIG  exp  TK_PYC
     @Override
     public String visitParaStmtTypeAsigExp(PsicoderParser.ParaStmtTypeAsigExpContext ctx) {
+        currentScope.resolve(ctx.ID().getText()).value = visit(ctx.exp());
+        return null;
+    }
+
+    // stmt:  PARA  TK_PAR_IZQ  para_stmt  exp  TK_PYC  exp TK_PAR_DER  HACER  statements3  FIN_PARA     #stmtPara
+    @Override
+    public String visitStmtPara(PsicoderParser.StmtParaContext ctx) {
+        currentScope = scopes.get(currentScope.getScopeName() + currentScope.getCounter());
+        visit(ctx.para_stmt());
+        while(visit(ctx.exp(0)).equals("verdadero")){
+            visit(ctx.statements3());
+            visit(ctx.exp(1));
+        }
+        currentScope.setCounter(1);
+        currentScope = currentScope.getEnclosingScope();
+        currentScope.setCounter(currentScope.getCounter() + 1);
         return null;
     }
 
     // stmt:  MIENTRAS  TK_PAR_IZQ  exp  TK_PAR_DER  HACER statements3  FIN_MIENTRAS        #stmtMientras
     @Override
     public String visitStmtMientras(PsicoderParser.StmtMientrasContext ctx) {
-        visit(ctx.exp());
-        currentScope = scopes.get(currentScope.getScopeName() + functionScopes);
-        functionScopes++;
-        visit(ctx.statements3());
+        currentScope = scopes.get(currentScope.getScopeName() + currentScope.getCounter());
+        while(visit(ctx.exp()).equals("verdadero")){
+            visit(ctx.statements3());
+        }
+        currentScope.setCounter(1);
         currentScope = currentScope.getEnclosingScope();
+        currentScope.setCounter(currentScope.getCounter() + 1);
         return null;
     }
 
     // stmt:  HACER  statements3  MIENTRAS  TK_PAR_IZQ  exp TK_PAR_DER  TK_PYC      #stmtHacer
     @Override
     public String visitStmtHacer(PsicoderParser.StmtHacerContext ctx) {
-        currentScope = scopes.get(currentScope.getScopeName() + functionScopes);
-        functionScopes++;
+        currentScope = scopes.get(currentScope.getScopeName() + currentScope.getCounter());
         visit(ctx.statements3());
-        visit(ctx.exp());
+        while(visit(ctx.exp()).equals("verdadero")){
+            visit(ctx.statements3());
+        }
+        currentScope.setCounter(1);
         currentScope = currentScope.getEnclosingScope();
+        currentScope.setCounter(currentScope.getCounter() + 1);
         return null;
     }
 
@@ -250,10 +258,11 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     // cases : CASO  exp  TK_POSD  statements3  cases2 #casesCaso
     @Override
     public String visitCasesCaso(PsicoderParser.CasesCasoContext ctx) {
-        currentScope = scopes.get(currentScope.getScopeName() + functionScopes);
-        functionScopes++;
+        currentScope = scopes.get(currentScope.getScopeName() + currentScope.getCounter());
         visit(ctx.statements3());
+        currentScope.setCounter(1);
         currentScope = currentScope.getEnclosingScope();
+        currentScope.setCounter(currentScope.getCounter() + 1);
         return null;
     }
 
@@ -264,10 +273,11 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     //cases2 : CASO  exp  TK_POSD  statements3  cases2    #cases2cacso
     @Override
     public String visitCases2Caso(PsicoderParser.Cases2CasoContext ctx) {
-        currentScope = scopes.get(currentScope.getScopeName() + functionScopes);
-        functionScopes++;
+        currentScope = scopes.get(currentScope.getScopeName() + currentScope.getCounter());
         visit(ctx.statements3());
+        currentScope.setCounter(1);
         currentScope = currentScope.getEnclosingScope();
+        currentScope.setCounter(currentScope.getCounter() + 1);
         return null;
     }
 
@@ -282,20 +292,35 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     //  deft : DEFECTO  TK_POSD  statements3
     @Override
     public String visitDeft(PsicoderParser.DeftContext ctx) {
-        currentScope = scopes.get(currentScope.getScopeName() + functionScopes);
-        functionScopes++;
+        currentScope = scopes.get(currentScope.getScopeName() + currentScope.getCounter());
         visit(ctx.statements3());
+        currentScope.setCounter(1);
         currentScope = currentScope.getEnclosingScope();
+        currentScope.setCounter(currentScope.getCounter() + 1);
         return null;
     }
 
     // stmt:  LEER  TK_PAR_IZQ  ID  TK_PAR_DER  TK_PYC      #stmtLeerID
     @Override
-    public String visitStmtLeerID(PsicoderParser.StmtLeerIDContext ctx) { return visitChildren(ctx); }
+    public String visitStmtLeerID(PsicoderParser.StmtLeerIDContext ctx) {
+        Scanner s = new Scanner(System.in);
+        currentScope.resolve(ctx.ID().getText()).value = s.nextLine();
+        s.close();
+        return null;
+    }
 
     //  LEER  TK_PAR_IZQ  ID  TK_PUNTO  chain  TK_PAR_DER  TK_PYC     #stmtLeerChain
     @Override
-    public String visitStmtLeerChain(PsicoderParser.StmtLeerChainContext ctx) { return visitChildren(ctx); }
+    public String visitStmtLeerChain(PsicoderParser.StmtLeerChainContext ctx) {
+        String name = ctx.ID().getText();
+        Symbol var = currentScope.resolve(name);
+        current = DefPhase.scopes.get(name);
+        Scanner s = new Scanner(System.in);
+        stringTmp = s.nextLine();
+        s.close();
+        visit(ctx.chain());
+        return null;
+    }
 
     //IMPRIMIR  TK_PAR_IZQ  imp_params  TK_PAR_DER  TK_PYC  #stmtImprimir
     @Override
@@ -798,38 +823,94 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     @Override
     public String visitStmt2ID(PsicoderParser.Stmt2IDContext ctx) { return visitChildren(ctx); }
 
-    //stmt2:  SI  TK_PAR_IZQ  exp  TK_PAR_DER ENTONCES  statements3  FIN_SI #stmt2Si
+    // stmt: SI  TK_PAR_IZQ  exp  TK_PAR_DER  ENTONCES  statements  FIN_SI     #stmtSi
     @Override
     public String visitStmt2Si(PsicoderParser.Stmt2SiContext ctx) {
-        visit(ctx.exp());
-        currentScope = scopes.get(currentScope.getScopeName() + functionScopes);
-        functionScopes++;
-        visit(ctx.statements3());
-        currentScope = currentScope.getEnclosingScope();
+        String flag = visit(ctx.exp());
+        if(flag.equals("verdadero")){
+            currentScope = scopes.get(currentScope.getScopeName() + currentScope.getCounter());
+            visit(ctx.statements3());
+            currentScope.setCounter(1);
+            currentScope = currentScope.getEnclosingScope();
+            currentScope.setCounter(currentScope.getCounter() + 1);
+        }
         return null;
     }
 
-    // stmt2:  SI  TK_PAR_IZQ  exp  TK_PAR_DER  ENTONCES  statements3 SI_noBlock2    #stmt2SiNo
+    //stmt: SI  TK_PAR_IZQ  exp  TK_PAR_DER  ENTONCES  statements si_noBlock       #stmtSiNo
     @Override
     public String visitStmt2SiNo(PsicoderParser.Stmt2SiNoContext ctx) {
-        visit(ctx.exp());
-        currentScope = scopes.get(currentScope.getScopeName() + functionScopes);
-        functionScopes++;
-        visit(ctx.statements3());
-        currentScope = currentScope.getEnclosingScope();
-        visit(ctx.si_noBlock2());
+        String flag = visit(ctx.exp());
+        if(flag.equals("verdadero")){
+            currentScope = scopes.get(currentScope.getScopeName() + currentScope.getCounter());
+            visit(ctx.statements3());
+            currentScope.setCounter(1);
+            currentScope = currentScope.getEnclosingScope();
+            currentScope.setCounter(currentScope.getCounter() + 1);
+        }
+        else {
+            currentScope.setCounter(currentScope.getCounter() + 1);
+            visit(ctx.si_noBlock2());
+        }
         return null;
     }
 
-    //si_noBlock2: SI_NO  statements3  FIN_SI
+    //si_noBlock: SI_NO  statements  FIN_SI
     @Override
     public String visitSi_no2(PsicoderParser.Si_no2Context ctx) {
-        currentScope = scopes.get(currentScope.getScopeName() + functionScopes);
-        functionScopes++;
+        currentScope = scopes.get(currentScope.getScopeName() + currentScope.getCounter());
         visit(ctx.statements3());
+        currentScope.setCounter(1);
         currentScope = currentScope.getEnclosingScope();
+        currentScope.setCounter(currentScope.getCounter() + 1);
         return null;
     }
+
+    // stmt:  PARA  TK_PAR_IZQ  para_stmt  exp  TK_PYC  exp TK_PAR_DER  HACER  statements3  FIN_PARA     #stmtPara
+    @Override
+    public String visitStmt2Para(PsicoderParser.Stmt2ParaContext ctx) {
+        currentScope = scopes.get(currentScope.getScopeName() + currentScope.getCounter());
+        visit(ctx.para_stmt());
+        while(visit(ctx.exp(0)).equals("verdadero")){
+            visit(ctx.statements3());
+            visit(ctx.exp(1));
+        }
+        currentScope.setCounter(1);
+        currentScope = currentScope.getEnclosingScope();
+        currentScope.setCounter(currentScope.getCounter() + 1);
+        return null;
+    }
+
+    // stmt:  MIENTRAS  TK_PAR_IZQ  exp  TK_PAR_DER  HACER statements3  FIN_MIENTRAS        #stmtMientras
+    @Override
+    public String visitStmt2Mientras(PsicoderParser.Stmt2MientrasContext ctx) {
+        currentScope = scopes.get(currentScope.getScopeName() + currentScope.getCounter());
+        while(visit(ctx.exp()).equals("verdadero")){
+            visit(ctx.statements3());
+        }
+        currentScope.setCounter(1);
+        currentScope = currentScope.getEnclosingScope();
+        currentScope.setCounter(currentScope.getCounter() + 1);
+        return null;
+    }
+
+    // stmt:  HACER  statements3  MIENTRAS  TK_PAR_IZQ  exp TK_PAR_DER  TK_PYC      #stmtHacer
+    @Override
+    public String visitStmt2Hacer(PsicoderParser.Stmt2HacerContext ctx) {
+        currentScope = scopes.get(currentScope.getScopeName() + currentScope.getCounter());
+        visit(ctx.statements3());
+        while(visit(ctx.exp()).equals("verdadero")){
+            visit(ctx.statements3());
+        }
+        currentScope.setCounter(1);
+        currentScope = currentScope.getEnclosingScope();
+        currentScope.setCounter(currentScope.getCounter() + 1);
+        return null;
+    }
+
+    //  stmt2: SELECCIONAR  TK_PAR_IZQ  ID  TK_PAR_DER  ENTRE  cases FIN_SELECCIONAR   #stmt2Seleccionar
+    @Override
+    public String visitStmt2Seleccionar(PsicoderParser.Stmt2SeleccionarContext ctx) { return visitChildren(ctx); }
 
     // stmt2: LEER  TK_PAR_IZQ  ID  TK_PUNTO  chain  TK_PAR_DER  TK_PYC    #stmt2LeerID
     @Override
@@ -845,42 +926,6 @@ public class Visitor extends PsicoderBaseVisitor<String> {
         System.out.println(visit(ctx.imp_params()));
         return null;
     }
-
-    // stmt2:  PARA  TK_PAR_IZQ  para_stmt  exp  TK_PYC  exp TK_PAR_DER  HACER  statements3  FIN_PARA     #stmtPara
-    @Override
-    public String visitStmt2Para(PsicoderParser.Stmt2ParaContext ctx) {
-        currentScope = scopes.get(currentScope.getScopeName() + functionScopes);
-        functionScopes++;
-        visitChildren(ctx);
-        currentScope = currentScope.getEnclosingScope();
-        return null;
-    }
-
-    // stmt2: MIENTRAS  TK_PAR_IZQ  exp  TK_PAR_DER  HACER statements3  FIN_MIENTRAS #stmt2Mientras
-    @Override
-    public String visitStmt2Mientras(PsicoderParser.Stmt2MientrasContext ctx) {
-        visit(ctx.exp());
-        currentScope = scopes.get(currentScope.getScopeName() + functionScopes);
-        functionScopes++;
-        visit(ctx.statements3());
-        currentScope = currentScope.getEnclosingScope();
-        return null;
-    }
-
-    // stmt2: HACER  statements3  MIENTRAS  TK_PAR_IZQ  exp TK_PAR_DER  TK_PYC    #stmt2Hacer
-    @Override
-    public String visitStmt2Hacer(PsicoderParser.Stmt2HacerContext ctx) {
-        currentScope = scopes.get(currentScope.getScopeName() + functionScopes);
-        functionScopes++;
-        visit(ctx.statements3());
-        visit(ctx.exp());
-        currentScope = currentScope.getEnclosingScope();
-        return null;
-    }
-
-    //  stmt2: SELECCIONAR  TK_PAR_IZQ  ID  TK_PAR_DER  ENTRE  cases FIN_SELECCIONAR   #stmt2Seleccionar
-    @Override
-    public String visitStmt2Seleccionar(PsicoderParser.Stmt2SeleccionarContext ctx) { return visitChildren(ctx); }
 
     // stmt4 : ID  TK_PAR_IZQ  optargs  TK_PAR_DER  TK_PYC        #stmt4Funcion
     @Override

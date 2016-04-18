@@ -11,6 +11,20 @@ funcion entero sum(entero x, entero y) hacer
     retornar a + b;
 fin_funcion
 
+funcion entero lol() hacer
+    entero dig1,dig2,dig3;
+    para ( dig1 = 0 ; dig1 <= 9; 1 ) hacer
+        para ( dig2 = 0; dig2 <= 9; 1) hacer
+            para (dig3=0; dig3 <= 9; 1) hacer
+                si ( dig1*dig1 + dig2*dig2 + dig3*dig3 == dig1*dig1*dig1) entonces
+                    imprimir( dig1*dig1*dig1 , "\n" );
+                fin_si
+            fin_para
+        fin_para
+    fin_para
+    retornar 1;
+fin_funcion
+
 funcion entero resta() hacer
     entero a = 1;
     entero b = 2;
