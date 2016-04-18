@@ -71,6 +71,17 @@ public class Visitor extends PsicoderBaseVisitor<String> {
         return null;
     }
 
+    // stmt4 : ID  TK_PAR_IZQ  optargs  TK_PAR_DER  TK_PYC        #stmt4Funcion
+    @Override
+    public String visitStmt4Funcion(PsicoderParser.Stmt4FuncionContext ctx) {
+        String name = ctx.ID().getText();
+        tmp = ((FunctionSymbol) scopes.get(name));
+        functionArgument = 0;
+        visit(ctx.optargs());
+        visitElementFuncion(tmp.ctx);
+        return null;
+    }
+
     // args : exp       #argsExp
     @Override
     public String visitArgsExp(PsicoderParser.ArgsExpContext ctx) {
@@ -86,13 +97,6 @@ public class Visitor extends PsicoderBaseVisitor<String> {
         return null;
     }
 
-    //stmt:  type  ID  TK_ASIG  exp  TK_COMA  optexp  TK_PYC       #stmtTypeAsig
-    @Override public String visitStmtTypeAsig(PsicoderParser.StmtTypeAsigContext ctx) {
-        currentScope.resolve(ctx.ID().getText()).value = visit(ctx.exp());
-        visitChildren(ctx.optexp());
-        return null;
-    }
-
     // optexp:  ID  TK_ASIG  exp  TK_COMA  optexp #optexpIDAsigExpComa
     @Override
     public String visitOptexpIDAsigExpComa(PsicoderParser.OptexpIDAsigExpComaContext ctx) {
@@ -105,6 +109,13 @@ public class Visitor extends PsicoderBaseVisitor<String> {
     @Override
     public String visitOptexpIDAsigExp(PsicoderParser.OptexpIDAsigExpContext ctx) {
         currentScope.resolve(ctx.ID().getText()).value = visit(ctx.exp());
+        return null;
+    }
+
+    //stmt:  type  ID  TK_ASIG  exp  TK_COMA  optexp  TK_PYC       #stmtTypeAsig
+    @Override public String visitStmtTypeAsig(PsicoderParser.StmtTypeAsigContext ctx) {
+        currentScope.resolve(ctx.ID().getText()).value = visit(ctx.exp());
+        visitChildren(ctx.optexp());
         return null;
     }
 
@@ -791,38 +802,6 @@ public class Visitor extends PsicoderBaseVisitor<String> {
         return var.value;
     }
 
-    // stmt2 : ROMPER  TK_PYC  #stmt2Romper
-    @Override
-    public String visitStmt2Romper(PsicoderParser.Stmt2RomperContext ctx) { return visitChildren(ctx); }
-
-    // stmt2: ID  TK_PAR_IZQ  optargs  TK_PAR_DER  TK_PYC #stmt2CallFunction
-    @Override
-    public String visitStmt2CallFunction(PsicoderParser.Stmt2CallFunctionContext ctx) { return visitChildren(ctx); }
-
-    //  stmt2:  type  ID  TK_ASIG  exp  TK_COMA  optexp  TK_PYC  #stmt2TypeAsig
-    @Override
-    public String visitStmt2TypeAsig(PsicoderParser.Stmt2TypeAsigContext ctx) { return visitChildren(ctx); }
-
-    // stmt2:  type  ID  TK_COMA  optexp  TK_PYC    #stmt2TypeAsigOptexp
-    @Override
-    public String visitStmt2TypeAsigOptexp(PsicoderParser.Stmt2TypeAsigOptexpContext ctx) { return visitChildren(ctx); }
-
-    // stmt2:  ID  TK_ASIG  exp  TK_PYC #stmt2IDAsig
-    @Override
-    public String visitStmt2IDAsig(PsicoderParser.Stmt2IDAsigContext ctx) { return visitChildren(ctx); }
-
-    // stmt2: type  ID  TK_ASIG  exp  TK_PYC   #stmt2TypeAsifExp
-    @Override
-    public String visitStmt2TypeAsigExp(PsicoderParser.Stmt2TypeAsigExpContext ctx) { return visitChildren(ctx); }
-
-    // stmt2:  ID  TK_PUNTO  chain  TK_ASIG  exp  TK_PYC    #stmt2IDChain
-    @Override
-    public String visitStmt2IDChain(PsicoderParser.Stmt2IDChainContext ctx) { return visitChildren(ctx); }
-
-    // stmt2:  type  ID  TK_PYC #stmt2ID
-    @Override
-    public String visitStmt2ID(PsicoderParser.Stmt2IDContext ctx) { return visitChildren(ctx); }
-
     // stmt: SI  TK_PAR_IZQ  exp  TK_PAR_DER  ENTONCES  statements  FIN_SI     #stmtSi
     @Override
     public String visitStmt2Si(PsicoderParser.Stmt2SiContext ctx) {
@@ -908,28 +887,66 @@ public class Visitor extends PsicoderBaseVisitor<String> {
         return null;
     }
 
-    //  stmt2: SELECCIONAR  TK_PAR_IZQ  ID  TK_PAR_DER  ENTRE  cases FIN_SELECCIONAR   #stmt2Seleccionar
-    @Override
-    public String visitStmt2Seleccionar(PsicoderParser.Stmt2SeleccionarContext ctx) { return visitChildren(ctx); }
+    //stmt:  type  ID  TK_ASIG  exp  TK_COMA  optexp  TK_PYC       #stmtTypeAsig
+    @Override public String visitStmt2TypeAsig(PsicoderParser.Stmt2TypeAsigContext ctx) {
+        currentScope.resolve(ctx.ID().getText()).value = visit(ctx.exp());
+        visitChildren(ctx.optexp());
+        return null;
+    }
 
-    // stmt2: LEER  TK_PAR_IZQ  ID  TK_PUNTO  chain  TK_PAR_DER  TK_PYC    #stmt2LeerID
+    // stmt: ID  TK_ASIG  exp  TK_PYC   #stmtIDAsig
     @Override
-    public String visitStmt2LeerID(PsicoderParser.Stmt2LeerIDContext ctx) { return visitChildren(ctx); }
+    public String visitStmt2IDAsig(PsicoderParser.Stmt2IDAsigContext ctx) {
+        currentScope.resolve(ctx.ID().getText()).value = visit(ctx.exp());
+        return null;
+    }
 
-    // stmt2: LEER  TK_PAR_IZQ  ID  TK_PAR_DER  TK_PYC #stmt2LeerChain
+    // stmt: type  ID  TK_ASIG  exp  TK_PYC        #stmtTypeAsifExp
     @Override
-    public String visitStmt2LeerChain(PsicoderParser.Stmt2LeerChainContext ctx) { return visitChildren(ctx); }
+    public String visitStmt2TypeAsigExp(PsicoderParser.Stmt2TypeAsigExpContext ctx) {
+        currentScope.resolve(ctx.ID().getText()).value = visit(ctx.exp());
+        return null;
+    }
 
-    // stmt2: IMPRIMIR  TK_PAR_IZQ  imp_params  TK_PAR_DER  TK_PYC #stmt2Imprimir
+    // stmt: ID  TK_PUNTO  chain  TK_ASIG  exp  TK_PYC     #stmtIDChain
+    @Override
+    public String visitStmt2IDChain(PsicoderParser.Stmt2IDChainContext ctx) {
+        String name = ctx.ID().getText();
+        Symbol var = currentScope.resolve(name);
+        current = DefPhase.scopes.get(name);
+        stringTmp = visit(ctx.exp());
+        visit(ctx.chain());
+        return null;
+    }
+
+    // stmt:  LEER  TK_PAR_IZQ  ID  TK_PAR_DER  TK_PYC      #stmtLeerID
+    @Override
+    public String visitStmt2LeerID(PsicoderParser.Stmt2LeerIDContext ctx) {
+        Scanner s = new Scanner(System.in);
+        currentScope.resolve(ctx.ID().getText()).value = s.nextLine();
+        s.close();
+        return null;
+    }
+
+    //  LEER  TK_PAR_IZQ  ID  TK_PUNTO  chain  TK_PAR_DER  TK_PYC     #stmtLeerChain
+    @Override
+    public String visitStmt2LeerChain(PsicoderParser.Stmt2LeerChainContext ctx) {
+        String name = ctx.ID().getText();
+        Symbol var = currentScope.resolve(name);
+        current = DefPhase.scopes.get(name);
+        Scanner s = new Scanner(System.in);
+        stringTmp = s.nextLine();
+        s.close();
+        visit(ctx.chain());
+        return null;
+    }
+
+    //IMPRIMIR  TK_PAR_IZQ  imp_params  TK_PAR_DER  TK_PYC  #stmtImprimir
     @Override
     public String visitStmt2Imprimir(PsicoderParser.Stmt2ImprimirContext ctx) {
         System.out.println(visit(ctx.imp_params()));
         return null;
     }
-
-    // stmt4 : ID  TK_PAR_IZQ  optargs  TK_PAR_DER  TK_PYC        #stmt4Funcion
-    @Override
-    public String visitStmt4Funcion(PsicoderParser.Stmt4FuncionContext ctx) { return visitChildren(ctx); }
 
     // stmt4: type  ID  TK_ASIG  exp  TK_COMA  optexp  TK_PYC      #stmt4TypeIDAsigComa
     @Override

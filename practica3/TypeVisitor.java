@@ -255,7 +255,16 @@ public class TypeVisitor extends PsicoderBaseVisitor<Symbol.Type>{
     public Symbol.Type visitExpMas(PsicoderParser.ExpMasContext ctx) {
         Symbol.Type type1 = visit(ctx.exp(0));
         Symbol.Type type2 = visit(ctx.exp(1));
-        return getNumOperation(type1, type2);
+        if (type1 == Symbol.Type.tREAL && type1 == type2)
+            return Symbol.Type.tREAL;
+
+        if (type1 == Symbol.Type.tENTERO && type1 == type2)
+            return Symbol.Type.tENTERO;
+
+        if (type1 == Symbol.Type.tCADENA && type1 == type2)
+            return Symbol.Type.tCADENA;
+
+        return Symbol.Type.tINVALID;
     }
 
     //exp: exp  TK_MENOS  exp       #expMenos
