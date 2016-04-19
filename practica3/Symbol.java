@@ -31,7 +31,7 @@ public class Symbol {
 
     public String toString() {
         if ( type != Type.tINVALID )
-            return '<'+getName()+":"+type+'>';
+            return '<'+getName()+":"+type+":"+value+'>';
         return getName();
     }
 }

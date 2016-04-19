@@ -234,6 +234,12 @@ public class TypeVisitor extends PsicoderBaseVisitor<Symbol.Type>{
         if (type1 == Symbol.Type.tREAL && type1 == type2)
             return Symbol.Type.tREAL;
 
+        if (type1 == Symbol.Type.tREAL && type2 == Symbol.Type.tENTERO)
+            return Symbol.Type.tREAL;
+
+        if (type1 == Symbol.Type.tENTERO && type2 == Symbol.Type.tREAL)
+            return Symbol.Type.tREAL;
+
         if (type1 == Symbol.Type.tENTERO && type1 == type2)
             return Symbol.Type.tENTERO;
 
@@ -259,6 +265,12 @@ public class TypeVisitor extends PsicoderBaseVisitor<Symbol.Type>{
         Symbol.Type type1 = visit(ctx.exp(0));
         Symbol.Type type2 = visit(ctx.exp(1));
         if (type1 == Symbol.Type.tREAL && type1 == type2)
+            return Symbol.Type.tREAL;
+
+        if (type1 == Symbol.Type.tREAL && type2 == Symbol.Type.tENTERO)
+            return Symbol.Type.tREAL;
+
+        if (type1 == Symbol.Type.tENTERO && type2 == Symbol.Type.tREAL)
             return Symbol.Type.tREAL;
 
         if (type1 == Symbol.Type.tENTERO && type1 == type2)

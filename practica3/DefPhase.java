@@ -14,6 +14,12 @@ public class DefPhase extends PsicoderBaseListener{
     private Symbol.Type symbolTmp;
     private  String nameTmp;
 
+    /*private Visitor visitor2;
+
+    public DefPhase(){
+        visitor2 = new Visitor();
+    }*/
+
     //ps : element ps
     @Override
     public void enterPsElement(PsicoderParser.PsElementContext ctx) {
@@ -43,9 +49,9 @@ public class DefPhase extends PsicoderBaseListener{
 
     @Override
     public void exitBFuncionPrincipal(PsicoderParser.BFuncionPrincipalContext ctx) {
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         Visitor visitor2 = new Visitor();
         visitor2.visitBFuncionPrincipal(ctx);
     }
@@ -68,7 +74,7 @@ public class DefPhase extends PsicoderBaseListener{
 
     @Override
     public void exitElementEstructura(PsicoderParser.ElementEstructuraContext ctx) {
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
@@ -93,11 +99,13 @@ public class DefPhase extends PsicoderBaseListener{
     @Override
     public void exitElementFuncion(PsicoderParser.ElementFuncionContext ctx) {
         Symbol.Type type2 = visitor.visit(ctx.exp());
+        //System.out.println(currentScope);
         if( ((FunctionSymbol)currentScope).type != type2){
-            Interpreter.error(ctx.exp().getStart(), "tipos de datos incompatibles. Se esperaba un valor de retorno de tipo: "
+            if(! (((FunctionSymbol)currentScope).type == Symbol.Type.tREAL && type2 == Symbol.Type.tENTERO))
+                Interpreter.error(ctx.exp().getStart(), "tipos de datos incompatibles. Se esperaba un valor de retorno de tipo: "
                     + Interpreter.getTypeString(((FunctionSymbol)currentScope).type) + "; se encontro: " + Interpreter.getTypeString(type2) + ".");
         }
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
@@ -219,9 +227,11 @@ public class DefPhase extends PsicoderBaseListener{
             return;
         }
         Symbol.Type type = visitor.visit(ctx.exp());
-        if(type != fs.arguments.get(fs.parameters.get(functionArgument)).type )
-            Interpreter.error2(ctx.start, "el numero y tipo de argumentos de la funcion \"" +
-                    nameTmp + "\" no coincide con la declaracion.");
+        if(type != fs.arguments.get(fs.parameters.get(functionArgument)).type ) {
+            if(!(fs.arguments.get(fs.parameters.get(functionArgument)).type == Symbol.Type.tREAL && type == Symbol.Type.tENTERO))
+                Interpreter.error2(ctx.start, "el numero y tipo de argumentos de la funcion \"" +
+                        nameTmp + "\" no coincide con la declaracion.");
+        }
     }
 
     //args : exp TK_COMA args
@@ -246,6 +256,11 @@ public class DefPhase extends PsicoderBaseListener{
     //stmt: type  ID  TK_ASIG  exp  TK_COMA  optexp  TK_PYC
     @Override
     public void enterStmtTypeAsig(PsicoderParser.StmtTypeAsigContext ctx) {
+        String name = ctx.ID().getText();
+        if(currentScope.resolve(name) != null){
+            Interpreter.error(ctx.ID().getSymbol(), "la variable con nombre \"" + name + "\" ya ha sido declarada");
+            return;
+        }
         symbolTmp = defineType(ctx.type());
         Symbol.Type type2 = visitor.visit(ctx.exp());
         if (symbolTmp == type2)
@@ -259,6 +274,11 @@ public class DefPhase extends PsicoderBaseListener{
     //stmt: type  ID  TK_COMA  optexp  TK_PYC
     @Override
     public void enterStmtTypeAsigOptexp(PsicoderParser.StmtTypeAsigOptexpContext ctx) {
+        String name = ctx.ID().getText();
+        if(currentScope.resolve(name) != null){
+            Interpreter.error(ctx.ID().getSymbol(), "la variable con nombre \"" + name + "\" ya ha sido declarada");
+            return;
+        }
         symbolTmp = defineType(ctx.type());
         defineVar(symbolTmp, ctx.ID().getSymbol());
     }
@@ -272,6 +292,11 @@ public class DefPhase extends PsicoderBaseListener{
     //optexp: ID  TK_ASIG  exp  TK_COMA  optexp
     @Override
     public void enterOptexpIDAsigExpComa(PsicoderParser.OptexpIDAsigExpComaContext ctx) {
+        String name = ctx.ID().getText();
+        if(currentScope.resolve(name) != null){
+            Interpreter.error(ctx.ID().getSymbol(), "la variable con nombre \"" + name + "\" ya ha sido declarada");
+            return;
+        }
         Symbol.Type type2 = visitor.visit(ctx.exp());
         if (symbolTmp == type2)
             defineVar(symbolTmp, ctx.ID().getSymbol());
@@ -289,6 +314,11 @@ public class DefPhase extends PsicoderBaseListener{
     //optexp: ID  TK_ASIG  exp
     @Override
     public void enterOptexpIDAsigExp(PsicoderParser.OptexpIDAsigExpContext ctx) {
+        String name = ctx.ID().getText();
+        if(currentScope.resolve(name) != null){
+            Interpreter.error(ctx.ID().getSymbol(), "la variable con nombre \"" + name + "\" ya ha sido declarada");
+            return;
+        }
         Symbol.Type type2 = visitor.visit(ctx.exp());
         if (symbolTmp == type2)
             defineVar(symbolTmp, ctx.ID().getSymbol());
@@ -328,6 +358,11 @@ public class DefPhase extends PsicoderBaseListener{
     //stmt: type  ID  TK_ASIG  exp  TK_PYC
     @Override
     public void enterStmtTypeAsigExp(PsicoderParser.StmtTypeAsigExpContext ctx) {
+        String name = ctx.ID().getText();
+        if(currentScope.resolve(name) != null){
+            Interpreter.error(ctx.ID().getSymbol(), "la variable con nombre \"" + name + "\" ya ha sido declarada");
+            return;
+        }
         Symbol.Type type = defineType(ctx.type());
         Symbol.Type type2 = visitor.visit(ctx.exp());
         if (type == type2)
@@ -340,6 +375,11 @@ public class DefPhase extends PsicoderBaseListener{
     //para_stmt: type  ID  TK_ASIG  exp  TK_PYC
     @Override
     public void exitParaStmtTypeAsigExp(PsicoderParser.ParaStmtTypeAsigExpContext ctx) {
+        String name = ctx.ID().getText();
+        if(currentScope.resolve(name) != null){
+            Interpreter.error(ctx.ID().getSymbol(), "la variable con nombre \"" + name + "\" ya ha sido declarada");
+            return;
+        }
         Symbol.Type type = defineType(ctx.type());
         Symbol.Type type2 = visitor.visit(ctx.exp());
         if (type == type2)
@@ -379,6 +419,11 @@ public class DefPhase extends PsicoderBaseListener{
     //stmt: type  ID  TK_PYC
     @Override
     public void exitStmtID(PsicoderParser.StmtIDContext ctx) {
+        String name2 = ctx.ID().getText();
+        if(currentScope.resolve(name2) != null){
+            Interpreter.error(ctx.ID().getSymbol(), "la variable con nombre \"" + name2 + "\" ya ha sido declarada");
+            return;
+        }
         Symbol.Type type = defineType(ctx.type());
         if (type == Symbol.Type.tID) {
             String name = ctx.type().getText();
@@ -414,7 +459,7 @@ public class DefPhase extends PsicoderBaseListener{
 
     @Override
     public void exitStmtSi(PsicoderParser.StmtSiContext ctx) {
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
@@ -433,7 +478,7 @@ public class DefPhase extends PsicoderBaseListener{
 
     //si_noBlock: SI_NO  statements  FIN_SI
     @Override public void enterSi_no(PsicoderParser.Si_noContext ctx) {
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
         BlockScope bs = new BlockScope(currentScope.getScopeName() + currentScope.getCounter(), currentScope);
         saveScope(bs.getScopeName(), bs);
@@ -442,7 +487,7 @@ public class DefPhase extends PsicoderBaseListener{
     }
 
     @Override public void exitSi_no(PsicoderParser.Si_noContext ctx) {
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
@@ -461,7 +506,7 @@ public class DefPhase extends PsicoderBaseListener{
         if(type != Symbol.Type.tBOOLEANO){
             Interpreter.error(ctx.exp(0).getStart(), "expresion relacional mal formada.");
         }
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
@@ -480,13 +525,15 @@ public class DefPhase extends PsicoderBaseListener{
 
     @Override
     public void exitStmtMientras(PsicoderParser.StmtMientrasContext ctx) {
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
+        //System.out.println(currentScope);
     }
 
     //stmt: HACER  statements3  MIENTRAS  TK_PAR_IZQ  exp TK_PAR_DER  TK_PYC
     @Override
     public void enterStmtHacer(PsicoderParser.StmtHacerContext ctx) {
+        //System.out.println(currentScope);
         BlockScope bs = new BlockScope(currentScope.getScopeName() + currentScope.getCounter(), currentScope);
         saveScope(bs.getScopeName(), bs);
         currentScope.setCounter(currentScope.getCounter() + 1);
@@ -499,8 +546,9 @@ public class DefPhase extends PsicoderBaseListener{
         if(type != Symbol.Type.tBOOLEANO){
             Interpreter.error(ctx.exp().getStart(), "expresion relacional mal formada.");
         }
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
+        //System.out.println(currentScope);
     }
 
     //SELECCIONAR  TK_PAR_IZQ  ID  TK_PAR_DER  ENTRE  cases FIN_SELECCIONAR
@@ -516,7 +564,7 @@ public class DefPhase extends PsicoderBaseListener{
 
     @Override
     public void exitStmtSeleccionar(PsicoderParser.StmtSeleccionarContext ctx) {
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
@@ -545,7 +593,7 @@ public class DefPhase extends PsicoderBaseListener{
     //cases2 : CASO  exp  TK_POSD  statements3  cases2
     @Override
     public void enterCases2Caso(PsicoderParser.Cases2CasoContext ctx) {
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
         Symbol.Type type = visitor.visit(ctx.exp());
         if(type != symbolTmp){
@@ -568,7 +616,7 @@ public class DefPhase extends PsicoderBaseListener{
     //deft : DEFECTO  TK_POSD  statements3
     @Override
     public void enterDeft(PsicoderParser.DeftContext ctx) {
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
         BlockScope bs = new BlockScope(currentScope.getScopeName() + currentScope.getCounter(), currentScope);
         saveScope(bs.getScopeName(), bs);
@@ -619,8 +667,11 @@ public class DefPhase extends PsicoderBaseListener{
     public void enterStmt4TypeIDAsig(PsicoderParser.Stmt4TypeIDAsigContext ctx) {
         Symbol.Type type = defineType(ctx.type());
         Symbol.Type type2 = visitor.visit(ctx.exp());
-        if (type == type2)
+        if (type == type2) {
             defineVar(type, ctx.ID().getSymbol());
+            //System.out.print(currentScope.resolve(ctx.ID().getText()));
+            //visitor2.visit(ctx);
+        }
         else
             Interpreter.error(ctx.exp().getStart(), "tipos de datos incompatibles. Se esperaba un valor de retorno de tipo: "
                     + Interpreter.getTypeString(type) + "; se encontro: " + Interpreter.getTypeString(type2) + ".");
@@ -758,6 +809,11 @@ public class DefPhase extends PsicoderBaseListener{
     //stmt2: type  ID  TK_ASIG  exp  TK_PYC
     @Override
     public void enterStmt2TypeAsigExp(PsicoderParser.Stmt2TypeAsigExpContext ctx) {
+        String name = ctx.ID().getText();
+        if(currentScope.resolve(name) != null){
+            Interpreter.error(ctx.ID().getSymbol(), "la variable con nombre \"" + name + "\" ya ha sido declarada");
+            return;
+        }
         Symbol.Type type = defineType(ctx.type());
         Symbol.Type type2 = visitor.visit(ctx.exp());
         if (type == type2)
@@ -770,6 +826,11 @@ public class DefPhase extends PsicoderBaseListener{
     //stmt2: type  ID  TK_PYC
     @Override
     public void enterStmt2ID(PsicoderParser.Stmt2IDContext ctx) {
+        String name2 = ctx.ID().getText();
+        if(currentScope.resolve(name2) != null){
+            Interpreter.error(ctx.ID().getSymbol(), "la variable con nombre \"" + name2 + "\" ya ha sido declarada");
+            return;
+        }
         Symbol.Type type = defineType(ctx.type());
         if (type == Symbol.Type.tID) {
             String name = ctx.type().getText();
@@ -793,6 +854,11 @@ public class DefPhase extends PsicoderBaseListener{
     //stmt: type  ID  TK_ASIG  exp  TK_COMA  optexp  TK_PYC
     @Override
     public void enterStmt2TypeAsig(PsicoderParser.Stmt2TypeAsigContext ctx) {
+        String name = ctx.ID().getText();
+        if(currentScope.resolve(name) != null){
+            Interpreter.error(ctx.ID().getSymbol(), "la variable con nombre \"" + name + "\" ya ha sido declarada");
+            return;
+        }
         symbolTmp = defineType(ctx.type());
         Symbol.Type type2 = visitor.visit(ctx.exp());
         if (symbolTmp == type2)
@@ -805,6 +871,11 @@ public class DefPhase extends PsicoderBaseListener{
     //stmt: type  ID  TK_COMA  optexp  TK_PYC
     @Override
     public void enterStmt2TypeAsigOptexp(PsicoderParser.Stmt2TypeAsigOptexpContext ctx) {
+        String name = ctx.ID().getText();
+        if(currentScope.resolve(name) != null){
+            Interpreter.error(ctx.ID().getSymbol(), "la variable con nombre \"" + name + "\" ya ha sido declarada");
+            return;
+        }
         symbolTmp = defineType(ctx.type());
         defineVar(symbolTmp, ctx.ID().getSymbol());
     }
@@ -851,7 +922,7 @@ public class DefPhase extends PsicoderBaseListener{
 
     @Override
     public void exitStmt2Si(PsicoderParser.Stmt2SiContext ctx) {
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
@@ -870,7 +941,7 @@ public class DefPhase extends PsicoderBaseListener{
 
     //si_noBlock: SI_NO  statements  FIN_SI
     @Override public void enterSi_no2(PsicoderParser.Si_no2Context ctx) {
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
         BlockScope bs = new BlockScope(currentScope.getScopeName() + currentScope.getCounter(), currentScope);
         saveScope(bs.getScopeName(), bs);
@@ -879,7 +950,7 @@ public class DefPhase extends PsicoderBaseListener{
     }
 
     @Override public void exitSi_no2(PsicoderParser.Si_no2Context ctx) {
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
@@ -898,7 +969,7 @@ public class DefPhase extends PsicoderBaseListener{
         if(type != Symbol.Type.tBOOLEANO){
             Interpreter.error(ctx.exp(0).getStart(), "expresion relacional mal formada.");
         }
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
@@ -917,7 +988,7 @@ public class DefPhase extends PsicoderBaseListener{
 
     @Override
     public void exitStmt2Mientras(PsicoderParser.Stmt2MientrasContext ctx) {
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
@@ -936,7 +1007,7 @@ public class DefPhase extends PsicoderBaseListener{
         if(type != Symbol.Type.tBOOLEANO){
             Interpreter.error(ctx.exp().getStart(), "expresion relacional mal formada.");
         }
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
@@ -953,7 +1024,7 @@ public class DefPhase extends PsicoderBaseListener{
 
     @Override
     public void exitStmt2Seleccionar(PsicoderParser.Stmt2SeleccionarContext ctx) {
-        System.out.println(currentScope);
+        //System.out.println(currentScope);
         currentScope = currentScope.getEnclosingScope();
     }
 
